@@ -18,8 +18,4 @@ position = Vector2(-1, -2)
 shape = SubResource("RectangleShape2D_kxvab")
 
 [node name="Weapon" parent="." instance=ExtResource("3_eme43")]
-position = Vector2(46, 26)
-
-[node name="FireRateTimer" type="Timer" parent="."]
-wait_time = 0.25
-one_shot = true
+position = Vector2(81, 36)

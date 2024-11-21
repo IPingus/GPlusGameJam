@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://bjye8ole71ldx"]
+
+[ext_resource type="Script" path="res://bullet.gd" id="1_gf6ne"]
+[ext_resource type="Texture2D" uid="uid://3vt5s00pu4oh" path="res://Sprites/icon.svg" id="1_h6b3b"]
+[ext_resource type="Script" path="res://Scripts/Hitbox.gd" id="2_fqjb3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qxnoa"]
+size = Vector2(24, 24)
+
+[node name="Bullet" type="Node2D"]
+script = ExtResource("1_gf6ne")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_h6b3b")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Hitbox" type="Area2D" parent="."]
+script = ExtResource("2_fqjb3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_qxnoa")
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

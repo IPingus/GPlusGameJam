@@ -4,8 +4,11 @@ class_name Player
 var health = 3
 const SPEED = 300.0
 const ACCEL = 150
-@onready var animated_sprite_2d = $AnimatedSprite2D
+#@onready var animated_sprite_2d = $AnimatedSprite2D
 var input: Vector2
+
+@onready var fire_rate_timer = $FireRateTimer
+@onready var weapon = $Weapon
 
 func	get_input():
 	input.x = Input.get_action_raw_strength("Right") -  Input.get_action_raw_strength("Left")
@@ -27,6 +30,10 @@ func _process(delta):
 	
 	move_and_slide()
 	
-
+func _physics_process(delta):
+	if Input.is_action_pressed("Shoot") and fire_rate_timer.time_left == 0:
+		
+		weapon.fireBullet()
+		fire_rate_timer.start()
 
 	
