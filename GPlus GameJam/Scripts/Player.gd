@@ -11,8 +11,11 @@ var input: Vector2
 @onready var weapon = $Weapon
 @onready var mode_change_cooldown = $ModeChangeCooldown
 @onready var label = $Label
-@onready var stats = $Stats
+@onready var hurtbox = $Hurtbox
+@onready var blinking = $Blinking
 
+func _ready():
+	PlayerStats.no_health.connect(die)
 
 func	get_input():
 	input.x = Input.get_action_raw_strength("Right") -  Input.get_action_raw_strength("Left")
@@ -43,10 +46,11 @@ func _physics_process(delta):
 
 
 func _on_hurtbox_hurt(hitbox, damage):
-	label.text = "sdada"
-	stats.health -= damage
+	Events.add_screenshake.emit(1,0.25)
+	PlayerStats.health -= 1
+	blinking.play("blink")
 
 
 
-func _on_stats_no_health():
+func die():
 	queue_free()

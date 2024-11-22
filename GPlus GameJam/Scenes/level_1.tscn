@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cs7hvulsjvtdc"]
+[gd_scene load_steps=5 format=3 uid="uid://cs7hvulsjvtdc"]
 
 [ext_resource type="PackedScene" uid="uid://mogxd1hu1pfc" path="res://Scenes/player.tscn" id="1_05us7"]
 [ext_resource type="PackedScene" uid="uid://blc4is1tlva1c" path="res://Scenes/past_enemy.tscn" id="2_yn1j5"]
-[ext_resource type="PackedScene" uid="uid://cqqbvbf8h8ya5" path="res://Scenes/ui.tscn" id="3_wspma"]
+[ext_resource type="PackedScene" uid="uid://dxf1jwtbljyna" path="res://Scenes/camera_2d.tscn" id="3_va3rb"]
+[ext_resource type="Texture2D" uid="uid://3vt5s00pu4oh" path="res://Sprites/icon.svg" id="4_l3ub8"]
 
 [node name="Level1" type="Node2D"]
 
@@ -13,6 +14,20 @@ position = Vector2(404, 286)
 position = Vector2(853, 329)
 player_path = NodePath("../Player")
 
-[node name="UI" parent="." instance=ExtResource("3_wspma")]
-offset_left = 9.0
-offset_right = 9.0
+[node name="Camera2D" parent="." instance=ExtResource("3_va3rb")]
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(217, 97)
+texture = ExtResource("4_l3ub8")
+
+[node name="Icon2" type="Sprite2D" parent="."]
+position = Vector2(7, 525)
+texture = ExtResource("4_l3ub8")
+
+[node name="Icon3" type="Sprite2D" parent="."]
+position = Vector2(1123, 540)
+texture = ExtResource("4_l3ub8")
+
+[node name="Icon4" type="Sprite2D" parent="."]
+position = Vector2(571, 555)
+texture = ExtResource("4_l3ub8")
