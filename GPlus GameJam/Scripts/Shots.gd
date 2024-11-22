@@ -2,10 +2,15 @@ extends Node2D
 class_name Projectile
 
 @export var speed = 250
+@onready var hitbox = $Hitbox
 
 var velocity = Vector2.ZERO
 
-#const EXPLOSION_EFFECT = preload("res://effects/explosion_effect.tscn")
+func setstats(damage,armorPeirce):
+	print("zero")
+	hitbox.damage = damage
+	hitbox.armorPierce = armorPeirce
+
 
 func update_velocity():
 	velocity.x = speed

@@ -14,16 +14,14 @@ func _physics_process(delta):
 		if player is CharacterBody2D:
 			move_toward_postion(player.global_position, delta)
 	if Input.is_action_pressed("ModeChange"):
-		print("dsada")
 		changed_mode()
+		
 func changed_mode():
 	if GlobalVars.mode%2 == 0 and is_in_group("Past"):
-		print("first")
 		max_speed = 30
 		acceleration = 150
 
 	if GlobalVars.mode%2 == 1 and is_in_group("Past"):
-		print("second")
 		max_speed = 500
 		acceleration = 400
 

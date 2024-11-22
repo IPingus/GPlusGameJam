@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://3pwy3xt3jqyr"]
+
+[ext_resource type="PackedScene" uid="uid://dm8sjiuijl1uk" path="res://Scenes/weapon.tscn" id="1_l5x3o"]
+
+[node name="SMG" instance=ExtResource("1_l5x3o")]
+fireRate = 0.06
+
+[node name="Sprite2D" parent="." index="0"]
+scale = Vector2(0.36963, 0.234375)
+offset = Vector2(166.89, -72.5333)
+
+[node name="Muzzle" parent="Sprite2D" index="0"]
+position = Vector2(292.184, 0)
