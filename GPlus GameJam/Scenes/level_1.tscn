@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cs7hvulsjvtdc"]
+[gd_scene load_steps=4 format=3 uid="uid://cs7hvulsjvtdc"]
 
 [ext_resource type="PackedScene" uid="uid://mogxd1hu1pfc" path="res://Scenes/player.tscn" id="1_05us7"]
 [ext_resource type="PackedScene" uid="uid://blc4is1tlva1c" path="res://Scenes/past_enemy.tscn" id="2_yn1j5"]
+[ext_resource type="PackedScene" uid="uid://cqqbvbf8h8ya5" path="res://Scenes/ui.tscn" id="3_wspma"]
 
 [node name="Level1" type="Node2D"]
 
@@ -11,3 +12,7 @@ position = Vector2(404, 286)
 [node name="PastEnemy" parent="." instance=ExtResource("2_yn1j5")]
 position = Vector2(853, 329)
 player_path = NodePath("../Player")
+
+[node name="UI" parent="." instance=ExtResource("3_wspma")]
+offset_left = 9.0
+offset_right = 9.0

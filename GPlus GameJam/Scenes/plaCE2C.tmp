@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_45dbf"]
 [ext_resource type="Texture2D" uid="uid://3vt5s00pu4oh" path="res://Sprites/icon.svg" id="2_g7obg"]
+[ext_resource type="PackedScene" uid="uid://cqqbvbf8h8ya5" path="res://Scenes/ui.tscn" id="2_svk1a"]
 [ext_resource type="PackedScene" uid="uid://dm8sjiuijl1uk" path="res://Scenes/weapon.tscn" id="3_eme43"]
 [ext_resource type="Script" path="res://Scripts/HurtBox.gd" id="4_2txhf"]
-[ext_resource type="Script" path="res://Scripts/Stats.gd" id="5_44j5o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kxvab"]
 size = Vector2(120, 120)
@@ -14,6 +14,12 @@ radius = 53.6004
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_45dbf")
+
+[node name="UI" parent="." instance=ExtResource("2_svk1a")]
+offset_left = -361.0
+offset_top = -243.0
+offset_right = -361.0
+offset_bottom = -243.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_g7obg")
@@ -41,15 +47,4 @@ script = ExtResource("4_2txhf")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("CircleShape2D_j67rd")
 
-[node name="Label" type="Label" parent="."]
-offset_left = -97.0
-offset_top = -112.0
-offset_right = -57.0
-offset_bottom = -89.0
-text = "sda"
-
-[node name="Stats" type="Node" parent="."]
-script = ExtResource("5_44j5o")
-
 [connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]
-[connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]

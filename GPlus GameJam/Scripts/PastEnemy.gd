@@ -6,7 +6,7 @@ class_name PastEnemy
 @export var player_path: NodePath
 
 @onready var sprite_2d = $Sprite2D
-
+@onready var stats = $Stats
 
 func _physics_process(delta):
 	if player_path is NodePath:
@@ -41,3 +41,11 @@ func move_toward_postion(target_position, delta):
 	sprite_2d.flip_h = global_position < target_position
 	
 	move_and_slide()
+
+
+func _on_stats_no_health():
+	queue_free()
+
+func _on_hurt_box_hurt(hitbox, damage):
+	print("ouuouo")
+	stats.health-=damage

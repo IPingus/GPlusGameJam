@@ -1,11 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://gsvim0wddsl"]
+[gd_scene load_steps=4 format=3 uid="uid://gsvim0wddsl"]
 
 [ext_resource type="PackedScene" uid="uid://bwo7xhoadocvy" path="res://Scenes/shots.tscn" id="1_t4y7r"]
 [ext_resource type="Texture2D" uid="uid://3vt5s00pu4oh" path="res://Sprites/icon.svg" id="2_l0jrg"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_pmj11"]
+
 [node name="Bullets" instance=ExtResource("1_t4y7r")]
 
-[node name="Sprite2D" type="Sprite2D" parent="." index="2"]
+[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
 position = Vector2(-1.90735e-06, -1.90735e-06)
 scale = Vector2(0.132813, 0.105469)
 texture = ExtResource("2_l0jrg")
+
+[node name="Hitbox" parent="." index="2"]
+collision_layer = 17
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource("CircleShape2D_pmj11")

@@ -10,6 +10,9 @@ var input: Vector2
 @onready var fire_rate_timer = $FireRateTimer
 @onready var weapon = $Weapon
 @onready var mode_change_cooldown = $ModeChangeCooldown
+@onready var label = $Label
+@onready var stats = $Stats
+
 
 func	get_input():
 	input.x = Input.get_action_raw_strength("Right") -  Input.get_action_raw_strength("Left")
@@ -27,6 +30,7 @@ func _process(delta):
 	
 	var playerInput = get_input()
 	
+	
 	velocity = lerp(velocity, playerInput*SPEED, delta*ACCEL)
 	
 	move_and_slide()
@@ -36,9 +40,13 @@ func _physics_process(delta):
 		weapon.fireBullet()
 		fire_rate_timer.start()
 
-	if Input.is_action_pressed("ModeChange") and mode_change_cooldown.time_left == 0:
-		mode_change_cooldown.start()
-		print(GlobalVars.mode)
-		GlobalVars.mode+=1
 
-	
+
+func _on_hurtbox_hurt(hitbox, damage):
+	label.text = "sdada"
+	stats.health -= damage
+
+
+
+func _on_stats_no_health():
+	queue_free()
