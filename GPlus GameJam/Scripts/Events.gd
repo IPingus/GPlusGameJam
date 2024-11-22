@@ -8,3 +8,4 @@ signal ModeChanged()
 func _physics_process(delta):
 	if Input.is_action_just_pressed("ModeChange") and timer.time_left ==0 :
 		ModeChanged.emit()
+		timer.start(2)

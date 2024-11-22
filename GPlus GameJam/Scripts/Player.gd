@@ -15,7 +15,10 @@ var weapon:Weapon
 @onready var smg = $SMG
 @onready var crossbow = $Crossbow
 
+
+@onready var healt = $Healt
 @onready var sprite_2d_2 = $Sprite2D2
+@onready var mode_switch = $modeSwitch
 
 
 signal ModeChangedSig()
@@ -24,6 +27,7 @@ func _ready():
 	PlayerStats.no_health.connect(die)
 	Events.ModeChanged.connect(ModeChanged)
 	ModeChanged()
+	healt.text = str(PlayerStats.health)
 
 func	get_input():
 	input.x = Input.get_action_raw_strength("Right") -  Input.get_action_raw_strength("Left")
@@ -54,31 +58,14 @@ func _process(delta):
 	move_and_slide()
 	
 func _physics_process(delta):
-	if Input.is_action_pressed("Shoot") and fire_rate_timer.time_left == 0:
+	if Input.is_action_pressed("Shoot") and fire_rate_timer.is_stopped() and mode_switch.time_left==0:
 		weapon.fireBullet()
 		fire_rate_timer.start(weapon.fireRate)
 		
-	#if Input.is_action_pressed("Shoot") and fire_rate_timer.time_left == 0:
-		#if GlobalVars.mode%2 == 0:
-			#smg.fireBullet()
-			#fire_rate_timer.wait_time = smg.fireRate
-#
-#
-		#if GlobalVars.mode%2 == 1:
-			#crossbow.fireBullet()
-			#fire_rate_timer.wait_time = crossbow.fireRate
-		#fire_rate_timer.start()
-			
-		
-		
-		
-		
-	#if Input.is_action_just_pressed("ModeChange") and mode_change_cooldown.time_left == 0:
-		#ModeChanged()
-		#mode_change_cooldown.start()
-
 func ModeChanged():
 	GlobalVars.mode+=1
+	mode_switch.start()
+	fire_rate_timer.stop()
 	ModeChangedSig.emit()
 	if GlobalVars.mode%2 == 0:
 		crossbow.hide()
@@ -90,9 +77,10 @@ func ModeChanged():
 		crossbow.visible = true
 		weapon = crossbow
 
-func _on_hurtbox_hurt(hitbox, damage):
+func _on_hurtbox_hurt(hitbox, damage,armorpierce):
 	Events.add_screenshake.emit(1,0.25)
 	PlayerStats.health -= 1
+	healt.text = str(PlayerStats.health)
 	blinking.play("blink")
 
 

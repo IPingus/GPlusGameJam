@@ -10,9 +10,9 @@ size = Vector2(20, 22)
 radius = 8.0
 
 [node name="HeavyFutureEnemy" groups=["Future"] instance=ExtResource("1_dqqcj")]
-Fastmax_speed = 80
-Slowmax_speed = 15
-Armor = 2.0
+Fastmax_speed = 70
+Slowmax_speed = 40
+Armor = 20.0
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_ech6i")
@@ -30,3 +30,6 @@ collision_mask = 8
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
 position = Vector2(2, 5)
 shape = SubResource("CircleShape2D_8lgp3")
+
+[node name="Stats" parent="." index="3"]
+max_health = 20

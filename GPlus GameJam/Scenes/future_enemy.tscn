@@ -8,11 +8,12 @@ size = Vector2(9, 14)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nslh1"]
 radius = 3.0
-height = 16.0
+height = 12.0
 
 [node name="FutureEnemy" groups=["Future"] instance=ExtResource("1_nhjg7")]
-Fastacceleration = 210
-Armor = 1.0
+Fastacceleration = 200
+Fastmax_speed = 80
+Slowmax_speed = 50
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_2saq8")

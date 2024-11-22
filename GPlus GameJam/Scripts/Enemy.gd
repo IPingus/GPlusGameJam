@@ -23,6 +23,7 @@ var count = 0
 func _ready():
 	Events.ModeChanged.connect(ModeChanged)
 	ModeChanged()
+	label.text = str(stats.health)
 
 func _physics_process(delta):
 	if player_path is NodePath:
@@ -44,8 +45,9 @@ func _on_stats_no_health():
 
 func _on_hurt_box_hurt(hitbox, damage,armorPierce):
 	count+=1 
-	label.text = sd
-	stats.health = stats.health - (damage-(Armor*(1-armorPierce)))
+	
+	stats.health = stats.health - max(0.1,(damage-(Armor*(1-armorPierce))))
+	label.text = str(stats.health)
 
 
 func ModeChanged():

@@ -5,7 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://baphy6uw1cy2s" path="res://Sprites/Player-Shotgun.png" id="2_sfa3x"]
 
 [node name="SMG" instance=ExtResource("1_l5x3o")]
-fireRate = 0.06
+fireRate = 0.1
+damage = 5.0
 armorPierce = 0.1
 BULLETS = ExtResource("2_f6i82")
 

@@ -1,19 +1,20 @@
 [gd_scene load_steps=7 format=3 uid="uid://cs7hvulsjvtdc"]
 
 [ext_resource type="PackedScene" uid="uid://mogxd1hu1pfc" path="res://Scenes/player.tscn" id="1_05us7"]
+[ext_resource type="PackedScene" uid="uid://b03b3p7v6pgq" path="res://Scenes/health_meter.tscn" id="2_ie3p5"]
 [ext_resource type="PackedScene" uid="uid://dxf1jwtbljyna" path="res://Scenes/camera_2d.tscn" id="3_va3rb"]
 [ext_resource type="Texture2D" uid="uid://3vt5s00pu4oh" path="res://Sprites/icon.svg" id="4_l3ub8"]
-[ext_resource type="PackedScene" uid="uid://blc4is1tlva1c" path="res://Scenes/past_enemy.tscn" id="4_wau17"]
 [ext_resource type="PackedScene" uid="uid://dll02a8jny5no" path="res://Scenes/future_enemy.tscn" id="5_b04te"]
 [ext_resource type="PackedScene" uid="uid://dfdrijsbifayb" path="res://Scenes/heavy_future_enemy.tscn" id="6_m7uwj"]
 
 [node name="Level1" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource("1_05us7")]
-position = Vector2(-37, -16)
-
 [node name="Camera2D" parent="." instance=ExtResource("3_va3rb")]
 position = Vector2(0, 0)
+zoom = Vector2(3, 3)
+
+[node name="Player" parent="." instance=ExtResource("1_05us7")]
+position = Vector2(-44, 20)
 
 [node name="Icon" type="Sprite2D" parent="."]
 position = Vector2(217, 97)
@@ -32,19 +33,15 @@ position = Vector2(571, 555)
 texture = ExtResource("4_l3ub8")
 
 [node name="FutureEnemy" parent="." instance=ExtResource("5_b04te")]
-position = Vector2(49, -27)
-Fastacceleration = 95
-Fastmax_speed = 60
-Slowacceleration = 47
-player_path = NodePath("../Player")
-
-[node name="PastEnemy" parent="." instance=ExtResource("4_wau17")]
-position = Vector2(45, 17)
-Fastacceleration = 95
-Fastmax_speed = 60
-Slowacceleration = 47
+position = Vector2(96, 17)
+Fastmax_speed = 79
 player_path = NodePath("../Player")
 
 [node name="HeavyFutureEnemy" parent="." instance=ExtResource("6_m7uwj")]
-position = Vector2(21, 34)
+position = Vector2(83, -61)
 player_path = NodePath("../Player")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="HealthMeter" parent="UI" instance=ExtResource("2_ie3p5")]
+visible = false
