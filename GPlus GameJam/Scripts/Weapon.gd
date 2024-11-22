@@ -5,7 +5,7 @@ extends Node2D
 @onready var muzzle = $Sprite2D/Muzzle
 
 #const BULLET = preload("res://Scenes/bullet.gd")
-const BULLET = preload("res://Scenes/bullet.tscn")
+const BULLET = preload("res://Scenes/bullets.tscn")
 func _process(delta):
 	sprite_2d.rotation = get_local_mouse_position().angle()
 	

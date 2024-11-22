@@ -23,3 +23,7 @@ position = Vector2(46, 26)
 [node name="FireRateTimer" type="Timer" parent="."]
 wait_time = 0.25
 one_shot = true
+
+[node name="ModeChangeCooldown" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true

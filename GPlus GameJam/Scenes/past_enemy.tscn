@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://blc4is1tlva1c"]
+
+[ext_resource type="PackedScene" uid="uid://drpay7lgo3nok" path="res://Scenes/enemy.tscn" id="1_irr1r"]
+[ext_resource type="Texture2D" uid="uid://c4pnj6frjx0gm" path="res://Sprites/enemy.png" id="2_w1cit"]
+
+[node name="PastEnemy" groups=["Past"] instance=ExtResource("1_irr1r")]
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(1, -2.38419e-07)
+scale = Vector2(0.495595, 0.45)
+texture = ExtResource("2_w1cit")
