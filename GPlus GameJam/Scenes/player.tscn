@@ -12,7 +12,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/path = NodePath("Sprite2D2:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -42,7 +42,7 @@ length = 0.9
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/path = NodePath("Sprite2D2:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -89,13 +89,13 @@ script = ExtResource("1_45dbf")
 [node name="SMG" parent="." instance=ExtResource("4_a1c7h")]
 visible = false
 
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+texture = ExtResource("4_3l3t2")
+
 [node name="Blinking" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_jnly3")
 }
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("4_3l3t2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 0.5)

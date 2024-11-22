@@ -9,4 +9,4 @@ func _on_area_entered(hurtbox):
 	print("on_area_entered")
 	if not hurtbox is Hurtbox: return
 	print("on_area_entered222")
-	hurtbox.takeHit(self,damage)
+	hurtbox.takeHit(self,damage,armorPierce)

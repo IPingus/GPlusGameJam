@@ -9,11 +9,16 @@ class_name Enemy
 
 @export var Slowacceleration = 150
 @export var Slowmax_speed = 30
+@export var Armor: float
+
 @export var player_path: NodePath
 
 @onready var sprite_2d = $Sprite2D
 
 @onready var stats = $Stats
+
+@onready var label = $Label
+var count = 0
 
 func _ready():
 	Events.ModeChanged.connect(ModeChanged)
@@ -37,9 +42,10 @@ func move_toward_postion(target_position, delta):
 func _on_stats_no_health():
 	queue_free()
 
-func _on_hurt_box_hurt(hitbox, damage):
-	print("ouuouo")
-	stats.health-=damage
+func _on_hurt_box_hurt(hitbox, damage,armorPierce):
+	count+=1 
+	label.text = sd
+	stats.health = stats.health - (damage-(Armor*(1-armorPierce)))
 
 
 func ModeChanged():

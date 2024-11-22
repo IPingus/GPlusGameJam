@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://dfdrijsbifayb"]
+
+[ext_resource type="PackedScene" uid="uid://drpay7lgo3nok" path="res://Scenes/enemy.tscn" id="1_dqqcj"]
+[ext_resource type="Texture2D" uid="uid://cbpysxlmwahdg" path="res://Sprites/Robot-Large-Basic-test.png" id="2_ech6i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5wu7y"]
+size = Vector2(20, 22)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8lgp3"]
+radius = 8.0
+
+[node name="HeavyFutureEnemy" groups=["Future"] instance=ExtResource("1_dqqcj")]
+Fastmax_speed = 80
+Slowmax_speed = 15
+Armor = 2.0
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_ech6i")
+
+[node name="HurtBox" parent="." index="1"]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2(4, -4)
+shape = SubResource("RectangleShape2D_5wu7y")
+
+[node name="Hitbox" parent="." index="2"]
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(2, 5)
+shape = SubResource("CircleShape2D_8lgp3")

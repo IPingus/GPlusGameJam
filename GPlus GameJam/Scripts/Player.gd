@@ -5,7 +5,8 @@ class_name Player
 @export var ACCEL = 150
 #@onready var animated_sprite_2d = $AnimatedSprite2D
 var input: Vector2
-var weaponT:int
+var weapon:Weapon
+
 
 @onready var fire_rate_timer = $FireRateTimer
 @onready var mode_change_cooldown = $ModeChangeCooldown
@@ -13,6 +14,8 @@ var weaponT:int
 @onready var blinking = $Blinking
 @onready var smg = $SMG
 @onready var crossbow = $Crossbow
+
+@onready var sprite_2d_2 = $Sprite2D2
 
 
 signal ModeChangedSig()
@@ -35,6 +38,13 @@ func _process(delta):
 #		animated_sprite_2d.animation = "move"
 #	else:
 #		animated_sprite_2d.animation = "idle"
+
+	if get_local_mouse_position().angle()<-1.8 or get_local_mouse_position().angle()>1.2:
+		sprite_2d_2.flip_h = true
+		weapon.sprite_2d.flip_v=true
+	else:
+		sprite_2d_2.flip_h = false
+		weapon.sprite_2d.flip_v=false
 	
 	var playerInput = get_input()
 	
@@ -45,15 +55,19 @@ func _process(delta):
 	
 func _physics_process(delta):
 	if Input.is_action_pressed("Shoot") and fire_rate_timer.time_left == 0:
-		if GlobalVars.mode%2 == 0:
-			smg.fireBullet()
-			fire_rate_timer.wait_time = smg.fireRate
-
-
-		if GlobalVars.mode%2 == 1:
-			crossbow.fireBullet()
-			fire_rate_timer.wait_time = crossbow.fireRate
-		fire_rate_timer.start()
+		weapon.fireBullet()
+		fire_rate_timer.start(weapon.fireRate)
+		
+	#if Input.is_action_pressed("Shoot") and fire_rate_timer.time_left == 0:
+		#if GlobalVars.mode%2 == 0:
+			#smg.fireBullet()
+			#fire_rate_timer.wait_time = smg.fireRate
+#
+#
+		#if GlobalVars.mode%2 == 1:
+			#crossbow.fireBullet()
+			#fire_rate_timer.wait_time = crossbow.fireRate
+		#fire_rate_timer.start()
 			
 		
 		
@@ -69,10 +83,12 @@ func ModeChanged():
 	if GlobalVars.mode%2 == 0:
 		crossbow.hide()
 		smg.visible = true
+		weapon = smg
 
 	if GlobalVars.mode%2 == 1:
 		smg.hide()
 		crossbow.visible = true
+		weapon = crossbow
 
 func _on_hurtbox_hurt(hitbox, damage):
 	Events.add_screenshake.emit(1,0.25)

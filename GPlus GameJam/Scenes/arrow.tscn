@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqbqsf80egbg1"]
+
+[ext_resource type="PackedScene" uid="uid://bwo7xhoadocvy" path="res://Scenes/shots.tscn" id="1_xvokr"]
+[ext_resource type="Texture2D" uid="uid://bpa3ju0s67xot" path="res://Sprites/Projectiles-arrow.png" id="2_v1fd2"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oqg2y"]
+radius = 2.0
+height = 10.0
+
+[node name="Arrow" instance=ExtResource("1_xvokr")]
+
+[node name="Hitbox" parent="." index="1"]
+collision_mask = 17
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_oqg2y")
+
+[node name="Sprite2D" parent="." index="2"]
+texture = ExtResource("2_v1fd2")
+flip_h = true

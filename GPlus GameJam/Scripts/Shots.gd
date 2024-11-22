@@ -7,7 +7,6 @@ class_name Projectile
 var velocity = Vector2.ZERO
 
 func setstats(damage,armorPeirce):
-	print("zero")
 	hitbox.damage = damage
 	hitbox.armorPierce = armorPeirce
 

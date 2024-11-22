@@ -11,6 +11,8 @@ radius = 3.0
 height = 16.0
 
 [node name="FutureEnemy" groups=["Future"] instance=ExtResource("1_nhjg7")]
+Fastacceleration = 210
+Armor = 1.0
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_2saq8")
