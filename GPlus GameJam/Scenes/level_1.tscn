@@ -1,16 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://cs7hvulsjvtdc"]
+[gd_scene load_steps=6 format=3 uid="uid://cs7hvulsjvtdc"]
 
 [ext_resource type="PackedScene" uid="uid://mogxd1hu1pfc" path="res://Scenes/player.tscn" id="1_05us7"]
 [ext_resource type="PackedScene" uid="uid://dxf1jwtbljyna" path="res://Scenes/camera_2d.tscn" id="3_va3rb"]
 [ext_resource type="Texture2D" uid="uid://3vt5s00pu4oh" path="res://Sprites/icon.svg" id="4_l3ub8"]
 [ext_resource type="PackedScene" uid="uid://blc4is1tlva1c" path="res://Scenes/past_enemy.tscn" id="4_wau17"]
+[ext_resource type="PackedScene" uid="uid://dll02a8jny5no" path="res://Scenes/future_enemy.tscn" id="5_b04te"]
 
 [node name="Level1" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_05us7")]
-position = Vector2(404, 286)
+position = Vector2(-37, -16)
 
 [node name="Camera2D" parent="." instance=ExtResource("3_va3rb")]
+position = Vector2(0, 0)
 
 [node name="Icon" type="Sprite2D" parent="."]
 position = Vector2(217, 97)
@@ -28,6 +30,16 @@ texture = ExtResource("4_l3ub8")
 position = Vector2(571, 555)
 texture = ExtResource("4_l3ub8")
 
+[node name="FutureEnemy" parent="." instance=ExtResource("5_b04te")]
+position = Vector2(49, -27)
+Fastacceleration = 95
+Fastmax_speed = 60
+Slowacceleration = 47
+player_path = NodePath("../Player")
+
 [node name="PastEnemy" parent="." instance=ExtResource("4_wau17")]
-position = Vector2(905, 236)
+position = Vector2(45, 17)
+Fastacceleration = 95
+Fastmax_speed = 60
+Slowacceleration = 47
 player_path = NodePath("../Player")

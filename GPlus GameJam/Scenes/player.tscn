@@ -1,9 +1,9 @@
 [gd_scene load_steps=12 format=3 uid="uid://mogxd1hu1pfc"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_45dbf"]
-[ext_resource type="Texture2D" uid="uid://3vt5s00pu4oh" path="res://Sprites/icon.svg" id="2_g7obg"]
-[ext_resource type="PackedScene" uid="uid://dm8sjiuijl1uk" path="res://Scenes/weapon.tscn" id="3_eme43"]
+[ext_resource type="PackedScene" uid="uid://bhp51wwc8ol0u" path="res://Scenes/crossbow.tscn" id="2_ikmvo"]
 [ext_resource type="Script" path="res://Scripts/HurtBox.gd" id="4_2txhf"]
+[ext_resource type="Texture2D" uid="uid://246utmq64e1v" path="res://Sprites/Player-tes.png" id="4_3l3t2"]
 [ext_resource type="PackedScene" uid="uid://3pwy3xt3jqyr" path="res://Scenes/smg.tscn" id="4_a1c7h"]
 [ext_resource type="Script" path="res://Scripts/Stats.gd" id="5_44j5o"]
 
@@ -75,16 +75,16 @@ _data = {
 "blink": SubResource("Animation_qkcpl")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kxvab"]
-size = Vector2(120, 120)
+[sub_resource type="CircleShape2D" id="CircleShape2D_8vvr1"]
+radius = 6.5192
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j67rd"]
-radius = 53.6004
+radius = 4.24264
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_45dbf")
 
-[node name="Weapon" parent="." instance=ExtResource("3_eme43")]
+[node name="Crossbow" parent="." instance=ExtResource("2_ikmvo")]
 
 [node name="SMG" parent="." instance=ExtResource("4_a1c7h")]
 visible = false
@@ -95,11 +95,11 @@ libraries = {
 }
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_g7obg")
+texture = ExtResource("4_3l3t2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, -2)
-shape = SubResource("RectangleShape2D_kxvab")
+position = Vector2(-0.5, 0.5)
+shape = SubResource("CircleShape2D_8vvr1")
 
 [node name="FireRateTimer" type="Timer" parent="."]
 wait_time = 0.06
@@ -115,6 +115,7 @@ collision_mask = 0
 script = ExtResource("4_2txhf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, 2)
 shape = SubResource("CircleShape2D_j67rd")
 
 [node name="Stats" type="Node" parent="."]

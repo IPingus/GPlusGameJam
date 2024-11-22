@@ -1,21 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://blc4is1tlva1c"]
+[gd_scene load_steps=5 format=3 uid="uid://blc4is1tlva1c"]
 
 [ext_resource type="PackedScene" uid="uid://drpay7lgo3nok" path="res://Scenes/enemy.tscn" id="1_irr1r"]
-[ext_resource type="Texture2D" uid="uid://c4pnj6frjx0gm" path="res://Sprites/enemy.png" id="2_w1cit"]
-[ext_resource type="PackedScene" uid="uid://bu2d6khpf7oe6" path="res://Scenes/stats.tscn" id="3_dc721"]
+[ext_resource type="Texture2D" uid="uid://cfrtcvqsvqbya" path="res://Sprites/Crusader-Medium-Human-test.png" id="2_nvfq4"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_i5bwa"]
-size = Vector2(112, 62)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eugfs"]
+radius = 6.0
+height = 14.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_hl2hq"]
-radius = 28.0713
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pywmy"]
+radius = 3.0
+height = 16.0
 
 [node name="PastEnemy" groups=["Past"] instance=ExtResource("1_irr1r")]
 
 [node name="Sprite2D" parent="." index="0"]
 position = Vector2(1, -2.38419e-07)
-scale = Vector2(0.495595, 0.45)
-texture = ExtResource("2_w1cit")
+texture = ExtResource("2_nvfq4")
 
 [node name="HurtBox" parent="." index="1"]
 position = Vector2(-4, 5)
@@ -23,16 +23,13 @@ collision_layer = 17
 collision_mask = 17
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" index="0"]
-position = Vector2(4, -6)
-shape = SubResource("RectangleShape2D_i5bwa")
+position = Vector2(6, -5)
+shape = SubResource("CapsuleShape2D_eugfs")
 
-[node name="Stats" parent="." index="2" instance=ExtResource("3_dc721")]
-
-[node name="Hitbox" parent="." index="3"]
+[node name="Hitbox" parent="." index="2"]
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
-position = Vector2(2, 0)
-shape = SubResource("CircleShape2D_hl2hq")
-
-[connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]
+position = Vector2(3, 4)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_pywmy")

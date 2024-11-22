@@ -20,12 +20,12 @@ config/icon="res://Sprites/icon.svg"
 Utils="*res://Scripts/Utils.gd"
 GlobalVars="*res://Scripts/GlobalVars.gd"
 PlayerStats="*res://Scenes/player_stats.tscn"
-Events="*res://Scripts/Events.gd"
+Events="*res://Scenes/events.tscn"
 
 [display]
 
-window/size/viewport_width=1280
-window/size/viewport_height=720
+window/size/viewport_width=640
+window/size/viewport_height=480
 window/size/window_width_override=1920
 window/size/window_height_override=1080
 
