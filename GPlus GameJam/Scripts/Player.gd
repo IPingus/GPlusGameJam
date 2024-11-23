@@ -88,4 +88,4 @@ func _on_hurtbox_hurt(hitbox, damage,armorPierce):
 
 
 func die():
-	queue_free()
+	Utils.moveToScene("res://menu.tscn")
