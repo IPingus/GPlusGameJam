@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://cvmlcrlm4p1u6"]
+
+[ext_resource type="Texture2D" uid="uid://feuqpooshhkf" path="res://Scenes/Game Timer.jpeg" id="1_yq5xe"]
+[ext_resource type="Script" path="res://Scripts/mode_switch_clock.gd" id="2_ea1xe"]
+[ext_resource type="Texture2D" uid="uid://bmcmu2nuw14ml" path="res://new_compressed_texture_2d.tres" id="3_5mvas"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ffoyo"]
+font_size = 175
+font_color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -480.0
+offset_right = 480.0
+grow_vertical = 0
+texture = ExtResource("1_yq5xe")
+script = ExtResource("2_ea1xe")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -480.0
+offset_right = 480.0
+grow_vertical = 0
+step = 0.01
+fill_mode = 5
+texture_progress = ExtResource("3_5mvas")
+tint_progress = Color(0, 0, 0, 0.780392)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -240.0
+offset_right = 132.0
+grow_vertical = 0
+text = "F"
+label_settings = SubResource("LabelSettings_ffoyo")
+
+[node name="Timer" type="Timer" parent="."]

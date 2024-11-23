@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqcjmv805ddmt"]
+
+[ext_resource type="Texture2D" uid="uid://feuqpooshhkf" path="res://Scenes/Game Timer.jpeg" id="1_fusgq"]
+[ext_resource type="Script" path="res://Scripts/mode_switch_clock.gd" id="2_pi3uf"]
+
+[node name="ModeSwitchClock" type="TextureRect"]
+offset_right = 274.0
+offset_bottom = 246.0
+texture = ExtResource("1_fusgq")
+script = ExtResource("2_pi3uf")
