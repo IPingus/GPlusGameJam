@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/Area2D.gd" id="1_vfp5a"]
 
 [node name="Checkpoint" type="Area2D"]
+collision_mask = 3
 script = ExtResource("1_vfp5a")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -1,25 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://cwlk8w58thg4"]
+[gd_scene load_steps=12 format=3 uid="uid://cwlk8w58thg4"]
 
 [ext_resource type="PackedScene" uid="uid://drpay7lgo3nok" path="res://Scenes/enemy.tscn" id="1_iypo2"]
 [ext_resource type="Texture2D" uid="uid://cfm0f36gw87a3" path="res://Sprites2/KFUPMGameJam-Crusader-Large-Frame1.png" id="2_2grl6"]
 [ext_resource type="Texture2D" uid="uid://prn23yks87o0" path="res://Sprites2/KFUPMGameJam-Crusader-Large-Frame2.png" id="3_l5o1a"]
-
-[sub_resource type="Animation" id="Animation_hamm5"]
-resource_name = "Walk"
-length = 0.2
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [ExtResource("2_2grl6"), ExtResource("3_l5o1a")]
-}
 
 [sub_resource type="Animation" id="Animation_dkrui"]
 length = 0.001
@@ -52,6 +35,23 @@ tracks/0/keys = {
 "values": [ExtResource("2_2grl6"), ExtResource("3_l5o1a")]
 }
 
+[sub_resource type="Animation" id="Animation_hamm5"]
+resource_name = "Walk"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("2_2grl6"), ExtResource("3_l5o1a")]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nd7wu"]
 _data = {
 "RESET": SubResource("Animation_dkrui"),
@@ -64,10 +64,12 @@ size = Vector2(40, 29.5)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2476f"]
 radius = 15.0
-height = 30.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ababb"]
 radius = 25.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ek1ov"]
+radius = 19.0263
 
 [node name="HeavyPastEnemy" groups=["Past"] instance=ExtResource("1_iypo2")]
 Fastmax_speed = 70
@@ -104,3 +106,6 @@ max_health = 20
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_ababb")
+
+[node name="CollisionShape2D" parent="." index="8"]
+shape = SubResource("CircleShape2D_ek1ov")

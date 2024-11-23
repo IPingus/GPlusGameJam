@@ -1,13 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://blc4is1tlva1c"]
+[gd_scene load_steps=12 format=3 uid="uid://blc4is1tlva1c"]
 
 [ext_resource type="PackedScene" uid="uid://drpay7lgo3nok" path="res://Scenes/enemy.tscn" id="1_irr1r"]
 [ext_resource type="Texture2D" uid="uid://cwcflnn5snut6" path="res://Sprites2/KFUPMGameJam-Crusader-Medium-Frame1.png" id="2_bwm8k"]
 [ext_resource type="Texture2D" uid="uid://by1m6efhi2isd" path="res://Sprites2/KFUPMGameJam-Crusader-Medium-Frame2.png" id="3_g6huo"]
 
-[sub_resource type="Animation" id="Animation_spxak"]
-resource_name = "Walk"
-length = 0.2
-loop_mode = 1
+[sub_resource type="Animation" id="Animation_1lb3d"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -15,10 +13,10 @@ tracks/0/path = NodePath("Sprite2D:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_bwm8k"), ExtResource("3_g6huo")]
+"values": [ExtResource("2_bwm8k")]
 }
 
 [sub_resource type="Animation" id="Animation_g7cr4"]
@@ -37,8 +35,10 @@ tracks/0/keys = {
 "values": [ExtResource("2_bwm8k"), ExtResource("3_g6huo")]
 }
 
-[sub_resource type="Animation" id="Animation_1lb3d"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_spxak"]
+resource_name = "Walk"
+length = 0.2
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -46,10 +46,10 @@ tracks/0/path = NodePath("Sprite2D:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [ExtResource("2_bwm8k")]
+"values": [ExtResource("2_bwm8k"), ExtResource("3_g6huo")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fnw7u"]
@@ -69,6 +69,9 @@ height = 16.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_teckk"]
 radius = 4.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4x1vh"]
+radius = 5.0
 
 [node name="PastEnemy" groups=["Past"] instance=ExtResource("1_irr1r")]
 
@@ -102,3 +105,7 @@ shape = SubResource("CapsuleShape2D_pywmy")
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2(3, 2)
 shape = SubResource("CircleShape2D_teckk")
+
+[node name="CollisionShape2D" parent="." index="8"]
+position = Vector2(3, 2)
+shape = SubResource("CircleShape2D_4x1vh")

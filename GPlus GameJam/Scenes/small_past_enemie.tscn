@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ci57f8lwgxyfj"]
+[gd_scene load_steps=12 format=3 uid="uid://ci57f8lwgxyfj"]
 
 [ext_resource type="PackedScene" uid="uid://drpay7lgo3nok" path="res://Scenes/enemy.tscn" id="1_x6e71"]
 [ext_resource type="Texture2D" uid="uid://dakwkxpte6wp2" path="res://Sprites2/KFUPMGameJam-Crusader-Small-Frame1.png" id="2_2g2gm"]
@@ -68,6 +68,9 @@ radius = 3.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e1plj"]
 size = Vector2(6, 6)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_3cxd6"]
+radius = 4.0
+
 [node name="SmallPastEnemie" groups=["Past"] instance=ExtResource("1_x6e71")]
 Fastmax_speed = 130
 Armor = 1.0
@@ -97,3 +100,6 @@ max_health = 5
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_e1plj")
+
+[node name="CollisionShape2D" parent="." index="8"]
+shape = SubResource("CircleShape2D_3cxd6")

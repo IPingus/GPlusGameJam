@@ -19,6 +19,7 @@ var weapon:Weapon
 @onready var healt = $Healt
 @onready var sprite_2d_2 = $Sprite2D2
 @onready var mode_switch = $modeSwitch
+@onready var animation_player = $AnimationPlayer
 
 
 signal ModeChangedSig()
@@ -44,16 +45,17 @@ func _process(delta):
 #		animated_sprite_2d.animation = "idle"
 
 	if get_local_mouse_position().angle()<-1.8 or get_local_mouse_position().angle()>1.2:
-		sprite_2d_2.flip_h = true
+		sprite_2d_2.flip_h = false
 		weapon.sprite_2d.flip_v=true
 	else:
-		sprite_2d_2.flip_h = false
+		sprite_2d_2.flip_h = true
 		weapon.sprite_2d.flip_v=false
 	
 	var playerInput = get_input()
 	
 	
 	velocity = lerp(velocity, playerInput*SPEED, delta*ACCEL)
+	animation_player.play("walk")
 	
 	move_and_slide()
 	

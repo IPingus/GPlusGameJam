@@ -6,7 +6,6 @@ signal PlayerEntered()
 
 
 func _on_area_entered(area):
-	PlayerStats.health = 1
 	if area.is_in_group("Player"):
 		PlayerEntered.emit()
 

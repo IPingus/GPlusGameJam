@@ -1,25 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://c2veulag6ju4h"]
+[gd_scene load_steps=12 format=3 uid="uid://c2veulag6ju4h"]
 
 [ext_resource type="PackedScene" uid="uid://drpay7lgo3nok" path="res://Scenes/enemy.tscn" id="1_pk15v"]
 [ext_resource type="Texture2D" uid="uid://cdin1iv4002qb" path="res://Sprites2/KFUPMGameJam-Robot-Small-Frame1.png" id="2_2egp3"]
 [ext_resource type="Texture2D" uid="uid://bs6xuu5kgplcc" path="res://Sprites2/KFUPMGameJam-Robot-Small-Frame2.png" id="3_n1pug"]
-
-[sub_resource type="Animation" id="Animation_52ubk"]
-resource_name = "Walk"
-length = 0.2
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [ExtResource("2_2egp3"), ExtResource("3_n1pug")]
-}
 
 [sub_resource type="Animation" id="Animation_p7sww"]
 length = 0.001
@@ -52,6 +35,23 @@ tracks/0/keys = {
 "values": [ExtResource("2_2egp3"), ExtResource("3_n1pug")]
 }
 
+[sub_resource type="Animation" id="Animation_52ubk"]
+resource_name = "Walk"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("2_2egp3"), ExtResource("3_n1pug")]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x17r5"]
 _data = {
 "RESET": SubResource("Animation_p7sww"),
@@ -66,6 +66,9 @@ size = Vector2(8, 8)
 radius = 2.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ma13e"]
+radius = 4.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2344k"]
 radius = 4.0
 
 [node name="SmallFutureEnemy" instance=ExtResource("1_pk15v")]
@@ -100,3 +103,6 @@ max_health = 5
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 shape = SubResource("CircleShape2D_ma13e")
+
+[node name="CollisionShape2D" parent="." index="8"]
+shape = SubResource("CircleShape2D_2344k")

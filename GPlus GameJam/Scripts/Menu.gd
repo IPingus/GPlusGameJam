@@ -1,7 +1,7 @@
 extends Control
 
 
-const LEVEL_1 = "res://Scenes/level_1.tscn"
+const LEVEL_1 = "res://tilemap/tilemap.tscn"
 
 
 func _on_play_pressed():
