@@ -6,3 +6,5 @@ func instanceSceneOnMain(scene: PackedScene, position: Vector2):
 	main.add_child(instance)
 	instance.global_position = position
 	return instance
+func moveToScene(scene: String):
+	get_tree().change_scene_to_file(scene)

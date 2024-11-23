@@ -126,6 +126,7 @@ wait_time = 0.2
 one_shot = true
 
 [node name="Healt" type="Label" parent="."]
+visible = false
 offset_left = 4.0
 offset_right = 44.0
 offset_bottom = 23.0

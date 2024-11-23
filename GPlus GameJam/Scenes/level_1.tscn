@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cs7hvulsjvtdc"]
+[gd_scene load_steps=13 format=3 uid="uid://cs7hvulsjvtdc"]
 
 [ext_resource type="PackedScene" uid="uid://mogxd1hu1pfc" path="res://Scenes/player.tscn" id="1_05us7"]
 [ext_resource type="Script" path="res://Scripts/level_1.gd" id="1_op6v7"]
@@ -8,11 +8,32 @@
 [ext_resource type="PackedScene" uid="uid://crqom5u1l8cr8" path="res://Scenes/checkpoint.tscn" id="4_i4do5"]
 [ext_resource type="PackedScene" uid="uid://ci57f8lwgxyfj" path="res://Scenes/small_past_enemie.tscn" id="9_2w4xw"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hib48"]
+size = Vector2(160, 13)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wmp6g"]
 size = Vector2(6.5, 160)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q7x35"]
+size = Vector2(9.51896, 310.807)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l25wf"]
+size = Vector2(156.125, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tws67"]
+size = Vector2(32, 160)
+
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_op6v7")
+
+[node name="Backtrackwalls" type="Node" parent="."]
+
+[node name="Checkpoint 2" type="StaticBody2D" parent="Backtrackwalls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Backtrackwalls/Checkpoint 2"]
+position = Vector2(139.5, -4.82796e-07)
+rotation = -1.57079
+shape = SubResource("RectangleShape2D_hib48")
 
 [node name="Player" parent="." instance=ExtResource("1_05us7")]
 unique_name_in_owner = true
@@ -21,7 +42,7 @@ position = Vector2(-44, 20)
 [node name="Checkponts" type="Node" parent="."]
 
 [node name="FirstCheck" type="Marker2D" parent="Checkponts"]
-position = Vector2(196, 0)
+position = Vector2(280, 0)
 
 [node name="SecondCheck" type="Marker2D" parent="Checkponts"]
 position = Vector2(451, 0)
@@ -45,14 +66,14 @@ scale = Vector2(0.1, 0.1)
 position = Vector2(94, -1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint1"]
-position = Vector2(45, 1)
+position = Vector2(45, 0)
 shape = SubResource("RectangleShape2D_wmp6g")
 
 [node name="Checkpoint2" parent="." instance=ExtResource("4_i4do5")]
 position = Vector2(94, -1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint2"]
-position = Vector2(232, 4)
+position = Vector2(288, 2)
 shape = SubResource("RectangleShape2D_wmp6g")
 
 [node name="Enemies" type="Node" parent="."]
@@ -80,6 +101,46 @@ position = Vector2(270, -29)
 
 [node name="SmallPastEnemie6" parent="Enemies/second" instance=ExtResource("9_2w4xw")]
 position = Vector2(242, -50)
+
+[node name="Always" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Always"]
+position = Vector2(-144, 1)
+shape = SubResource("RectangleShape2D_q7x35")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Always"]
+position = Vector2(-2.19291, -77)
+rotation = 1.57079
+shape = SubResource("RectangleShape2D_q7x35")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Always"]
+position = Vector2(4.40353, 78)
+rotation = 1.57079
+shape = SubResource("RectangleShape2D_q7x35")
+
+[node name="Walls" type="Node" parent="."]
+
+[node name="Checkpoint 1" type="StaticBody2D" parent="Walls"]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Checkpoint 1"]
+position = Vector2(138.5, 0.0966866)
+rotation = -1.57079
+shape = SubResource("RectangleShape2D_l25wf")
+one_way_collision_margin = 83.0
+
+[node name="Chepoint 2" type="StaticBody2D" parent="Walls"]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Chepoint 2"]
+position = Vector2(130, 0)
+shape = SubResource("RectangleShape2D_tws67")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls/Chepoint 2"]
+position = Vector2(392, 1)
+shape = SubResource("RectangleShape2D_tws67")
 
 [connection signal="PlayerEntered" from="Checkpoint1" to="." method="_on_checkpoint_player_entered"]
 [connection signal="PlayerEntered" from="Checkpoint2" to="." method="_on_checkpoint_player_entered"]
