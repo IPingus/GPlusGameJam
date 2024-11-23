@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://blc4is1tlva1c"]
+[gd_scene load_steps=6 format=3 uid="uid://blc4is1tlva1c"]
 
 [ext_resource type="PackedScene" uid="uid://drpay7lgo3nok" path="res://Scenes/enemy.tscn" id="1_irr1r"]
 [ext_resource type="Texture2D" uid="uid://cfrtcvqsvqbya" path="res://Sprites/Crusader-Medium-Human-test.png" id="2_nvfq4"]
@@ -11,13 +11,16 @@ height = 14.0
 radius = 3.0
 height = 16.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_teckk"]
+radius = 4.0
+
 [node name="PastEnemy" groups=["Past"] instance=ExtResource("1_irr1r")]
 
-[node name="Sprite2D" parent="." index="0"]
+[node name="Sprite2D" parent="." index="1"]
 position = Vector2(1, -2.38419e-07)
 texture = ExtResource("2_nvfq4")
 
-[node name="HurtBox" parent="." index="1"]
+[node name="HurtBox" parent="." index="2"]
 position = Vector2(-4, 5)
 collision_layer = 17
 collision_mask = 17
@@ -26,10 +29,14 @@ collision_mask = 17
 position = Vector2(6, -5)
 shape = SubResource("CapsuleShape2D_eugfs")
 
-[node name="Hitbox" parent="." index="2"]
-collision_mask = 8
+[node name="Hitbox" parent="." index="3"]
+damage = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
 position = Vector2(3, 4)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_pywmy")
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(3, 2)
+shape = SubResource("CircleShape2D_teckk")

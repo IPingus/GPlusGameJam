@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://cwlk8w58thg4"]
+
+[ext_resource type="PackedScene" uid="uid://drpay7lgo3nok" path="res://Scenes/enemy.tscn" id="1_iypo2"]
+[ext_resource type="Texture2D" uid="uid://cfrtcvqsvqbya" path="res://Sprites/Crusader-Medium-Human-test.png" id="2_ockwl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m8qnx"]
+size = Vector2(18, 27)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2476f"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ababb"]
+
+[node name="HeavyPastEnemy" groups=["Past"] instance=ExtResource("1_iypo2")]
+Fastmax_speed = 70
+Slowmax_speed = 40
+Armor = 20.0
+
+[node name="Sprite2D" parent="." index="1"]
+scale = Vector2(2, 2)
+texture = ExtResource("2_ockwl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2(7, -3.5)
+shape = SubResource("RectangleShape2D_m8qnx")
+
+[node name="Hitbox" parent="." index="3"]
+damage = 3.0
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(2, 6)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_2476f")
+
+[node name="Stats" parent="." index="4"]
+max_health = 20
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(3, 3)
+shape = SubResource("CircleShape2D_ababb")

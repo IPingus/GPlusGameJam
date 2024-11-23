@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://c2veulag6ju4h"]
+
+[ext_resource type="PackedScene" uid="uid://drpay7lgo3nok" path="res://Scenes/enemy.tscn" id="1_pk15v"]
+[ext_resource type="Texture2D" uid="uid://gfgkky2gw75a" path="res://Sprites/Robot-Small-TV-test.png" id="2_1xy5o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kr8rl"]
+size = Vector2(8, 8)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l4x35"]
+radius = 2.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ma13e"]
+radius = 4.0
+
+[node name="SmallFutureEnemy" instance=ExtResource("1_pk15v")]
+Fastmax_speed = 130
+Armor = 1.0
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_1xy5o")
+
+[node name="HurtBox" parent="." index="2"]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2(4, -4)
+shape = SubResource("RectangleShape2D_kr8rl")
+
+[node name="Hitbox" parent="." index="3"]
+damage = 1.0
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(2, 2)
+shape = SubResource("CircleShape2D_l4x35")
+
+[node name="Stats" parent="." index="4"]
+max_health = 5
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource("CircleShape2D_ma13e")

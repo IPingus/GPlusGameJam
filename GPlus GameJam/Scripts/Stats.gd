@@ -3,7 +3,7 @@ extends Node
 
 @export var max_health = 3 : set = set_max_health
 @onready var health = max_health : set = set_health
-
+var Armor=5
 signal no_health
 signal health_changed
 signal max_health_changed

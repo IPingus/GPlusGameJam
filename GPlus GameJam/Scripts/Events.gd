@@ -2,6 +2,7 @@ extends Node
 
 signal add_screenshake(amount,duration)
 signal ModeChanged()
+signal enemydied()
 @onready var timer = $Timer
 
 

@@ -77,9 +77,9 @@ func ModeChanged():
 		crossbow.visible = true
 		weapon = crossbow
 
-func _on_hurtbox_hurt(hitbox, damage,armorpierce):
+func _on_hurtbox_hurt(hitbox, damage,armorPierce):
 	Events.add_screenshake.emit(1,0.25)
-	PlayerStats.health -= 1
+	PlayerStats.health-= damage
 	healt.text = str(PlayerStats.health)
 	blinking.play("blink")
 

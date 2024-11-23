@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://ci57f8lwgxyfj"]
+
+[ext_resource type="PackedScene" uid="uid://drpay7lgo3nok" path="res://Scenes/enemy.tscn" id="1_x6e71"]
+[ext_resource type="Texture2D" uid="uid://p1a773kjcfm4" path="res://Sprites/Crusader-Small-Dog-test.png" id="2_4ymd7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_40n68"]
+size = Vector2(8, 8)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d8u1c"]
+radius = 3.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e1plj"]
+size = Vector2(6, 6)
+
+[node name="SmallPastEnemie" groups=["Past"] instance=ExtResource("1_x6e71")]
+Fastmax_speed = 130
+Armor = 1.0
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_4ymd7")
+
+[node name="HurtBox" parent="." index="2"]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2(3, -4)
+shape = SubResource("RectangleShape2D_40n68")
+
+[node name="Hitbox" parent="." index="3"]
+damage = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(2, 2)
+shape = SubResource("CircleShape2D_d8u1c")
+
+[node name="Stats" parent="." index="4"]
+max_health = 5
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_e1plj")

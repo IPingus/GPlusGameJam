@@ -81,7 +81,7 @@ radius = 6.5192
 [sub_resource type="CircleShape2D" id="CircleShape2D_j67rd"]
 radius = 3.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_45dbf")
 
 [node name="Crossbow" parent="." instance=ExtResource("2_ikmvo")]

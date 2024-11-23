@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dll02a8jny5no"]
+[gd_scene load_steps=6 format=3 uid="uid://dll02a8jny5no"]
 
 [ext_resource type="PackedScene" uid="uid://drpay7lgo3nok" path="res://Scenes/enemy.tscn" id="1_nhjg7"]
 [ext_resource type="Texture2D" uid="uid://c4jaiyd1fys3j" path="res://Sprites/Robot-Medium-Shooter-test.png" id="2_2saq8"]
@@ -10,25 +10,33 @@ size = Vector2(9, 14)
 radius = 3.0
 height = 12.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_onr6v"]
+radius = 5.0
+height = 12.0
+
 [node name="FutureEnemy" groups=["Future"] instance=ExtResource("1_nhjg7")]
 Fastacceleration = 200
 Fastmax_speed = 80
 Slowmax_speed = 50
 
-[node name="Sprite2D" parent="." index="0"]
+[node name="Sprite2D" parent="." index="1"]
 texture = ExtResource("2_2saq8")
 
-[node name="HurtBox" parent="." index="1"]
+[node name="HurtBox" parent="." index="2"]
 collision_layer = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" index="0"]
 position = Vector2(4, -4)
 shape = SubResource("RectangleShape2D_2b5lm")
 
-[node name="Hitbox" parent="." index="2"]
+[node name="Hitbox" parent="." index="3"]
 collision_mask = 8
+damage = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
 position = Vector2(2, 3)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_nslh1")
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource("CapsuleShape2D_onr6v")
