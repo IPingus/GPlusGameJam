@@ -20,6 +20,9 @@ Armor = 20.0
 scale = Vector2(2, 2)
 texture = ExtResource("2_ockwl")
 
+[node name="HurtBox" parent="." index="2"]
+collision_layer = 16
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" index="0"]
 position = Vector2(7, -3.5)
 shape = SubResource("RectangleShape2D_m8qnx")

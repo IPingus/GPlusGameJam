@@ -9,6 +9,7 @@ class_name Weapon
 @export var armorPierce :float
 
 @export var BULLETS : PackedScene
+@onready var audio_stream_player = $AudioStreamPlayer
 
 func _process(delta):
 	sprite_2d.rotation = get_local_mouse_position().angle()
@@ -17,6 +18,7 @@ func _process(delta):
 		
 func fireBullet():
 	var bullet = Utils.instanceSceneOnMain(BULLETS, muzzle.global_position)
+	audio_stream_player.play()
 	bullet.setstats(damage,armorPierce)
 	bullet.rotation = sprite_2d.rotation
 	bullet.update_velocity()
