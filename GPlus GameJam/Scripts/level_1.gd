@@ -4,6 +4,7 @@ extends Node2D
 @onready var checkponts = $Checkponts
 @onready var enemies = $Enemies
 var checkpoitn = 0 #: set = chekcpointChanged
+@onready var player = %Player
 
 var checkponintlist
 var AreaCleared = false
@@ -38,3 +39,6 @@ func on_enemy_enemydied():
 func chekcpointChanged(value):
 	if AllEnemylist.size() > checkpoitn:
 		checkEnemies=AllEnemylist[value].get_children()
+	for i in checkEnemies:
+		i.player_path =  NodePath("../../../Player")
+		
