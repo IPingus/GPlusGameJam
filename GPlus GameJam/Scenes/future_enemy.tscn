@@ -8,6 +8,7 @@
 [sub_resource type="Animation" id="Animation_7rq5k"]
 resource_name = "Walk"
 length = 0.2
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -38,6 +39,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_2m3ip"]
 resource_name = "SlowWalk"
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true

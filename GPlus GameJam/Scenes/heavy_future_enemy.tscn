@@ -1,13 +1,61 @@
-[gd_scene load_steps=8 format=3 uid="uid://dfdrijsbifayb"]
+[gd_scene load_steps=11 format=3 uid="uid://dfdrijsbifayb"]
 
 [ext_resource type="PackedScene" uid="uid://drpay7lgo3nok" path="res://Scenes/enemy.tscn" id="1_dqqcj"]
-[ext_resource type="Texture2D" uid="uid://cbpysxlmwahdg" path="res://Sprites/Robot-Large-Basic-test.png" id="2_ech6i"]
+[ext_resource type="Texture2D" uid="uid://v7esasnfcwxi" path="res://Sprites2/KFUPMGameJam-Robot-Large-Frame1.png" id="2_er7i1"]
+[ext_resource type="Texture2D" uid="uid://8hd4jht18pou" path="res://Sprites2/KFUPMGameJam-Robot-Large-Frame2.png" id="3_gn5lq"]
 
 [sub_resource type="Animation" id="Animation_nrdb2"]
 resource_name = "Walk"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("2_er7i1"), ExtResource("3_gn5lq")]
+}
+
+[sub_resource type="Animation" id="Animation_tqrq5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_er7i1")]
+}
+
+[sub_resource type="Animation" id="Animation_36o6g"]
+resource_name = "SlowWalk"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.2, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("2_er7i1"), ExtResource("3_gn5lq")]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_eh3hv"]
 _data = {
+"RESET": SubResource("Animation_tqrq5"),
+"SlowWalk": SubResource("Animation_36o6g"),
 "Walk": SubResource("Animation_nrdb2")
 }
 
@@ -26,7 +74,7 @@ Slowmax_speed = 40
 Armor = 20.0
 
 [node name="Sprite2D" parent="." index="1"]
-texture = ExtResource("2_ech6i")
+texture = ExtResource("2_er7i1")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D" index="0"]
 root_node = NodePath("../..")

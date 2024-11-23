@@ -28,7 +28,7 @@ func _ready():
 
 
 func _on_checkpoint_player_entered():
-	if checkponintlist.size() > checkpoitn and AreaCleared:
+	if checkponintlist.size() >= checkpoitn and AreaCleared:
 		AreaCleared = false
 		camera_2d.global_position = checkponintlist[checkpoitn].global_position
 		checkpoitn+=1
