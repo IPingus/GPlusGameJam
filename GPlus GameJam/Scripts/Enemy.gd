@@ -17,8 +17,7 @@ var ramd=randf_range(-4,4)
 @onready var stats = $Stats
 @onready var label = $Label
 @onready var audio_stream_player = $AudioStreamPlayer
-@onready var fire_rate = $FireRate
-@onready var ray_cast_2d = $RayCast2D
+
 var damage = 2
 var armorPierce =0
 @export var BULLETS : PackedScene
@@ -32,12 +31,12 @@ func _ready():
 
 
 func _physics_process(delta):
-	fireBullet()
+
 	if player_path is NodePath and player_path:
 		var player = get_node(player_path)
 		if player is CharacterBody2D:
 			move_toward_postion(player.global_position, delta)
-	aim()
+
 
 func move_toward_postion(target_position, delta):
 
@@ -63,25 +62,21 @@ func _on_hurt_box_hurt(hitbox, damage,armorPierce):
 
 func ModeChanged():
 	if GlobalVars.mode%2 == 1 and is_in_group("Past"):
-		fire_rate.wait_time = 2
 		velocity = velocity*0.5
 		max_speed = Slowmax_speed
 		acceleration = Slowacceleration
 
 	if GlobalVars.mode%2 == 0 and is_in_group("Past"):
-		fire_rate.wait_time = 0.6
 		velocity = velocity*2
 		max_speed = Fastmax_speed
 		acceleration = Fastacceleration
 
 	if GlobalVars.mode%2 == 1 and is_in_group("Future"):
-		fire_rate.wait_time = 0.6
 		velocity = velocity*2
 		max_speed = Fastmax_speed
 		acceleration = Fastacceleration
 
 	if GlobalVars.mode%2 == 0 and is_in_group("Future"):
-		fire_rate.wait_time = 2
 		velocity = velocity*0.5
 		max_speed = Slowmax_speed
 		acceleration = Slowacceleration
@@ -97,15 +92,5 @@ func _on_area_2d_area_entered(area):
 func _on_area_2d_area_exited(area):
 	insideEnemy = false
 	
-func aim():
-	if playerss!=null:
-		ray_cast_2d.target_position=to_local(playerss.global_position)
 
 
-func fireBullet():
-	pass#var bullet = Utils.instanceSceneOnMain(BULLETS, global_position)
-	#audio_stream_player.play()
-	#
-	#bullet.setstats(damage,armorPierce)
-	#bullet.rotation = (ray_cast_2d.target_position.angle).normalized() #sprite_2d.rotation
-	#bullet.update_velocity()
