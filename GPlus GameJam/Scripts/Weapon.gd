@@ -14,8 +14,7 @@ class_name Weapon
 func _process(delta):
 	sprite_2d.rotation = get_local_mouse_position().angle()
 
-	
-		
+
 func fireBullet():
 	var bullet = Utils.instanceSceneOnMain(BULLETS, muzzle.global_position)
 	audio_stream_player.play()

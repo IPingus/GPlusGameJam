@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bxtxpg66sjkhy"
+path="res://.godot/imported/2024-09-20 19-16-52shoot.wind2.mp3-9ac3c7049ba3611f9070897032e13bbc.mp3str"
+
+[deps]
+
+source_file="res://Scenes/2024-09-20 19-16-52shoot.wind2.mp3"
+dest_files=["res://.godot/imported/2024-09-20 19-16-52shoot.wind2.mp3-9ac3c7049ba3611f9070897032e13bbc.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

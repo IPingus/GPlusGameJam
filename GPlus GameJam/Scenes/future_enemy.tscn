@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dll02a8jny5no"]
+[gd_scene load_steps=8 format=3 uid="uid://dll02a8jny5no"]
 
 [ext_resource type="PackedScene" uid="uid://drpay7lgo3nok" path="res://Scenes/enemy.tscn" id="1_nhjg7"]
 [ext_resource type="Texture2D" uid="uid://c4jaiyd1fys3j" path="res://Sprites/Robot-Medium-Shooter-test.png" id="2_2saq8"]
+[ext_resource type="PackedScene" uid="uid://gsvim0wddsl" path="res://Scenes/bullets.tscn" id="2_gywq7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2b5lm"]
 size = Vector2(9, 14)
@@ -14,10 +15,14 @@ height = 12.0
 radius = 5.0
 height = 12.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_eryl1"]
+radius = 5.0
+
 [node name="FutureEnemy" groups=["Future"] instance=ExtResource("1_nhjg7")]
 Fastacceleration = 200
 Fastmax_speed = 80
 Slowmax_speed = 50
+BULLETS = ExtResource("2_gywq7")
 
 [node name="Sprite2D" parent="." index="1"]
 texture = ExtResource("2_2saq8")
@@ -30,7 +35,6 @@ position = Vector2(4, -4)
 shape = SubResource("RectangleShape2D_2b5lm")
 
 [node name="Hitbox" parent="." index="3"]
-collision_mask = 8
 damage = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
@@ -40,3 +44,6 @@ shape = SubResource("CapsuleShape2D_nslh1")
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 shape = SubResource("CapsuleShape2D_onr6v")
+
+[node name="CollisionShape2D" parent="." index="10"]
+shape = SubResource("CircleShape2D_eryl1")
