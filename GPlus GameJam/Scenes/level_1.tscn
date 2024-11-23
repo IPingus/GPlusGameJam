@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cs7hvulsjvtdc"]
+[gd_scene load_steps=14 format=3 uid="uid://cs7hvulsjvtdc"]
 
 [ext_resource type="PackedScene" uid="uid://mogxd1hu1pfc" path="res://Scenes/player.tscn" id="1_05us7"]
 [ext_resource type="Script" path="res://Scripts/level_1.gd" id="1_op6v7"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dxf1jwtbljyna" path="res://Scenes/camera_2d.tscn" id="3_va3rb"]
 [ext_resource type="PackedScene" uid="uid://cvmlcrlm4p1u6" path="res://Clockvis222.tscn" id="4_gv6as"]
 [ext_resource type="PackedScene" uid="uid://crqom5u1l8cr8" path="res://Scenes/checkpoint.tscn" id="4_i4do5"]
+[ext_resource type="PackedScene" uid="uid://cwlk8w58thg4" path="res://Scenes/heavy_past_enemy.tscn" id="8_f13i4"]
 [ext_resource type="PackedScene" uid="uid://ci57f8lwgxyfj" path="res://Scenes/small_past_enemie.tscn" id="9_2w4xw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hib48"]
@@ -141,6 +142,9 @@ shape = SubResource("RectangleShape2D_tws67")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls/Chepoint 2"]
 position = Vector2(392, 1)
 shape = SubResource("RectangleShape2D_tws67")
+
+[node name="HeavyPastEnemy" parent="." instance=ExtResource("8_f13i4")]
+position = Vector2(-33, -21)
 
 [connection signal="PlayerEntered" from="Checkpoint1" to="." method="_on_checkpoint_player_entered"]
 [connection signal="PlayerEntered" from="Checkpoint2" to="." method="_on_checkpoint_player_entered"]
