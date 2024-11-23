@@ -17,12 +17,13 @@ var ramd=randf_range(-4,4)
 @onready var stats = $Stats
 @onready var label = $Label
 @onready var audio_stream_player = $AudioStreamPlayer
-
+var animationName = "walk"
 var damage = 2
 var armorPierce =0
 @export var BULLETS : PackedScene
 @export var playerss : Player
 var count = 0
+@onready var animation_player = $Sprite2D/AnimationPlayer
 
 func _ready():
 	Events.ModeChanged.connect(ModeChanged)
@@ -31,15 +32,16 @@ func _ready():
 
 
 func _physics_process(delta):
-
+	
 	if player_path is NodePath and player_path:
+		animation_player.play(animationName)
 		var player = get_node(player_path)
 		if player is CharacterBody2D:
 			move_toward_postion(player.global_position, delta)
 
 
 func move_toward_postion(target_position, delta):
-
+	
 	var direction = global_position.direction_to(target_position)
 	velocity = velocity.move_toward(max_speed*direction,acceleration*delta)
 	sprite_2d.flip_h = global_position < target_position
@@ -62,21 +64,25 @@ func _on_hurt_box_hurt(hitbox, damage,armorPierce):
 
 func ModeChanged():
 	if GlobalVars.mode%2 == 1 and is_in_group("Past"):
+		animationName = "SlowWalk"
 		velocity = velocity*0.5
 		max_speed = Slowmax_speed
 		acceleration = Slowacceleration
 
 	if GlobalVars.mode%2 == 0 and is_in_group("Past"):
+		animationName = "Walk"
 		velocity = velocity*2
 		max_speed = Fastmax_speed
 		acceleration = Fastacceleration
 
 	if GlobalVars.mode%2 == 1 and is_in_group("Future"):
+		animationName = "Walk"
 		velocity = velocity*2
 		max_speed = Fastmax_speed
 		acceleration = Fastacceleration
 
 	if GlobalVars.mode%2 == 0 and is_in_group("Future"):
+		animationName = "SlowWalk"
 		velocity = velocity*0.5
 		max_speed = Slowmax_speed
 		acceleration = Slowacceleration

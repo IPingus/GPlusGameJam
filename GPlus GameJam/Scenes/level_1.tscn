@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cs7hvulsjvtdc"]
+[gd_scene load_steps=14 format=3 uid="uid://cs7hvulsjvtdc"]
 
 [ext_resource type="PackedScene" uid="uid://mogxd1hu1pfc" path="res://Scenes/player.tscn" id="1_05us7"]
 [ext_resource type="Script" path="res://Scripts/level_1.gd" id="1_op6v7"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dxf1jwtbljyna" path="res://Scenes/camera_2d.tscn" id="3_va3rb"]
 [ext_resource type="PackedScene" uid="uid://cvmlcrlm4p1u6" path="res://Clockvis222.tscn" id="4_gv6as"]
 [ext_resource type="PackedScene" uid="uid://crqom5u1l8cr8" path="res://Scenes/checkpoint.tscn" id="4_i4do5"]
+[ext_resource type="PackedScene" uid="uid://ci57f8lwgxyfj" path="res://Scenes/small_past_enemie.tscn" id="8_nmrnq"]
 [ext_resource type="PackedScene" uid="uid://dll02a8jny5no" path="res://Scenes/future_enemy.tscn" id="9_uxdf5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hib48"]
@@ -82,6 +83,12 @@ shape = SubResource("RectangleShape2D_wmp6g")
 
 [node name="FutureEnemy" parent="Enemies/First" node_paths=PackedStringArray("playerss") instance=ExtResource("9_uxdf5")]
 playerss = NodePath("../../../Player")
+
+[node name="SmallPastEnemie" parent="Enemies/First" instance=ExtResource("8_nmrnq")]
+position = Vector2(-12, -52)
+
+[node name="SmallPastEnemie2" parent="Enemies/First" instance=ExtResource("8_nmrnq")]
+position = Vector2(-41, -56)
 
 [node name="second" type="Node" parent="Enemies"]
 

@@ -22,6 +22,7 @@ Utils="*res://Scripts/Utils.gd"
 GlobalVars="*res://Scripts/GlobalVars.gd"
 PlayerStats="*res://Scenes/player_stats.tscn"
 Events="*res://Scenes/events.tscn"
+Music="*res://music.tscn"
 
 [debug]
 

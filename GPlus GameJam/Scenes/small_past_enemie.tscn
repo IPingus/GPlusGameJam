@@ -1,7 +1,63 @@
-[gd_scene load_steps=6 format=3 uid="uid://ci57f8lwgxyfj"]
+[gd_scene load_steps=11 format=3 uid="uid://ci57f8lwgxyfj"]
 
 [ext_resource type="PackedScene" uid="uid://drpay7lgo3nok" path="res://Scenes/enemy.tscn" id="1_x6e71"]
-[ext_resource type="Texture2D" uid="uid://p1a773kjcfm4" path="res://Sprites/Crusader-Small-Dog-test.png" id="2_4ymd7"]
+[ext_resource type="Texture2D" uid="uid://dakwkxpte6wp2" path="res://Sprites2/KFUPMGameJam-Crusader-Small-Frame1.png" id="2_2g2gm"]
+[ext_resource type="Texture2D" uid="uid://b36q6yufo851v" path="res://Sprites2/KFUPMGameJam-Crusader-Small-Frame2.png" id="3_dk2iu"]
+
+[sub_resource type="Animation" id="Animation_3yd15"]
+resource_name = "Walk"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("2_2g2gm"), ExtResource("3_dk2iu")]
+}
+
+[sub_resource type="Animation" id="Animation_b1rla"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_2g2gm")]
+}
+
+[sub_resource type="Animation" id="Animation_q2m64"]
+resource_name = "SlowWalk"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("2_2g2gm"), ExtResource("3_dk2iu")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ay5l1"]
+_data = {
+"RESET": SubResource("Animation_b1rla"),
+"SlowWalk": SubResource("Animation_q2m64"),
+"Walk": SubResource("Animation_3yd15")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_40n68"]
 size = Vector2(8, 8)
@@ -16,8 +72,10 @@ size = Vector2(6, 6)
 Fastmax_speed = 130
 Armor = 1.0
 
-[node name="Sprite2D" parent="." index="1"]
-texture = ExtResource("2_4ymd7")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D" index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_ay5l1")
+}
 
 [node name="HurtBox" parent="." index="2"]
 collision_layer = 16

@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://drpay7lgo3nok"]
+[gd_scene load_steps=7 format=3 uid="uid://drpay7lgo3nok"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy.gd" id="1_y242k"]
+[ext_resource type="Texture2D" uid="uid://dakwkxpte6wp2" path="res://Sprites2/KFUPMGameJam-Crusader-Small-Frame1.png" id="2_cveny"]
 [ext_resource type="PackedScene" uid="uid://p74u5ajcmoyb" path="res://Scenes/hurt_box.tscn" id="2_t2n3r"]
 [ext_resource type="PackedScene" uid="uid://bpxrreqs0wgy" path="res://Scenes/hitbox.tscn" id="3_u875k"]
 [ext_resource type="Script" path="res://Scripts/Stats.gd" id="4_ycn4b"]
@@ -17,6 +18,7 @@ Armor = 5.0
 one_shot = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_cveny")
 
 [node name="HurtBox" parent="." instance=ExtResource("2_t2n3r")]
 position = Vector2(-4, 4)
