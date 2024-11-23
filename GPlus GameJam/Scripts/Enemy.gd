@@ -14,6 +14,7 @@ var ramd=randf_range(-4,4)
 @onready var sprite_2d = $Sprite2D
 @onready var stats = $Stats
 @onready var label = $Label
+@onready var audio_stream_player = $AudioStreamPlayer
 
 var count = 0
 
@@ -46,6 +47,7 @@ func _on_hurt_box_hurt(hitbox, damage,armorPierce):
 	count+=1 
 	
 	stats.health = stats.health - max(0.1,(damage-(Armor*(1-armorPierce))))
+	audio_stream_player.play()
 	label.text = str(stats.health)
 
 
