@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cq4y7y2d324cj"]
+
+[ext_resource type="Script" path="res://Mohammed's folder/Scripts/pickupAble.gd" id="1_rx881"]
+
+[node name="pickupAble" type="Area2D"]
+script = ExtResource("1_rx881")
