@@ -10,6 +10,8 @@ var checkpoitn = 0 #: set = chekcpointChanged
 @onready var mideval = $Mideval
 @onready var future = $Future
 
+
+
 var checkponintlist
 var AreaCleared = false
 var AllEnemylist
