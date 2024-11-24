@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 @export var SPEED = 80.0
-@export var ACCEL = 150
+@export var ACCEL = 100
 #@onready var animated_sprite_2d = $AnimatedSprite2D
 var input: Vector2
 var weapon:Weapon
@@ -38,12 +38,31 @@ func	get_input():
 
 
 func _process(delta):
-	
+	pass
 #	if (velocity.x != 0 || velocity.y != 0 ):
 #		animated_sprite_2d.animation = "move"
 #	else:
 #		animated_sprite_2d.animation = "idle"
 
+	#if get_local_mouse_position().angle()<-1.8 or get_local_mouse_position().angle()>1.2:
+		#sprite_2d_2.flip_h = false
+		#weapon.sprite_2d.flip_v=true
+	#else:
+		#sprite_2d_2.flip_h = true
+		#weapon.sprite_2d.flip_v=false
+	#
+	#var playerInput = get_input()
+	#
+	#
+	#velocity = lerp(velocity, playerInput*SPEED, delta*ACCEL)
+	#animation_player.play("walk")
+	#
+	#move_and_slide()
+	
+func _physics_process(delta):
+	if Input.is_action_pressed("Shoot") and fire_rate_timer.is_stopped() and mode_switch.time_left==0:
+		weapon.fireBullet()
+		fire_rate_timer.start(weapon.fireRate)
 	if get_local_mouse_position().angle()<-1.8 or get_local_mouse_position().angle()>1.2:
 		sprite_2d_2.flip_h = false
 		weapon.sprite_2d.flip_v=true
@@ -58,11 +77,6 @@ func _process(delta):
 	animation_player.play("walk")
 	
 	move_and_slide()
-	
-func _physics_process(delta):
-	if Input.is_action_pressed("Shoot") and fire_rate_timer.is_stopped() and mode_switch.time_left==0:
-		weapon.fireBullet()
-		fire_rate_timer.start(weapon.fireRate)
 		
 func ModeChanged():
 	GlobalVars.mode+=1
@@ -88,4 +102,4 @@ func _on_hurtbox_hurt(hitbox, damage,armorPierce):
 
 
 func die():
-	queue_free()
+	Utils.moveToScene("res://menu.tscn")
