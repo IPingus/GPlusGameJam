@@ -72,11 +72,12 @@ radius = 7.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_rxstg"]
 radius = 8.0
 
-[node name="HeavyFutureEnemy" groups=["Future"] instance=ExtResource("1_dqqcj")]
+[node name="HeavyFutureEnemy" node_paths=PackedStringArray("animation_player") groups=["Future"] instance=ExtResource("1_dqqcj")]
 script = ExtResource("2_5nil6")
 Fastmax_speed = 70
 Slowmax_speed = 40
 Armor = 20.0
+animation_player = NodePath("Sprite2D/AnimationPlayer")
 
 [node name="Sprite2D" parent="." index="1"]
 texture = ExtResource("2_er7i1")
@@ -107,5 +108,5 @@ max_health = 20
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 shape = SubResource("CircleShape2D_ft1tl")
 
-[node name="CollisionShape2D" parent="." index="8"]
+[node name="CollisionShape2D" parent="." index="7"]
 shape = SubResource("CircleShape2D_rxstg")
