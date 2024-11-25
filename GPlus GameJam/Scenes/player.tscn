@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://mogxd1hu1pfc"]
+[gd_scene load_steps=20 format=3 uid="uid://mogxd1hu1pfc"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_45dbf"]
 [ext_resource type="PackedScene" uid="uid://bhp51wwc8ol0u" path="res://Scenes/crossbow.tscn" id="2_ikmvo"]
@@ -7,6 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://3pwy3xt3jqyr" path="res://Scenes/smg.tscn" id="4_a1c7h"]
 [ext_resource type="Script" path="res://Scripts/Stats.gd" id="5_44j5o"]
 [ext_resource type="Texture2D" uid="uid://dt557xn8v0es8" path="res://Sprites2/KFUPMGameJam-Player-Future-Frame2.png" id="7_x71as"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="8_1k5fj"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="9_wkp5q"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="10_0w7s6"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="11_34sif"]
 
 [sub_resource type="Animation" id="Animation_vhrv7"]
 length = 0.001
@@ -177,5 +181,32 @@ libraries = {
 "": SubResource("AnimationLibrary_763bx")
 }
 
+[node name="StateChart" type="Node" parent="."]
+script = ExtResource("8_1k5fj")
+
+[node name="CompoundState" type="Node" parent="StateChart"]
+script = ExtResource("9_wkp5q")
+initial_state = NodePath("Future")
+
+[node name="Past" type="Node" parent="StateChart/CompoundState"]
+script = ExtResource("10_0w7s6")
+
+[node name="ToFuture" type="Node" parent="StateChart/CompoundState/Past"]
+script = ExtResource("11_34sif")
+to = NodePath("../../Future")
+event = &"ModeChange"
+delay_in_seconds = "0.0"
+
+[node name="Future" type="Node" parent="StateChart/CompoundState"]
+script = ExtResource("10_0w7s6")
+
+[node name="ToPast" type="Node" parent="StateChart/CompoundState/Future"]
+script = ExtResource("11_34sif")
+to = NodePath("../../Past")
+event = &"ModeChange"
+delay_in_seconds = "0.0"
+
 [connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]
 [connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]
+[connection signal="state_entered" from="StateChart/CompoundState/Past" to="." method="_on_past_state_entered"]
+[connection signal="state_entered" from="StateChart/CompoundState/Future" to="." method="_on_future_state_entered"]

@@ -14,6 +14,7 @@ var weapon:Weapon
 @onready var blinking = $Blinking
 @onready var smg = $SMG
 @onready var crossbow = $Crossbow
+@onready var state_chart = $StateChart
 
 
 @onready var healt = $Healt
@@ -22,13 +23,12 @@ var weapon:Weapon
 @onready var animation_player = $AnimationPlayer
 
 
-signal ModeChangedSig()
+#signal ModeChangedSig()
 
 func _ready():
 	PlayerStats.no_health.connect(die)
 	Events.ModeChanged.connect(ModeChanged)
 	ModeChanged()
-	healt.text = str(PlayerStats.health)
 
 func	get_input():
 	input.x = Input.get_action_raw_strength("Right") -  Input.get_action_raw_strength("Left")
@@ -79,19 +79,22 @@ func _physics_process(delta):
 	move_and_slide()
 		
 func ModeChanged():
-	GlobalVars.mode+=1
+	#GlobalVars.mode+=1
 	mode_switch.start()
 	fire_rate_timer.stop()
-	ModeChangedSig.emit()
-	if GlobalVars.mode%2 == 0:
-		crossbow.hide()
-		smg.visible = true
-		weapon = smg
-
-	if GlobalVars.mode%2 == 1:
-		smg.hide()
-		crossbow.visible = true
-		weapon = crossbow
+	state_chart.send_event("ModeChange")
+	#ModeChangedSig.emit()
+	
+	#if GlobalVars.mode == 2:
+		#
+		#crossbow.hide()
+		#smg.visible = true
+		#weapon = smg
+#
+	#elif GlobalVars.mode== 1:
+		#smg.hide()
+		#crossbow.visible = true
+		#weapon = crossbow
 
 func _on_hurtbox_hurt(hitbox, damage,armorPierce):
 	Events.add_screenshake.emit(1,0.25)
@@ -103,3 +106,15 @@ func _on_hurtbox_hurt(hitbox, damage,armorPierce):
 
 func die():
 	Utils.moveToScene("res://menu.tscn")
+
+
+func _on_past_state_entered():
+	smg.hide()
+	crossbow.visible = true
+	weapon = crossbow
+
+
+func _on_future_state_entered():
+	crossbow.hide()
+	smg.visible = true
+	weapon = smg

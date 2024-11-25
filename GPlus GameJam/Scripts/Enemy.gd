@@ -25,6 +25,8 @@ var armorPierce =0
 var count = 0
 @onready var animation_player = $Sprite2D/AnimationPlayer
 
+@onready var Timeline = $StateChart
+
 func _ready():
 	Events.ModeChanged.connect(ModeChanged)
 	ModeChanged()
@@ -55,37 +57,35 @@ func _on_stats_no_health():
 	queue_free()
 
 func _on_hurt_box_hurt(hitbox, damage,armorPierce):
-	count+=1 
-	
 	stats.health = stats.health - max(0.1,(damage-(Armor*(1-armorPierce))))
 	audio_stream_player.play()
-	label.text = str(stats.health)
 
 
 func ModeChanged():
-	if GlobalVars.mode%2 == 1 and is_in_group("Past"):
-		animationName = "SlowWalk"
-		velocity = velocity*0.5
-		max_speed = Slowmax_speed
-		acceleration = Slowacceleration
-
-	if GlobalVars.mode%2 == 0 and is_in_group("Past"):
-		animationName = "Walk"
-		velocity = velocity*2
-		max_speed = Fastmax_speed
-		acceleration = Fastacceleration
-
-	if GlobalVars.mode%2 == 1 and is_in_group("Future"):
-		animationName = "Walk"
-		velocity = velocity*2
-		max_speed = Fastmax_speed
-		acceleration = Fastacceleration
-
-	if GlobalVars.mode%2 == 0 and is_in_group("Future"):
-		animationName = "SlowWalk"
-		velocity = velocity*0.5
-		max_speed = Slowmax_speed
-		acceleration = Slowacceleration
+	Timeline.send_event("ModeChange")
+	#if GlobalVars.mode%2 == 1 and is_in_group("Past"):
+		#animationName = "SlowWalk"
+		#velocity = velocity*0.5
+		#max_speed = Slowmax_speed
+		#acceleration = Slowacceleration
+#
+	#if GlobalVars.mode%2 == 0 and is_in_group("Past"):
+		#animationName = "Walk"
+		#velocity = velocity*2
+		#max_speed = Fastmax_speed
+		#acceleration = Fastacceleration
+#
+	#if GlobalVars.mode%2 == 1 and is_in_group("Future"):
+		#animationName = "Walk"
+		#velocity = velocity*2
+		#max_speed = Fastmax_speed
+		#acceleration = Fastacceleration
+#
+	#if GlobalVars.mode%2 == 0 and is_in_group("Future"):
+		#animationName = "SlowWalk"
+		#velocity = velocity*0.5
+		#max_speed = Slowmax_speed
+		#acceleration = Slowacceleration
 
 
 
@@ -98,3 +98,31 @@ func _on_area_2d_area_entered(area):
 func _on_area_2d_area_exited(area):
 	insideEnemy = false
 	
+
+
+func _on_past_state_entered():
+	if is_in_group("Past"):
+		Timeline.send_event("CorrectTime")
+	else:
+		Timeline.send_event("WrongTime")
+
+
+func _on_future_state_entered():
+	if is_in_group("Future"):
+		Timeline.send_event("CorrectTime")
+	else:
+		Timeline.send_event("WrongTime")
+
+
+func _on_normal_state_entered():
+	animationName = "SlowWalk"
+	velocity = velocity*0.5
+	max_speed = Slowmax_speed
+	acceleration = Slowacceleration
+
+
+func _on_enraged_state_entered():
+	animationName = "Walk"
+	velocity = velocity*2
+	max_speed = Fastmax_speed
+	acceleration = Fastacceleration

@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://dll02a8jny5no"]
 
 [ext_resource type="PackedScene" uid="uid://drpay7lgo3nok" path="res://Scenes/enemy.tscn" id="1_nhjg7"]
-[ext_resource type="PackedScene" uid="uid://gsvim0wddsl" path="res://Scenes/bullets.tscn" id="2_gywq7"]
+[ext_resource type="Script" path="res://Scripts/future_enemy.gd" id="2_vfhr4"]
 [ext_resource type="Texture2D" uid="uid://cgf4nfkka7jyl" path="res://Sprites2/KFUPMGameJam-Robot-Medium-Frame1.png" id="3_7l8mw"]
 [ext_resource type="Texture2D" uid="uid://6pft28rfja2v" path="res://Sprites2/KFUPMGameJam-Robot-Medium-Frame2.png" id="4_7rfo2"]
 
@@ -75,10 +75,8 @@ height = 12.0
 radius = 5.0
 
 [node name="FutureEnemy" groups=["Future"] instance=ExtResource("1_nhjg7")]
-Fastacceleration = 200
-Fastmax_speed = 80
-Slowmax_speed = 50
-BULLETS = ExtResource("2_gywq7")
+script = ExtResource("2_vfhr4")
+Armor = 5.0
 
 [node name="Sprite2D" parent="." index="1"]
 texture = ExtResource("3_7l8mw")

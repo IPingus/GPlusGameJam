@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://dfdrijsbifayb"]
+[gd_scene load_steps=13 format=3 uid="uid://dfdrijsbifayb"]
 
 [ext_resource type="PackedScene" uid="uid://drpay7lgo3nok" path="res://Scenes/enemy.tscn" id="1_dqqcj"]
+[ext_resource type="Script" path="res://Scripts/heavy_future_enemy.gd" id="2_5nil6"]
 [ext_resource type="Texture2D" uid="uid://v7esasnfcwxi" path="res://Sprites2/KFUPMGameJam-Robot-Large-Frame1.png" id="2_er7i1"]
 [ext_resource type="Texture2D" uid="uid://8hd4jht18pou" path="res://Sprites2/KFUPMGameJam-Robot-Large-Frame2.png" id="3_gn5lq"]
 
@@ -72,6 +73,7 @@ radius = 7.0
 radius = 8.0
 
 [node name="HeavyFutureEnemy" groups=["Future"] instance=ExtResource("1_dqqcj")]
+script = ExtResource("2_5nil6")
 Fastmax_speed = 70
 Slowmax_speed = 40
 Armor = 20.0

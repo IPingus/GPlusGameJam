@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dvja0q0jhm3uu"]
+[gd_scene load_steps=30 format=3 uid="uid://dvja0q0jhm3uu"]
 
 [ext_resource type="Texture2D" uid="uid://cetvpp4xxg6yg" path="res://Sprites2/KFUPMGameJam-Tileset-Future.png" id="1_hxxul"]
 [ext_resource type="Script" path="res://Scripts/tilemap.gd" id="1_wuqh5"]
@@ -15,6 +15,10 @@
 [ext_resource type="PackedScene" uid="uid://cwlk8w58thg4" path="res://Scenes/heavy_past_enemy.tscn" id="11_0tquc"]
 [ext_resource type="PackedScene" uid="uid://blc4is1tlva1c" path="res://Scenes/past_enemy.tscn" id="12_biukv"]
 [ext_resource type="PackedScene" uid="uid://c6prkqm4ft5ok" path="res://Scenes/enemy_2.tscn" id="15_c7rsb"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="16_p4qx5"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="17_62erf"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="18_qtttk"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="19_hvrbo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_omdsa"]
 texture = ExtResource("2_s56a2")
@@ -210,13 +214,17 @@ shape = SubResource("RectangleShape2D_eujqv")
 [node name="First" type="Node" parent="Enemies"]
 
 [node name="FutureEnemy" parent="Enemies/First" instance=ExtResource("8_g8cw5")]
-position = Vector2(159, -173)
+position = Vector2(76, -205)
+acceleration = 100.0
+max_speed = 100.0
 
 [node name="FutureEnemy2" parent="Enemies/First" instance=ExtResource("8_g8cw5")]
-position = Vector2(162, -103)
+position = Vector2(145, -162)
+acceleration = 100.0
+max_speed = 100.0
 
 [node name="FutureEnemy3" parent="Enemies/First" instance=ExtResource("8_g8cw5")]
-position = Vector2(117, -210)
+position = Vector2(132, -204)
 
 [node name="second" type="Node" parent="Enemies"]
 
@@ -227,21 +235,33 @@ position = Vector2(227, -289)
 
 [node name="SmallPastEnemie" parent="Enemies/second2" instance=ExtResource("9_41ent")]
 position = Vector2(295, -80)
+acceleration = 100.0
+max_speed = 100.0
 
 [node name="SmallPastEnemie5" parent="Enemies/second2" instance=ExtResource("9_41ent")]
 position = Vector2(309, -88)
+acceleration = 100.0
+max_speed = 100.0
 
 [node name="SmallPastEnemie6" parent="Enemies/second2" instance=ExtResource("9_41ent")]
 position = Vector2(315, -59)
+acceleration = 100.0
+max_speed = 100.0
 
 [node name="SmallPastEnemie2" parent="Enemies/second2" instance=ExtResource("9_41ent")]
 position = Vector2(331, -64)
+acceleration = 100.0
+max_speed = 100.0
 
 [node name="SmallPastEnemie3" parent="Enemies/second2" instance=ExtResource("9_41ent")]
 position = Vector2(294, -64)
+acceleration = 100.0
+max_speed = 100.0
 
 [node name="SmallPastEnemie4" parent="Enemies/second2" instance=ExtResource("9_41ent")]
 position = Vector2(324, -82)
+acceleration = 100.0
+max_speed = 100.0
 
 [node name="HeavyFutureEnemy" parent="Enemies/second2" instance=ExtResource("10_gsu5o")]
 position = Vector2(405, -134)
@@ -250,28 +270,42 @@ position = Vector2(405, -134)
 
 [node name="SmallFutureEnemy" parent="Enemies/second3" instance=ExtResource("8_wv2ph")]
 position = Vector2(496, -21)
+acceleration = 100.0
+max_speed = 100.0
 
 [node name="SmallFutureEnemy2" parent="Enemies/second3" instance=ExtResource("8_wv2ph")]
 position = Vector2(497, -1)
+acceleration = 100.0
+max_speed = 100.0
 
 [node name="second4" type="Node" parent="Enemies"]
 
 [node name="HeavyPastEnemy" parent="Enemies/second4" instance=ExtResource("11_0tquc")]
 position = Vector2(575, -140)
+acceleration = 100.0
+max_speed = 100.0
 
 [node name="second5" type="Node" parent="Enemies"]
 
 [node name="PastEnemy" parent="Enemies/second5" instance=ExtResource("12_biukv")]
 position = Vector2(738, -280)
+acceleration = 100.0
+max_speed = 100.0
 
 [node name="PastEnemy2" parent="Enemies/second5" instance=ExtResource("12_biukv")]
 position = Vector2(759, -261)
+acceleration = 100.0
+max_speed = 100.0
 
 [node name="FutureEnemy" parent="Enemies/second5" instance=ExtResource("8_g8cw5")]
 position = Vector2(744, -241)
+acceleration = 100.0
+max_speed = 100.0
 
 [node name="FutureEnemy2" parent="Enemies/second5" instance=ExtResource("8_g8cw5")]
 position = Vector2(757, -224)
+acceleration = 100.0
+max_speed = 100.0
 
 [node name="second6" type="Node" parent="Enemies"]
 
@@ -351,8 +385,34 @@ position = Vector2(29.5, -10)
 shape = SubResource("RectangleShape2D_pvxx4")
 
 [node name="Enemy2" parent="." node_paths=PackedStringArray("player") instance=ExtResource("15_c7rsb")]
-position = Vector2(94, -111)
+visible = false
+position = Vector2(11, -215)
 player = NodePath("../Player")
+
+[node name="StateChart" type="Node" parent="."]
+script = ExtResource("16_p4qx5")
+
+[node name="CompoundState" type="Node" parent="StateChart"]
+script = ExtResource("17_62erf")
+initial_state = NodePath("Future")
+
+[node name="Past" type="Node" parent="StateChart/CompoundState"]
+script = ExtResource("18_qtttk")
+
+[node name="ToFuture" type="Node" parent="StateChart/CompoundState/Past"]
+script = ExtResource("19_hvrbo")
+to = NodePath("../../Future")
+event = &"ModeChange"
+delay_in_seconds = "0.0"
+
+[node name="Future" type="Node" parent="StateChart/CompoundState"]
+script = ExtResource("18_qtttk")
+
+[node name="ToPast" type="Node" parent="StateChart/CompoundState/Future"]
+script = ExtResource("19_hvrbo")
+to = NodePath("../../Past")
+event = &"ModeChange"
+delay_in_seconds = "0.0"
 
 [connection signal="PlayerEntered" from="Checkpoint1" to="." method="_on_checkpoint_1_player_entered"]
 [connection signal="PlayerEntered" from="Checkpoint2" to="." method="_on_checkpoint_2_player_entered"]
@@ -361,3 +421,5 @@ player = NodePath("../Player")
 [connection signal="PlayerEntered" from="Checkpoint6" to="." method="_on_checkpoint_6_player_entered"]
 [connection signal="PlayerEntered" from="Checkpoint8" to="." method="_on_checkpoint_8_player_entered"]
 [connection signal="PlayerEntered" from="Checkpoint" to="." method="_on_checkpoint_player_entered"]
+[connection signal="state_entered" from="StateChart/CompoundState/Past" to="." method="_on_past_state_entered"]
+[connection signal="state_entered" from="StateChart/CompoundState/Future" to="." method="_on_future_state_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://drpay7lgo3nok"]
+[gd_scene load_steps=12 format=3 uid="uid://drpay7lgo3nok"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy.gd" id="1_y242k"]
 [ext_resource type="Texture2D" uid="uid://dakwkxpte6wp2" path="res://Sprites2/KFUPMGameJam-Crusader-Small-Frame1.png" id="2_cveny"]
@@ -6,13 +6,15 @@
 [ext_resource type="PackedScene" uid="uid://bpxrreqs0wgy" path="res://Scenes/hitbox.tscn" id="3_u875k"]
 [ext_resource type="Script" path="res://Scripts/Stats.gd" id="4_ycn4b"]
 [ext_resource type="AudioStream" uid="uid://uc6ot5fm4igq" path="res://Sounds/2024-09-20 19-16-52.hitmp3.mp3" id="5_6s4eh"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="7_bf8sg"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="8_rpkpl"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/parallel_state.gd" id="8_uypee"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="9_sfut3"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="10_i2xxj"]
 
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 4
 script = ExtResource("1_y242k")
-acceleration = 100.0
-max_speed = 100.0
-Armor = 5.0
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
@@ -48,7 +50,61 @@ stream = ExtResource("5_6s4eh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
+[node name="StateChart" type="Node" parent="."]
+script = ExtResource("7_bf8sg")
+
+[node name="ParallelState" type="Node" parent="StateChart"]
+script = ExtResource("8_uypee")
+
+[node name="TimeLine" type="Node" parent="StateChart/ParallelState"]
+script = ExtResource("8_rpkpl")
+initial_state = NodePath("Future")
+
+[node name="Past" type="Node" parent="StateChart/ParallelState/TimeLine"]
+script = ExtResource("9_sfut3")
+
+[node name="ToFuture" type="Node" parent="StateChart/ParallelState/TimeLine/Past"]
+script = ExtResource("10_i2xxj")
+to = NodePath("../../Future")
+event = &"ModeChange"
+delay_in_seconds = "0.0"
+
+[node name="Future" type="Node" parent="StateChart/ParallelState/TimeLine"]
+script = ExtResource("9_sfut3")
+
+[node name="ToPast" type="Node" parent="StateChart/ParallelState/TimeLine/Future"]
+script = ExtResource("10_i2xxj")
+to = NodePath("../../Past")
+event = &"ModeChange"
+delay_in_seconds = "0.0"
+
+[node name="EnemyMode" type="Node" parent="StateChart/ParallelState"]
+script = ExtResource("8_rpkpl")
+initial_state = NodePath("Normal")
+
+[node name="Normal" type="Node" parent="StateChart/ParallelState/EnemyMode"]
+script = ExtResource("9_sfut3")
+
+[node name="To Enraged" type="Node" parent="StateChart/ParallelState/EnemyMode/Normal"]
+script = ExtResource("10_i2xxj")
+to = NodePath("../../Enraged")
+event = &"WrongTime"
+delay_in_seconds = "0.0"
+
+[node name="Enraged" type="Node" parent="StateChart/ParallelState/EnemyMode"]
+script = ExtResource("9_sfut3")
+
+[node name="To normal" type="Node" parent="StateChart/ParallelState/EnemyMode/Enraged"]
+script = ExtResource("10_i2xxj")
+to = NodePath("../../Normal")
+event = &"CorrectTime"
+delay_in_seconds = "0.0"
+
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
 [connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="state_entered" from="StateChart/ParallelState/TimeLine/Past" to="." method="_on_past_state_entered"]
+[connection signal="state_entered" from="StateChart/ParallelState/TimeLine/Future" to="." method="_on_future_state_entered"]
+[connection signal="state_entered" from="StateChart/ParallelState/EnemyMode/Normal" to="." method="_on_normal_state_entered"]
+[connection signal="state_entered" from="StateChart/ParallelState/EnemyMode/Enraged" to="." method="_on_enraged_state_entered"]
