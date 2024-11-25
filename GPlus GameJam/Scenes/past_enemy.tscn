@@ -74,9 +74,10 @@ radius = 4.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_4x1vh"]
 radius = 5.0
 
-[node name="PastEnemy" groups=["Past"] instance=ExtResource("1_irr1r")]
+[node name="PastEnemy" node_paths=PackedStringArray("animation_player") groups=["Past"] instance=ExtResource("1_irr1r")]
 script = ExtResource("2_bd1r0")
 Armor = 5.0
+animation_player = NodePath("Sprite2D/AnimationPlayer")
 
 [node name="Sprite2D" parent="." index="1"]
 position = Vector2(1, -2.38419e-07)
@@ -109,6 +110,6 @@ shape = SubResource("CapsuleShape2D_pywmy")
 position = Vector2(3, 2)
 shape = SubResource("CircleShape2D_teckk")
 
-[node name="CollisionShape2D" parent="." index="8"]
+[node name="CollisionShape2D" parent="." index="7"]
 position = Vector2(3, 2)
 shape = SubResource("CircleShape2D_4x1vh")

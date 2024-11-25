@@ -74,9 +74,10 @@ height = 12.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_eryl1"]
 radius = 5.0
 
-[node name="FutureEnemy" groups=["Future"] instance=ExtResource("1_nhjg7")]
+[node name="FutureEnemy" node_paths=PackedStringArray("animation_player") groups=["Future"] instance=ExtResource("1_nhjg7")]
 script = ExtResource("2_vfhr4")
 Armor = 5.0
+animation_player = NodePath("Sprite2D/AnimationPlayer")
 
 [node name="Sprite2D" parent="." index="1"]
 texture = ExtResource("3_7l8mw")
@@ -105,5 +106,5 @@ shape = SubResource("CapsuleShape2D_nslh1")
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 shape = SubResource("CapsuleShape2D_onr6v")
 
-[node name="CollisionShape2D" parent="." index="8"]
+[node name="CollisionShape2D" parent="." index="7"]
 shape = SubResource("CircleShape2D_eryl1")

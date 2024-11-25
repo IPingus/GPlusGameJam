@@ -72,10 +72,11 @@ size = Vector2(6, 6)
 [sub_resource type="CircleShape2D" id="CircleShape2D_3cxd6"]
 radius = 4.0
 
-[node name="SmallPastEnemie" groups=["Past"] instance=ExtResource("1_x6e71")]
+[node name="SmallPastEnemie" node_paths=PackedStringArray("animation_player") groups=["Past"] instance=ExtResource("1_x6e71")]
 script = ExtResource("2_lh1ol")
 Fastmax_speed = 150
 Slowmax_speed = 50
+animation_player = NodePath("Sprite2D/AnimationPlayer")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D" index="0"]
 libraries = {
@@ -103,5 +104,5 @@ max_health = 5
 position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_e1plj")
 
-[node name="CollisionShape2D" parent="." index="8"]
+[node name="CollisionShape2D" parent="." index="7"]
 shape = SubResource("CircleShape2D_3cxd6")

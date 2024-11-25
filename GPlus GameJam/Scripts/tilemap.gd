@@ -4,11 +4,11 @@ extends Node2D
 @onready var checkponts = $Checkponts
 @onready var enemies = $Enemies
 var checkpoitn = 0 #: set = chekcpointChanged
-@onready var player = %Player
 @onready var walls = $Walls
 @onready var backtrackwalls = $Backtrackwalls
 @onready var mideval = $Mideval
 @onready var future = $Future
+@onready var player = $Player
 
 @onready var state_chart = $StateChart
 
@@ -65,12 +65,16 @@ func on_enemy_enemydied():
 func chekcpointChanged(value):
 	if AllEnemylist.size() > checkpoitn:
 		checkEnemies=AllEnemylist[checkpoitn].get_children()
+	for i in checkEnemies:
+		i.playerNode = player
+		i.active=true
+		i.player_path =  NodePath("../../../Player")
+		
 	if WallsList.size()>checkpoitn :
 				WallsList[checkpoitn].collision_layer= 1
 	if backtrackwallList.size()>=checkpoitn and checkpoitn>0:
 				backtrackwallList[checkpoitn-1].collision_layer= 1
-	for i in checkEnemies:
-		i.player_path =  NodePath("../../../Player")
+	
 		
 func disableallwalls():
 	for child in WallsList:

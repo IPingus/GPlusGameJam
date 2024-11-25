@@ -15,38 +15,53 @@ var ramd=randf_range(-4,4)
 @export var player_path: NodePath
 @onready var sprite_2d = $Sprite2D
 @onready var stats = $Stats
-@onready var label = $Label
 @onready var audio_stream_player = $AudioStreamPlayer
-var animationName = "walk"
+var animationName = "RESET"
 var damage = 2
 var armorPierce =0
 @export var BULLETS : PackedScene
-@export var playerss : Player
+@export var playerNode : CharacterBody2D
 var count = 0
-@onready var animation_player = $Sprite2D/AnimationPlayer
+@export var animation_player:AnimationPlayer
 
+@onready var timer = $Timer
+@onready var nav_agent = $NavigationAgent2D
+var active = false : set = activated
 @onready var Timeline = $StateChart
 
 func _ready():
 	Events.ModeChanged.connect(ModeChanged)
 	ModeChanged()
-	label.text = str(stats.health)
+	if active:
+		timer.start()
+		
 
-
-func _physics_process(delta):
+func activated(value):
 	
-	if player_path is NodePath and player_path:
-		animation_player.play(animationName)
-		var player = get_node(player_path)
-		if player is CharacterBody2D:
-			move_toward_postion(player.global_position, delta)
+	if value:
+		Timeline.send_event("Activated")
+		timer.start()
+		
+		
 
+func _physics_process(delta: float):
+	var dir = to_local(nav_agent.get_next_path_position()).normalized()
+	#velocity = dir*max_speed
+	move_toward_postion(dir, delta)
+	#move_and_slide()
+	#if player_path is NodePath and player_path:
+		#animation_player.play(animationName)
+		#var player = get_node(player_path)
+		#
 
-func move_toward_postion(target_position, delta):
+func makepath():
+	nav_agent.target_position = playerNode.global_position
 	
-	var direction = global_position.direction_to(target_position)
+func move_toward_postion(direction, delta):
+
+	#var direction = global_position.direction_to(target_position)
 	velocity = velocity.move_toward(max_speed*direction,acceleration*delta)
-	sprite_2d.flip_h = global_position < target_position
+	sprite_2d.flip_h = global_position < direction
 	if insideEnemy: #and timer.is_stopped():
 		velocity=velocity+Vector2(ramd,ramd)
 	move_and_slide()
@@ -116,6 +131,7 @@ func _on_future_state_entered():
 
 func _on_normal_state_entered():
 	animationName = "SlowWalk"
+	animation_player.play(animationName)
 	velocity = velocity*0.5
 	max_speed = Slowmax_speed
 	acceleration = Slowacceleration
@@ -123,6 +139,16 @@ func _on_normal_state_entered():
 
 func _on_enraged_state_entered():
 	animationName = "Walk"
+	animation_player.play(animationName)
 	velocity = velocity*2
 	max_speed = Fastmax_speed
 	acceleration = Fastacceleration
+
+
+func _on_timer_timeout():
+	makepath()
+
+
+func _on_not_active_state_entered():
+	animation_player.stop()
+	Timeline.send_event("Activated")

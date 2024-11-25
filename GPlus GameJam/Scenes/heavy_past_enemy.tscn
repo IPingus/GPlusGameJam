@@ -72,11 +72,12 @@ radius = 25.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_ek1ov"]
 radius = 19.0263
 
-[node name="HeavyPastEnemy" groups=["Past"] instance=ExtResource("1_iypo2")]
+[node name="HeavyPastEnemy" node_paths=PackedStringArray("animation_player") groups=["Past"] instance=ExtResource("1_iypo2")]
 script = ExtResource("2_kve5q")
 Fastmax_speed = 70
 Slowmax_speed = 40
 Armor = 20.0
+animation_player = NodePath("Sprite2D/AnimationPlayer")
 
 [node name="Sprite2D" parent="." index="1"]
 scale = Vector2(2, 2)
@@ -109,5 +110,5 @@ max_health = 20
 position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_ababb")
 
-[node name="CollisionShape2D" parent="." index="8"]
+[node name="CollisionShape2D" parent="." index="7"]
 shape = SubResource("CircleShape2D_ek1ov")
