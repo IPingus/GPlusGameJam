@@ -1,15 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://c6prkqm4ft5ok"]
+[gd_scene load_steps=9 format=3 uid="uid://c6prkqm4ft5ok"]
 
 [ext_resource type="Texture2D" uid="uid://cfrtcvqsvqbya" path="res://Sprites/Crusader-Medium-Human-test.png" id="1_4sq4i"]
 [ext_resource type="Script" path="res://Scripts/enemy_2.gd" id="1_l58kk"]
+[ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="2_m7y25"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="3_yjuwf"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="4_s1sek"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="5_3amve"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="6_jn1iu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y8sil"]
 radius = 5.0
 
-[node name="Enemy2" type="CharacterBody2D" node_paths=PackedStringArray("player")]
+[node name="Enemy2" type="CharacterBody2D"]
 script = ExtResource("1_l58kk")
-player = NodePath("")
+
+[node name="StateChartDebugger" parent="." instance=ExtResource("2_m7y25")]
+offset_right = 130.0
+offset_bottom = 97.0
+initial_node_to_watch = NodePath("../StateChart")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_4sq4i")
@@ -24,3 +32,25 @@ collision_mask = 3
 
 [node name="StateChart" type="Node" parent="."]
 script = ExtResource("3_yjuwf")
+
+[node name="Root" type="Node" parent="StateChart"]
+script = ExtResource("4_s1sek")
+initial_state = NodePath("Normal")
+
+[node name="Normal" type="Node" parent="StateChart/Root"]
+script = ExtResource("5_3amve")
+
+[node name="To Enraged" type="Node" parent="StateChart/Root/Normal"]
+script = ExtResource("6_jn1iu")
+to = NodePath("../../Enraged")
+event = &"WrongTime"
+delay_in_seconds = "0.0"
+
+[node name="Enraged" type="Node" parent="StateChart/Root"]
+script = ExtResource("5_3amve")
+
+[node name="To normal" type="Node" parent="StateChart/Root/Enraged"]
+script = ExtResource("6_jn1iu")
+to = NodePath("../../Normal")
+event = &"WrongTime"
+delay_in_seconds = "0.0"

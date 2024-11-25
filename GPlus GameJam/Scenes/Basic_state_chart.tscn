@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://ee2l577450ir"]
+
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="1_lk2vi"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="2_mhpfx"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="3_ynjq4"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="4_abbm5"]
+
+[node name="StateChart" type="Node"]
+script = ExtResource("1_lk2vi")
+
+[node name="CompoundState" type="Node" parent="."]
+script = ExtResource("2_mhpfx")
+initial_state = NodePath("Future")
+
+[node name="Past" type="Node" parent="CompoundState"]
+script = ExtResource("3_ynjq4")
+
+[node name="ToFuture" type="Node" parent="CompoundState/Past"]
+script = ExtResource("4_abbm5")
+to = NodePath("../../Future")
+event = &"ModeChange"
+delay_in_seconds = "0.0"
+
+[node name="Future" type="Node" parent="CompoundState"]
+script = ExtResource("3_ynjq4")
+
+[node name="ToPast" type="Node" parent="CompoundState/Future"]
+script = ExtResource("4_abbm5")
+to = NodePath("../../Past")
+event = &"ModeChange"
+delay_in_seconds = "0.0"

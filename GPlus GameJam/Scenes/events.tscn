@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://ddus77usn7hjd"]
+[gd_scene load_steps=6 format=3 uid="uid://ddus77usn7hjd"]
 
 [ext_resource type="Script" path="res://Scripts/Events.gd" id="1_se37s"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="2_77233"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="3_loe8s"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="4_rig1e"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="5_7sne1"]
 
 [node name="Events" type="Node"]
 script = ExtResource("1_se37s")
@@ -8,3 +12,31 @@ script = ExtResource("1_se37s")
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+
+[node name="StateChart" type="Node" parent="."]
+script = ExtResource("2_77233")
+
+[node name="Root" type="Node" parent="StateChart"]
+script = ExtResource("3_loe8s")
+initial_state = NodePath("Future")
+
+[node name="Future" type="Node" parent="StateChart/Root"]
+script = ExtResource("4_rig1e")
+
+[node name="Topast" type="Node" parent="StateChart/Root/Future"]
+script = ExtResource("5_7sne1")
+to = NodePath("../../Past")
+event = &"ModeChange"
+delay_in_seconds = "0.0"
+
+[node name="Past" type="Node" parent="StateChart/Root"]
+script = ExtResource("4_rig1e")
+
+[node name="ToFuture" type="Node" parent="StateChart/Root/Past"]
+script = ExtResource("5_7sne1")
+to = NodePath("../../Future")
+event = &"ModeChange"
+delay_in_seconds = "0.0"
+
+[connection signal="state_entered" from="StateChart/Root/Future" to="." method="_on_future_state_entered"]
+[connection signal="state_entered" from="StateChart/Root/Past" to="." method="_on_past_state_entered"]

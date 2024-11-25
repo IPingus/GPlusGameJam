@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://cwlk8w58thg4"]
+[gd_scene load_steps=13 format=3 uid="uid://cwlk8w58thg4"]
 
 [ext_resource type="PackedScene" uid="uid://drpay7lgo3nok" path="res://Scenes/enemy.tscn" id="1_iypo2"]
 [ext_resource type="Texture2D" uid="uid://cfm0f36gw87a3" path="res://Sprites2/KFUPMGameJam-Crusader-Large-Frame1.png" id="2_2grl6"]
+[ext_resource type="Script" path="res://Scripts/heavy_past_enemy.gd" id="2_kve5q"]
 [ext_resource type="Texture2D" uid="uid://prn23yks87o0" path="res://Sprites2/KFUPMGameJam-Crusader-Large-Frame2.png" id="3_l5o1a"]
 
 [sub_resource type="Animation" id="Animation_dkrui"]
@@ -72,6 +73,7 @@ radius = 25.0
 radius = 19.0263
 
 [node name="HeavyPastEnemy" groups=["Past"] instance=ExtResource("1_iypo2")]
+script = ExtResource("2_kve5q")
 Fastmax_speed = 70
 Slowmax_speed = 40
 Armor = 20.0

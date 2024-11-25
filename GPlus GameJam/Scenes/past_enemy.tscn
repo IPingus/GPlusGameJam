@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://blc4is1tlva1c"]
+[gd_scene load_steps=13 format=3 uid="uid://blc4is1tlva1c"]
 
 [ext_resource type="PackedScene" uid="uid://drpay7lgo3nok" path="res://Scenes/enemy.tscn" id="1_irr1r"]
+[ext_resource type="Script" path="res://Scripts/past_enemy.gd" id="2_bd1r0"]
 [ext_resource type="Texture2D" uid="uid://cwcflnn5snut6" path="res://Sprites2/KFUPMGameJam-Crusader-Medium-Frame1.png" id="2_bwm8k"]
 [ext_resource type="Texture2D" uid="uid://by1m6efhi2isd" path="res://Sprites2/KFUPMGameJam-Crusader-Medium-Frame2.png" id="3_g6huo"]
 
@@ -74,6 +75,8 @@ radius = 4.0
 radius = 5.0
 
 [node name="PastEnemy" groups=["Past"] instance=ExtResource("1_irr1r")]
+script = ExtResource("2_bd1r0")
+Armor = 5.0
 
 [node name="Sprite2D" parent="." index="1"]
 position = Vector2(1, -2.38419e-07)

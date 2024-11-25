@@ -10,6 +10,7 @@ var checkpoitn = 0 #: set = chekcpointChanged
 @onready var mideval = $Mideval
 @onready var future = $Future
 
+@onready var state_chart = $StateChart
 
 
 var checkponintlist
@@ -32,13 +33,13 @@ func _ready():
 	modechanged21()
 	
 func modechanged21():
-	if GlobalVars.mode%2 == 1 :
-		mideval.show()
-		future.hide()
-	future
-	if GlobalVars.mode%2 == 0 :
-		mideval.hide()
-		future.show()
+	state_chart.send_event("ModeChange")
+	#if GlobalVars.mode == 1 :
+		#mideval.show()
+		#future.hide()
+	#if GlobalVars.mode == 2:
+		#mideval.hide()
+		#future.show()
 
 
 
@@ -130,3 +131,13 @@ func _on_checkpoint_6_player_entered():
 
 func _on_checkpoint_8_player_entered():
 	Utils.moveToScene("res://menu.tscn")
+
+
+func _on_past_state_entered():
+	mideval.show()
+	future.hide()
+
+
+func _on_future_state_entered():
+	mideval.hide()
+	future.show()
