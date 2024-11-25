@@ -21,7 +21,8 @@ var weapon:Weapon
 @onready var sprite_2d_2 = $Sprite2D2
 @onready var mode_switch = $modeSwitch
 @onready var animation_player = $AnimationPlayer
-
+@onready var flip_animation = $Sprite2D2/FlipAnimation
+var facingLeft=true
 
 #signal ModeChangedSig()
 
@@ -63,12 +64,16 @@ func _physics_process(delta):
 	if Input.is_action_pressed("Shoot") and fire_rate_timer.is_stopped() and mode_switch.time_left==0:
 		weapon.fireBullet()
 		fire_rate_timer.start(weapon.fireRate)
-	if get_local_mouse_position().angle()<-1.8 or get_local_mouse_position().angle()>1.2:
-		sprite_2d_2.flip_h = false
+	if not facingLeft and (get_local_mouse_position().angle()<-1.8 or get_local_mouse_position().angle()>1.2):
+		#sprite_2d_2.flip_h = false
 		weapon.sprite_2d.flip_v=true
-	else:
-		sprite_2d_2.flip_h = true
+		flip_animation.play("FlipToLeft")
+		facingLeft=true
+	elif facingLeft and not (get_local_mouse_position().angle()<-1.8 or get_local_mouse_position().angle()>1.2):
+		#sprite_2d_2.flip_h = true
 		weapon.sprite_2d.flip_v=false
+		flip_animation.play("FlipToRight")
+		facingLeft=false
 	
 	var playerInput = get_input()
 	
