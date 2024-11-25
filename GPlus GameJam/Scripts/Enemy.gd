@@ -30,7 +30,6 @@ var moving = true
 var active = false : set = activated
 @onready var Timeline = $StateChart
 
-@onready var canvas_layer = $Sprite2D/CanvasLayer
 
 
 func _ready():
@@ -108,7 +107,7 @@ func _on_future_state_entered():
 
 
 func _on_normal_state_entered():
-	#canvas_layer.hide()
+
 	animationName = "SlowWalk"
 	animation_player.play(animationName)
 	velocity = velocity*0.5
@@ -118,7 +117,7 @@ func _on_normal_state_entered():
 
 
 func _on_enraged_state_entered():
-	#canvas_layer.show()
+
 	animationName = "Walk"
 	animation_player.play(animationName)
 	velocity = velocity*2

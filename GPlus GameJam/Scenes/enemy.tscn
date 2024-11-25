@@ -13,11 +13,11 @@
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="10_i2xxj"]
 [ext_resource type="Shader" path="res://Shaders/camera_2d.gdshader" id="12_bnvr3"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_w1xvm"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qd62q"]
 shader = ExtResource("12_bnvr3")
-shader_parameter/shake_power = 0.01
-shader_parameter/shake_rate = 0.92
-shader_parameter/shake_speed = 1.0
+shader_parameter/shake_power = 0.03
+shader_parameter/shake_rate = 0.2
+shader_parameter/shake_speed = 5.0
 shader_parameter/shake_block_size = 30.5
 shader_parameter/shake_color_rate = 0.01
 
@@ -33,11 +33,9 @@ wait_time = 0.1
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_cveny")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Sprite2D"]
+[node name="ColorRect" type="ColorRect" parent="Sprite2D"]
 visible = false
-
-[node name="ColorRect" type="ColorRect" parent="Sprite2D/CanvasLayer"]
-material = SubResource("ShaderMaterial_w1xvm")
+material = SubResource("ShaderMaterial_qd62q")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
