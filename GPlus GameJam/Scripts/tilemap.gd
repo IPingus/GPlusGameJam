@@ -66,8 +66,8 @@ func chekcpointChanged(value):
 	if AllEnemylist.size() > checkpoitn:
 		checkEnemies=AllEnemylist[checkpoitn].get_children()
 	for i in checkEnemies:
+		i.active = true
 		i.playerNode = player
-		i.active=true
 		i.player_path =  NodePath("../../../Player")
 		
 	if WallsList.size()>checkpoitn :
