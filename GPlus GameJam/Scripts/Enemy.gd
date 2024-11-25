@@ -19,11 +19,12 @@ var ramd=randf_range(-4,4)
 var animationName = "RESET"
 var damage = 2
 var armorPierce =0
+@export var fireRate = 1
 @export var BULLETS : PackedScene
 @export var playerNode : CharacterBody2D
 var count = 0
 @export var animation_player:AnimationPlayer
-
+var moving = true
 @onready var timer = $Timer
 @onready var nav_agent = $NavigationAgent2D
 var active = false : set = activated
@@ -32,16 +33,13 @@ var active = false : set = activated
 func _ready():
 	Events.ModeChanged.connect(ModeChanged)
 	ModeChanged()
-	if active:
-		timer.start()
 		
 
 func activated(value):
-	
 	if value:
+		active=true
 		Timeline.send_event("Activated")
 		timer.start()
-		
 		
 
 func _physics_process(delta: float):
@@ -58,12 +56,12 @@ func makepath():
 	nav_agent.target_position = playerNode.global_position
 	
 func move_toward_postion(direction, delta):
-
-	#var direction = global_position.direction_to(target_position)
-	velocity = velocity.move_toward(max_speed*direction,acceleration*delta)
-	sprite_2d.flip_h = global_position < direction
-	if insideEnemy: #and timer.is_stopped():
-		velocity=velocity+Vector2(ramd,ramd)
+	if moving:
+		#var direction = global_position.direction_to(target_position)
+		velocity = velocity.move_toward(max_speed*direction,acceleration*delta)
+		sprite_2d.flip_h = global_position < direction
+		if insideEnemy: #and timer.is_stopped():
+			velocity=velocity+Vector2(ramd,ramd)
 	move_and_slide()
 
 
@@ -78,29 +76,6 @@ func _on_hurt_box_hurt(hitbox, damage,armorPierce):
 
 func ModeChanged():
 	Timeline.send_event("ModeChange")
-	#if GlobalVars.mode%2 == 1 and is_in_group("Past"):
-		#animationName = "SlowWalk"
-		#velocity = velocity*0.5
-		#max_speed = Slowmax_speed
-		#acceleration = Slowacceleration
-#
-	#if GlobalVars.mode%2 == 0 and is_in_group("Past"):
-		#animationName = "Walk"
-		#velocity = velocity*2
-		#max_speed = Fastmax_speed
-		#acceleration = Fastacceleration
-#
-	#if GlobalVars.mode%2 == 1 and is_in_group("Future"):
-		#animationName = "Walk"
-		#velocity = velocity*2
-		#max_speed = Fastmax_speed
-		#acceleration = Fastacceleration
-#
-	#if GlobalVars.mode%2 == 0 and is_in_group("Future"):
-		#animationName = "SlowWalk"
-		#velocity = velocity*0.5
-		#max_speed = Slowmax_speed
-		#acceleration = Slowacceleration
 
 
 
@@ -135,6 +110,7 @@ func _on_normal_state_entered():
 	velocity = velocity*0.5
 	max_speed = Slowmax_speed
 	acceleration = Slowacceleration
+	fireRate = 1
 
 
 func _on_enraged_state_entered():
@@ -143,6 +119,7 @@ func _on_enraged_state_entered():
 	velocity = velocity*2
 	max_speed = Fastmax_speed
 	acceleration = Fastacceleration
+	fireRate = 0.5
 
 
 func _on_timer_timeout():
