@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://c6prkqm4ft5ok"]
+
+[ext_resource type="Texture2D" uid="uid://cfrtcvqsvqbya" path="res://Sprites/Crusader-Medium-Human-test.png" id="1_4sq4i"]
+[ext_resource type="Script" path="res://Scripts/enemy_2.gd" id="1_l58kk"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="3_yjuwf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y8sil"]
+radius = 5.0
+
+[node name="Enemy2" type="CharacterBody2D" node_paths=PackedStringArray("player")]
+script = ExtResource("1_l58kk")
+player = NodePath("")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_4sq4i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 1)
+shape = SubResource("CircleShape2D_y8sil")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+scale = Vector2(0.986683, 1.01526)
+collision_mask = 3
+
+[node name="StateChart" type="Node" parent="."]
+script = ExtResource("3_yjuwf")
