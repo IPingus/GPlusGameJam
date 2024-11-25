@@ -15,9 +15,11 @@ script = ExtResource("2_inr4r")
 stream = ExtResource("2_elwst")
 autoplay = true
 bus = &"Music2"
+parameters/looping = true
 
 [node name="StateChart" parent="." instance=ExtResource("4_voeuv")]
 
+[connection signal="finished" from="." to="." method="_on_finished"]
 [connection signal="state_entered" from="StateChart/CompoundState/Past" to="." method="_on_past_state_entered"]
 [connection signal="state_entered" from="StateChart/CompoundState/Future" to="." method="_on_future_state_entered"]
 
