@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Enemy.gd" id="1_y242k"]
 [ext_resource type="Texture2D" uid="uid://dakwkxpte6wp2" path="res://Sprites2/KFUPMGameJam-Crusader-Small-Frame1.png" id="2_cveny"]
+[ext_resource type="Shader" path="res://Scenes/enemy.gdshader" id="2_hv32m"]
 [ext_resource type="PackedScene" uid="uid://p74u5ajcmoyb" path="res://Scenes/hurt_box.tscn" id="2_t2n3r"]
 [ext_resource type="PackedScene" uid="uid://bpxrreqs0wgy" path="res://Scenes/hitbox.tscn" id="3_u875k"]
 [ext_resource type="Script" path="res://Scripts/Stats.gd" id="4_ycn4b"]
@@ -11,79 +12,6 @@
 [ext_resource type="Script" path="res://addons/godot_state_charts/parallel_state.gd" id="8_uypee"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="9_sfut3"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="10_i2xxj"]
-
-[sub_resource type="Shader" id="Shader_dbhjc"]
-code = "/*
-Earthbound battle backgrounds shader with scrolling effect and palette cycling like in the original game.
-@retr0_dev
-
-Apply the shader to a TextureRect or a Sprite. Use a texture with some shapes in a transparent background for best results.
-You can then use a ColorRect or another method to paint the background.
-You can use the shader on multiple TextureRects and obtain a double-buffer effect tweaking the values for each one, remember to Make Unique the shader material.
-*/
-shader_type canvas_item;
-
-uniform float screen_height = 640.0;
-uniform float amplitude = 0.075;
-uniform float frequency = 10.0;
-uniform float speed = 2.0;
-uniform float amplitude_vertical = 0.0;
-uniform float frequency_vertical = 0.0;
-uniform float speed_vertical = 0.0;
-uniform vec2 scroll_direction = vec2(0.0, 0.0);
-uniform float scrolling_speed = 0.08;
-uniform bool enable_palette_cycling = false;
-uniform sampler2D palette;
-uniform float palette_speed = 0.1;
-uniform bool WrongTime = false;
-/**
-Color to use for the shock.
-*/
-uniform vec3 shock_color : source_color = vec3(1.0, 0.0, 0.0);
-/**
-Initial amplitude of the shock. This will start at this amplitude and
-gradually attenuate.
-*/
-uniform float amplitudes = 30.0;
-/**
-How fast shold it move side to side, more frequency means it'll move more quickly
-side to side.
-*/
-uniform float frequecy = 10.0;
-uniform bool damaged = false;
-
-void vertex() {
-	if(damaged){
-	float exponent = mod(TIME, 3.0);
-	VERTEX.x += amplitudes * exp(-3.0*exponent) * sin(frequecy*exponent);
-	}
-}
-
-void fragment()
-{
-	if(WrongTime){
-		float diff_x = amplitude * sin((frequency * UV.y) + (speed * TIME));
-		float diff_y = amplitude_vertical * sin((frequency_vertical * UV.y)  + (speed_vertical * TIME));
-		vec2 scroll = scroll_direction * TIME * scrolling_speed;
-		vec4 tex = texture(TEXTURE, vec2(UV.x + diff_x, UV.y + diff_y) + scroll);
-		float palette_swap = mod(tex.r - TIME * palette_speed, 1.0);
-
-		if (enable_palette_cycling)
-		{
-			COLOR = vec4(texture(palette, vec2(palette_swap, 0)).rgb, tex.a);
-		}
-		else COLOR = tex;
-		COLOR = mix(vec4(0.0), COLOR, float(int(UV.y * screen_height) % 2));
-		}
-	
-	if(damaged){
-		float exponent = mod(TIME, 1);
-		vec3 normal_color = texture(TEXTURE, UV).rgb;
-		COLOR.rgb = normal_color + shock_color * exp(-3.0*exponent);
-	}
-
-}
-"
 
 [sub_resource type="Gradient" id="Gradient_87p57"]
 offsets = PackedFloat32Array(0, 0.297297, 0.511583, 0.774131, 0.859073, 1)
@@ -99,8 +27,7 @@ color_ramp = SubResource("Gradient_87p57")
 noise = SubResource("FastNoiseLite_vdjch")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h34ex"]
-resource_local_to_scene = true
-shader = SubResource("Shader_dbhjc")
+shader = ExtResource("2_hv32m")
 shader_parameter/screen_height = 640.0
 shader_parameter/amplitude = 0.075
 shader_parameter/frequency = 10.0
@@ -112,9 +39,8 @@ shader_parameter/scroll_direction = Vector2(0, 0)
 shader_parameter/scrolling_speed = 0.08
 shader_parameter/enable_palette_cycling = true
 shader_parameter/palette_speed = 0.5
-shader_parameter/WrongTime = false
 shader_parameter/shock_color = Color(1, 0, 0, 1)
-shader_parameter/amplitudes = 10.0
+shader_parameter/amplitudes = 2.0
 shader_parameter/frequecy = 10.0
 shader_parameter/damaged = false
 shader_parameter/palette = SubResource("NoiseTexture2D_nuf2g")
@@ -124,6 +50,17 @@ collision_layer = 4
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_y242k")
+acceleration = null
+max_speed = null
+Fastacceleration = null
+Fastmax_speed = null
+Slowacceleration = null
+Slowmax_speed = null
+fastFireRate = null
+SlowFireRate = null
+Armor = null
+player_path = null
+fireRate = null
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.1
@@ -215,7 +152,7 @@ delay_in_seconds = "0.0"
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
-[node name="DamageEffect" type="Timer" parent="."]
+[node name="Timer2" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
 
@@ -229,4 +166,3 @@ one_shot = true
 [connection signal="state_entered" from="StateChart/ParallelState/EnemyMode/Normal" to="." method="_on_normal_state_entered"]
 [connection signal="state_entered" from="StateChart/ParallelState/EnemyMode/Enraged" to="." method="_on_enraged_state_entered"]
 [connection signal="state_entered" from="StateChart/ParallelState/EnemyMode/NotActive" to="." method="_on_not_active_state_entered"]
-[connection signal="timeout" from="DamageEffect" to="." method="_on_damage_effect_timeout"]

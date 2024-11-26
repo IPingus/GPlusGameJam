@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dm8sjiuijl1uk" path="res://Scenes/weapon.tscn" id="1_l5x3o"]
 [ext_resource type="PackedScene" uid="uid://gsvim0wddsl" path="res://Scenes/bullets.tscn" id="2_f6i82"]
-[ext_resource type="Texture2D" uid="uid://baphy6uw1cy2s" path="res://Sprites/Player-Shotgun.png" id="2_sfa3x"]
+[ext_resource type="Texture2D" uid="uid://bu252wkfghrw7" path="res://Sprites2/KFUPMGameJam-SHOTGUN.png" id="3_shlee"]
 [ext_resource type="AudioStream" uid="uid://bh5su50rk41q1" path="res://Scenes/Balloon Pop 1.wav" id="4_54qt5"]
 
 [node name="SMG" instance=ExtResource("1_l5x3o")]
@@ -12,12 +12,11 @@ armorPierce = 0.1
 BULLETS = ExtResource("2_f6i82")
 
 [node name="Sprite2D" parent="." index="0"]
-texture = ExtResource("2_sfa3x")
+texture = ExtResource("3_shlee")
 offset = Vector2(2.3872, -8.53331)
-flip_h = true
 
 [node name="Muzzle" parent="Sprite2D" index="0"]
-position = Vector2(18, 0)
+position = Vector2(20, 0)
 
 [node name="AudioStreamPlayer" parent="." index="1"]
 stream = ExtResource("4_54qt5")

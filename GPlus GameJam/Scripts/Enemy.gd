@@ -29,7 +29,8 @@ var moving = true
 @onready var nav_agent = $NavigationAgent2D
 var active = false : set = activated
 @onready var Timeline = $StateChart
-
+const DUST_EFFECT = preload("res://DustEffect.tscn")
+@onready var damage_effect = $DamageEffect
 
 
 func _ready():
@@ -68,10 +69,13 @@ func move_toward_postion(direction, delta):
 
 
 func _on_stats_no_health():
+	Utils.instanceSceneOnMain(DUST_EFFECT,global_position)
 	Events.enemydied.emit()
 	queue_free()
 
 func _on_hurt_box_hurt(hitbox, damage,armorPierce):
+	sprite_2d.material.set_shader_parameter("damaged", true)
+	damage_effect.start()
 	stats.health = stats.health - max(0.1,(damage-(Armor*(1-armorPierce))))
 	audio_stream_player.play()
 
@@ -107,7 +111,7 @@ func _on_future_state_entered():
 
 
 func _on_normal_state_entered():
-	sprite_2d.use_parent_material=true
+	sprite_2d.material.set_shader_parameter("WrongTime", false)
 	animationName = "SlowWalk"
 	animation_player.play(animationName)
 	velocity = velocity*0.5
@@ -117,7 +121,7 @@ func _on_normal_state_entered():
 
 
 func _on_enraged_state_entered():
-	sprite_2d.use_parent_material=false
+	sprite_2d.material.set_shader_parameter("WrongTime", true)
 	animationName = "Walk"
 	animation_player.play(animationName)
 	velocity = velocity*2
@@ -133,3 +137,7 @@ func _on_timer_timeout():
 func _on_not_active_state_entered():
 	animation_player.stop()
 	Timeline.send_event("Activated")
+
+
+func _on_damage_effect_timeout():
+	sprite_2d.material.set_shader_parameter("damaged", false)

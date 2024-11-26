@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dm8sjiuijl1uk"]
+[gd_scene load_steps=4 format=3 uid="uid://dm8sjiuijl1uk"]
 
 [ext_resource type="Script" path="res://Scripts/Weapon.gd" id="1_qpfo5"]
-[ext_resource type="Texture2D" uid="uid://3vt5s00pu4oh" path="res://Sprites/icon.svg" id="2_v60vk"]
+[ext_resource type="Texture2D" uid="uid://d1kqmkmuuo557" path="res://Sprites2/KFUPMGameJam-Crossbow-Empty.png" id="2_v66s3"]
+[ext_resource type="Texture2D" uid="uid://gfgkky2gw75a" path="res://Sprites/Robot-Small-TV-test.png" id="3_pwd3e"]
 
 [node name="Weapon" type="Node2D"]
 script = ExtResource("1_qpfo5")
@@ -9,11 +10,17 @@ fireRate = 0.5
 damage = 1.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_v60vk")
+position = Vector2(1, -1)
+texture = ExtResource("2_v66s3")
 centered = false
-offset = Vector2(60.7381, -72.5333)
+offset = Vector2(-0.261902, -6.5333)
+flip_h = true
 
 [node name="Muzzle" type="Marker2D" parent="Sprite2D"]
-position = Vector2(189.045, 0)
+position = Vector2(15, 0)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(63, 1)
+texture = ExtResource("3_pwd3e")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

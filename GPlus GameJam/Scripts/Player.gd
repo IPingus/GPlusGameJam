@@ -64,12 +64,12 @@ func _physics_process(delta):
 	if Input.is_action_pressed("Shoot") and fire_rate_timer.is_stopped() and mode_switch.time_left==0:
 		weapon.fireBullet()
 		fire_rate_timer.start(weapon.fireRate)
-	if not facingLeft and (get_local_mouse_position().angle()<-1.8 or get_local_mouse_position().angle()>1.2):
+	if not facingLeft and (weapon.sprite_2d.rotation<-1.8 or weapon.sprite_2d.rotation>1.2):
 		#sprite_2d_2.flip_h = false
 		weapon.sprite_2d.flip_v=true
 		flip_animation.play("FlipToLeft")
 		facingLeft=true
-	elif facingLeft and not (get_local_mouse_position().angle()<-1.8 or get_local_mouse_position().angle()>1.2):
+	elif facingLeft and not (weapon.sprite_2d.rotation<-1.8 or weapon.sprite_2d.rotation>1.2):
 		#sprite_2d_2.flip_h = true
 		weapon.sprite_2d.flip_v=false
 		flip_animation.play("FlipToRight")
