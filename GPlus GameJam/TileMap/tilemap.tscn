@@ -327,13 +327,13 @@ shape = SubResource("RectangleShape2D_eujqv")
 [node name="First" type="Node" parent="Enemies"]
 
 [node name="FutureEnemy" parent="Enemies/First" instance=ExtResource("8_g8cw5")]
-position = Vector2(138, -198)
+position = Vector2(143, -202)
 
 [node name="FutureEnemy2" parent="Enemies/First" instance=ExtResource("8_g8cw5")]
-position = Vector2(145, -141)
+position = Vector2(114, -208)
 
 [node name="FutureEnemy3" parent="Enemies/First" instance=ExtResource("8_g8cw5")]
-position = Vector2(101, -217)
+position = Vector2(150, -174)
 
 [node name="second" type="Node" parent="Enemies"]
 
