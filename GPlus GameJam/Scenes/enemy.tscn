@@ -75,7 +75,7 @@ void fragment()
 		else COLOR = tex;
 		COLOR = mix(vec4(0.0), COLOR, float(int(UV.y * screen_height) % 2));
 		}
-	
+
 	if(damaged){
 		float exponent = mod(TIME, 1);
 		vec3 normal_color = texture(TEXTURE, UV).rgb;
