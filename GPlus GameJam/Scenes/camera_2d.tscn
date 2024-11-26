@@ -1,6 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://dxf1jwtbljyna"]
+[gd_scene load_steps=8 format=3 uid="uid://dxf1jwtbljyna"]
 
 [ext_resource type="Script" path="res://Camera2D.gd" id="1_3qtn3"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="2_u2kwe"]
+[ext_resource type="Shader" path="res://Shaders/camera_2d.gdshader" id="2_ucpp0"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="3_2gtso"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="4_ef8m7"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="5_s16pu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xpipp"]
+shader = ExtResource("2_ucpp0")
+shader_parameter/shake_power = 0.03
+shader_parameter/shake_rate = 1.0
+shader_parameter/shake_speed = 5.0
+shader_parameter/shake_block_size = 30.5
+shader_parameter/shake_color_rate = 0.01
 
 [node name="Camera2D" type="Camera2D"]
 position = Vector2(-3, 5)
@@ -10,4 +23,41 @@ script = ExtResource("1_3qtn3")
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
+[node name="StateChart" type="Node" parent="."]
+script = ExtResource("2_u2kwe")
+
+[node name="CompoundState" type="Node" parent="StateChart"]
+script = ExtResource("3_2gtso")
+initial_state = NodePath("Normal")
+
+[node name="Normal" type="Node" parent="StateChart/CompoundState"]
+script = ExtResource("4_ef8m7")
+
+[node name="To Glitched" type="Node" parent="StateChart/CompoundState/Normal"]
+script = ExtResource("5_s16pu")
+to = NodePath("../../Glitched")
+event = &"mode Changed"
+delay_in_seconds = "0.0"
+
+[node name="Glitched" type="Node" parent="StateChart/CompoundState"]
+script = ExtResource("4_ef8m7")
+
+[node name="To Normal" type="Node" parent="StateChart/CompoundState/Glitched"]
+script = ExtResource("5_s16pu")
+to = NodePath("../../Normal")
+delay_in_seconds = ".2
+"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_xpipp")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="state_entered" from="StateChart/CompoundState/Normal" to="." method="_on_normal_state_entered"]
+[connection signal="state_entered" from="StateChart/CompoundState/Glitched" to="." method="_on_glitched_state_entered"]

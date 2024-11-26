@@ -89,6 +89,7 @@ libraries = {
 }
 
 [node name="HurtBox" parent="." index="2"]
+visible = false
 collision_layer = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" index="0"]
@@ -96,6 +97,7 @@ position = Vector2(4, -5)
 shape = SubResource("RectangleShape2D_m8qnx")
 
 [node name="Hitbox" parent="." index="3"]
+visible = false
 damage = 3.0
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Hitbox" index="0"]
@@ -106,9 +108,13 @@ shape = SubResource("CapsuleShape2D_2476f")
 [node name="Stats" parent="." index="4"]
 max_health = 20
 
+[node name="Area2D" parent="." index="5"]
+visible = false
+
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_ababb")
 
 [node name="CollisionShape2D" parent="." index="7"]
+visible = false
 shape = SubResource("CircleShape2D_ek1ov")

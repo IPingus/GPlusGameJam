@@ -30,6 +30,8 @@ var moving = true
 var active = false : set = activated
 @onready var Timeline = $StateChart
 
+
+
 func _ready():
 	Events.ModeChanged.connect(ModeChanged)
 	ModeChanged()
@@ -105,6 +107,7 @@ func _on_future_state_entered():
 
 
 func _on_normal_state_entered():
+	sprite_2d.use_parent_material=true
 	animationName = "SlowWalk"
 	animation_player.play(animationName)
 	velocity = velocity*0.5
@@ -114,6 +117,7 @@ func _on_normal_state_entered():
 
 
 func _on_enraged_state_entered():
+	sprite_2d.use_parent_material=false
 	animationName = "Walk"
 	animation_player.play(animationName)
 	velocity = velocity*2
