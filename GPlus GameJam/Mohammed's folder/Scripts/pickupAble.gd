@@ -8,9 +8,17 @@ signal picked(type:int)
 		#is_invincible = value
 		#disable.call_deferred(value)
 
+
+func _on_area_entered(player) -> void:
+	
+	pickUp(player)
+
+
+
 func pickUp(type):
 	print("PICK")
 	picked.emit(type)
+	queue_free()
 
 func disable(value : bool):
 	for child in get_children():
