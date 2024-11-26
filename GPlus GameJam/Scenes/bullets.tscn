@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://gsvim0wddsl"]
 
 [ext_resource type="PackedScene" uid="uid://bwo7xhoadocvy" path="res://Scenes/shots.tscn" id="1_t4y7r"]
-[ext_resource type="Texture2D" uid="uid://c0412ah3jcudb" path="res://Sprites/Projectiles-bullet.png" id="2_caun1"]
+[ext_resource type="Texture2D" uid="uid://n8sscg0df6p3" path="res://Sprites2/KFUPMGameJam-Bullet-blue-Large.png" id="2_isv1u"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_umule"]
 radius = 1.41421
@@ -19,4 +19,5 @@ collision_mask = 17
 shape = SubResource("CircleShape2D_umule")
 
 [node name="Sprite2D" parent="." index="2"]
-texture = ExtResource("2_caun1")
+texture = ExtResource("2_isv1u")
+flip_h = true

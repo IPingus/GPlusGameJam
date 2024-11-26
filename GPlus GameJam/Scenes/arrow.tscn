@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dqbqsf80egbg1"]
 
 [ext_resource type="PackedScene" uid="uid://bwo7xhoadocvy" path="res://Scenes/shots.tscn" id="1_xvokr"]
-[ext_resource type="Texture2D" uid="uid://bpa3ju0s67xot" path="res://Sprites/Projectiles-arrow.png" id="2_v1fd2"]
+[ext_resource type="Texture2D" uid="uid://bqlm7vkljx7wj" path="res://Sprites2/KFUPMGameJam-Crossbow-Arrow.png" id="2_yuapn"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oqg2y"]
 radius = 2.0
@@ -17,5 +17,7 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_oqg2y")
 
 [node name="Sprite2D" parent="." index="2"]
-texture = ExtResource("2_v1fd2")
+position = Vector2(-4.76837e-07, 1)
+scale = Vector2(0.6875, 0.6875)
+texture = ExtResource("2_yuapn")
 flip_h = true
