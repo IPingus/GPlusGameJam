@@ -1,23 +1,64 @@
-[gd_scene load_steps=5 format=3 uid="uid://bhp51wwc8ol0u"]
+[gd_scene load_steps=9 format=3 uid="uid://bhp51wwc8ol0u"]
 
 [ext_resource type="PackedScene" uid="uid://dm8sjiuijl1uk" path="res://Scenes/weapon.tscn" id="1_0011i"]
 [ext_resource type="PackedScene" uid="uid://dqbqsf80egbg1" path="res://Scenes/arrow.tscn" id="2_8tr2h"]
-[ext_resource type="Texture2D" uid="uid://ehbswhcerjno" path="res://Sprites/Player-CrossBow.png" id="2_a7q2x"]
+[ext_resource type="Texture2D" uid="uid://c5n8nsql6yjo5" path="res://Sprites2/KFUPMGameJam-Crossbow-Reloaded.png" id="3_lbepp"]
 [ext_resource type="AudioStream" uid="uid://of5dtxgnuluf" path="res://Sounds/2024-09-20 19-16-52shoot.wind2.mp3" id="4_s1tnq"]
+[ext_resource type="Texture2D" uid="uid://d1kqmkmuuo557" path="res://Sprites2/KFUPMGameJam-Crossbow-Empty.png" id="4_tdiew"]
 
-[node name="Crossbow" instance=ExtResource("1_0011i")]
+[sub_resource type="Animation" id="Animation_gies5"]
+resource_name = "Reload"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("4_tdiew"), ExtResource("3_lbepp")]
+}
+
+[sub_resource type="Animation" id="Animation_24yyn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_lbepp")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ovw5t"]
+_data = {
+"RESET": SubResource("Animation_24yyn"),
+"Reload": SubResource("Animation_gies5")
+}
+
+[node name="Crossbow" node_paths=PackedStringArray("animationPlayer") instance=ExtResource("1_0011i")]
 fireRate = 1.1
 damage = 10.0
 armorPierce = 0.9
+animationPlayer = NodePath("Sprite2D/AnimationPlayer")
+RecoilAnimationName = "Reload"
 BULLETS = ExtResource("2_8tr2h")
 
 [node name="Sprite2D" parent="." index="0"]
-texture = ExtResource("2_a7q2x")
+texture = ExtResource("3_lbepp")
 offset = Vector2(0.523, -6.5333)
-flip_h = true
 
-[node name="Muzzle" parent="Sprite2D" index="0"]
-position = Vector2(16, 0)
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D" index="2"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_ovw5t")
+}
 
 [node name="AudioStreamPlayer" parent="." index="1"]
 stream = ExtResource("4_s1tnq")
