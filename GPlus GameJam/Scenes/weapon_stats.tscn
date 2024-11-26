@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqnjiyklfk364"]
+
+[ext_resource type="Script" path="res://Scripts/weapon_stats.gd" id="1_hot33"]
+
+[node name="WeaponStats" type="Node"]
+script = ExtResource("1_hot33")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -24,6 +24,7 @@ GlobalVars="*res://Scripts/GlobalVars.gd"
 PlayerStats="*res://Scenes/player_stats.tscn"
 Events="*res://Scenes/events.tscn"
 Music="*res://music.tscn"
+WeaponStats="*res://Scenes/weapon_stats.tscn"
 
 [debug]
 
