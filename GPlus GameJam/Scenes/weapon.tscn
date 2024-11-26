@@ -24,3 +24,5 @@ position = Vector2(63, 1)
 texture = ExtResource("3_pwd3e")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="ReloadTimer" type="Timer" parent="."]
