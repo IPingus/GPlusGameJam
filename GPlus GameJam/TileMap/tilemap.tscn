@@ -337,7 +337,6 @@ rotation = -1.71983
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint7"]
 position = Vector2(75.3594, -16.999)
 rotation = 1.53467
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_eujqv")
 
 [node name="Enemies" type="Node" parent="."]
