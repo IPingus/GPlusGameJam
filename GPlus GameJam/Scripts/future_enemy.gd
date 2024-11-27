@@ -18,7 +18,7 @@ func _on_not_state_entered():
 
 
 func _on_yes_state_processing(delta):
-	if fire_rate.time_left==0:
+	if fire_rate.time_left==0 and playerNode is Player:
 		bullet = Utils.instanceSceneOnMain(BULLETS,global_position)
 		bullet.hitbox.collision_mask=9
 		bullet.rotation =to_local(playerNode.global_position).angle()

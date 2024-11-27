@@ -4,7 +4,7 @@ var lastWeaponUsed
 
 @onready var timer = $Timer
 
-var Ammo ={"SMG":[10,10,2,false] , "Crossbow":[20,20,1,false]}
+var Ammo ={"SMG":[20,20,2,false] , "Crossbow":[1,1,1,false]}
 #[0 is the max ammo count], 
 #[1 is the current ammo count]
 #[2 is the reload time]
