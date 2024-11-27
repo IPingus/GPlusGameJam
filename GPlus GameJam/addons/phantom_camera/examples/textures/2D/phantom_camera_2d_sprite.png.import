@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqgb7byav1y2u"
-path="res://.godot/imported/state_machine.png-c65b066b9b7c52404a83e2ec595e8296.ctex"
+uid="uid://cwep0on2tthn7"
+path="res://.godot/imported/phantom_camera_2d_sprite.png-deab230b83ae03aeb308a08ff66b8dbc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/fsm/state_machine.png"
-dest_files=["res://.godot/imported/state_machine.png-c65b066b9b7c52404a83e2ec595e8296.ctex"]
+source_file="res://addons/phantom_camera/examples/textures/2D/phantom_camera_2d_sprite.png"
+dest_files=["res://.godot/imported/phantom_camera_2d_sprite.png-deab230b83ae03aeb308a08ff66b8dbc.ctex"]
 
 [params]
 
