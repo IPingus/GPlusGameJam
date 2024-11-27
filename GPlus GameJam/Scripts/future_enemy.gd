@@ -3,6 +3,7 @@ class_name Shooting_Enemy
 @onready var fire_rate = $FireRate
 @onready var ray_cast_2d = $RayCast2D
 var bullet:	Projectile
+
 func _process(delta):
 	if active:
 		ray_cast_2d.target_position = to_local(playerNode.global_position)

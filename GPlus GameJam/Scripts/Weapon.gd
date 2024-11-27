@@ -44,13 +44,14 @@ func _process(delta):
 
 func fireBullet():
 	if(not WeaponStats.Ammo.get(WeaponName)[3]):
-		print(WeaponName)
+		print(WeaponStats.Ammo.get(WeaponName)[1])
 		WeaponStats.firedShot(WeaponName)
 		var bullet = Utils.instanceSceneOnMain(BULLETS, muzzle.global_position)
 		var Dust = Utils.instanceSceneOnMain(DUST_EFFECT,muzzle.global_position)
 		Dust.amount = 2
 		Dust.scale.x = 0.1
 		Dust.scale.y = 0.1
+		audio_stream_player.pitch_scale=randf_range(0.8,1.2)
 		audio_stream_player.play()
 		bullet.setstats(damage,armorPierce)
 		bullet.rotation = sprite_2d.rotation
