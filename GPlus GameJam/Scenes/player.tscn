@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://mogxd1hu1pfc"]
+[gd_scene load_steps=25 format=3 uid="uid://mogxd1hu1pfc"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_45dbf"]
 [ext_resource type="PackedScene" uid="uid://bhp51wwc8ol0u" path="res://Scenes/crossbow.tscn" id="2_ikmvo"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="9_wkp5q"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="10_0w7s6"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="11_34sif"]
+[ext_resource type="PackedScene" uid="uid://ey708ms86q4u" path="res://Scenes/reload_bar.tscn" id="12_04wtg"]
 
 [sub_resource type="Animation" id="Animation_hqgma"]
 resource_name = "FlipToLeft"
@@ -266,6 +267,14 @@ script = ExtResource("11_34sif")
 to = NodePath("../../Past")
 event = &"ModeChange"
 delay_in_seconds = "0.0"
+
+[node name="ReloadBar" parent="." instance=ExtResource("12_04wtg")]
+visible = false
+offset_left = 2.75563
+offset_top = -14.0021
+offset_right = 1192.76
+offset_bottom = 1176.0
+scale = Vector2(0.005, 0.005)
 
 [connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]
 [connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]

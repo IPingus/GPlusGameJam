@@ -14,6 +14,7 @@ var WeaponName
 @onready var muzzle = $Sprite2D/Muzzle
 @onready var audio_stream_player = $AudioStreamPlayer
 @onready var sprite_2d_2 = $Sprite2D/Sprite2D2
+@onready var reload_marker = $"Reload marker"
 
 const DUST_EFFECT = preload("res://DustEffect.tscn")
 
@@ -44,7 +45,6 @@ func _process(delta):
 
 func fireBullet():
 	if(not WeaponStats.Ammo.get(WeaponName)[3]):
-		print(WeaponStats.Ammo.get(WeaponName)[1])
 		WeaponStats.firedShot(WeaponName)
 		var bullet = Utils.instanceSceneOnMain(BULLETS, muzzle.global_position)
 		var Dust = Utils.instanceSceneOnMain(DUST_EFFECT,muzzle.global_position)
@@ -58,4 +58,3 @@ func fireBullet():
 		bullet.update_velocity()
 		if animationPlayer is AnimationPlayer:
 			animationPlayer.play(RecoilAnimationName)
-	

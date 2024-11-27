@@ -16,7 +16,7 @@ var weapon:Weapon
 @onready var crossbow = $Crossbow
 @onready var state_chart = $StateChart
 
-
+@onready var reload_bar = $ReloadBar
 @onready var healt = $Healt
 @onready var sprite_2d_2 = $Sprite2D2
 @onready var mode_switch = $modeSwitch
@@ -29,6 +29,8 @@ var facingLeft=true
 func _ready():
 	PlayerStats.no_health.connect(die)
 	Events.ModeChanged.connect(ModeChanged)
+	WeaponStats.weaponReloading.connect(weaponReloading)
+	WeaponStats.weaponDoneReloading.connect(weaponDoneReloading)
 	ModeChanged()
 
 func	get_input():
@@ -36,7 +38,13 @@ func	get_input():
 	input.y = Input.get_action_raw_strength("Down") -  Input.get_action_raw_strength("Up")
 	return input.normalized()
 	
+func weaponReloading(weaponName):
+	if reload_bar.hidden:
+		reload_bar.show()
 
+func weaponDoneReloading(weaponName):
+	print(weaponName)
+	reload_bar.hide()
 
 func _process(delta):
 	pass

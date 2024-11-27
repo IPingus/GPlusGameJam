@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://dvja0q0jhm3uu"]
+[gd_scene load_steps=47 format=3 uid="uid://dvja0q0jhm3uu"]
 
 [ext_resource type="Texture2D" uid="uid://cetvpp4xxg6yg" path="res://Sprites2/KFUPMGameJam-Tileset-Future.png" id="1_hxxul"]
 [ext_resource type="Script" path="res://Scripts/tilemap.gd" id="1_wuqh5"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://73reqoktlx21" path="res://Scenes/camera_marker.tscn" id="7_56ef1"]
 [ext_resource type="PackedScene" uid="uid://crqom5u1l8cr8" path="res://Scenes/checkpoint.tscn" id="7_wbhjp"]
 [ext_resource type="PackedScene" uid="uid://dll02a8jny5no" path="res://Scenes/future_enemy.tscn" id="8_g8cw5"]
+[ext_resource type="PackedScene" uid="uid://bs26orls74x4r" path="res://Scenes/ammo_count.tscn" id="8_swrce"]
 [ext_resource type="PackedScene" uid="uid://c2veulag6ju4h" path="res://Scenes/small_future_enemy.tscn" id="8_wv2ph"]
 [ext_resource type="PackedScene" uid="uid://ci57f8lwgxyfj" path="res://Scenes/small_past_enemie.tscn" id="9_41ent"]
 [ext_resource type="PackedScene" uid="uid://dxf1jwtbljyna" path="res://Scenes/camera_2d.tscn" id="10_4ieoo"]
@@ -232,7 +233,7 @@ size = Vector2(63, 20)
 script = ExtResource("1_wuqh5")
 
 [node name="Camera2D" parent="." instance=ExtResource("10_4ieoo")]
-position = Vector2(91, -149)
+position = Vector2(21.192, -171.665)
 zoom = Vector2(2.5, 2.5)
 
 [node name="Mideval" type="TileMap" parent="."]
@@ -258,6 +259,17 @@ offset_bottom = 433.0
 scale = Vector2(0.1, 0.1)
 
 [node name="HealthMeter" parent="UI" instance=ExtResource("6_nby1j")]
+
+[node name="AmmoCount" parent="UI" instance=ExtResource("8_swrce")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 5.0
+offset_top = 40.0
+offset_right = 5.0
+offset_bottom = 40.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="checkponts" type="Node" parent="."]
 
