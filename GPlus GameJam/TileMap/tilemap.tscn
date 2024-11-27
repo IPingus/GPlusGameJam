@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://dvja0q0jhm3uu"]
+[gd_scene load_steps=46 format=3 uid="uid://dvja0q0jhm3uu"]
 
 [ext_resource type="Texture2D" uid="uid://cetvpp4xxg6yg" path="res://Sprites2/KFUPMGameJam-Tileset-Future.png" id="1_hxxul"]
 [ext_resource type="Script" path="res://Scripts/tilemap.gd" id="1_wuqh5"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://mogxd1hu1pfc" path="res://Scenes/player.tscn" id="3_xmo1r"]
 [ext_resource type="PackedScene" uid="uid://cvmlcrlm4p1u6" path="res://Clockvis222.tscn" id="5_hdkr6"]
 [ext_resource type="PackedScene" uid="uid://b03b3p7v6pgq" path="res://Scenes/health_meter.tscn" id="6_nby1j"]
+[ext_resource type="PackedScene" uid="uid://73reqoktlx21" path="res://Scenes/camera_marker.tscn" id="7_56ef1"]
 [ext_resource type="PackedScene" uid="uid://crqom5u1l8cr8" path="res://Scenes/checkpoint.tscn" id="7_wbhjp"]
 [ext_resource type="PackedScene" uid="uid://dll02a8jny5no" path="res://Scenes/future_enemy.tscn" id="8_g8cw5"]
 [ext_resource type="PackedScene" uid="uid://c2veulag6ju4h" path="res://Scenes/small_future_enemy.tscn" id="8_wv2ph"]
@@ -231,7 +232,7 @@ size = Vector2(63, 20)
 script = ExtResource("1_wuqh5")
 
 [node name="Camera2D" parent="." instance=ExtResource("10_4ieoo")]
-position = Vector2(81, -151)
+position = Vector2(91, -149)
 zoom = Vector2(2.5, 2.5)
 
 [node name="Mideval" type="TileMap" parent="."]
@@ -258,28 +259,31 @@ scale = Vector2(0.1, 0.1)
 
 [node name="HealthMeter" parent="UI" instance=ExtResource("6_nby1j")]
 
-[node name="Checkponts" type="Node" parent="."]
+[node name="checkponts" type="Node" parent="."]
 
-[node name="FirstCheck" type="Marker2D" parent="Checkponts"]
-position = Vector2(171, -291)
+[node name="CameraMarker" parent="checkponts" instance=ExtResource("7_56ef1")]
 
-[node name="SecondCheck" type="Marker2D" parent="Checkponts"]
-position = Vector2(326, -134)
+[node name="CameraMarker2" parent="checkponts" instance=ExtResource("7_56ef1")]
+position = Vector2(328, -141)
+cameraZoom = Vector2(2, 2)
 
-[node name="SecondCheck2" type="Marker2D" parent="Checkponts"]
-position = Vector2(448, -8)
+[node name="CameraMarker3" parent="checkponts" instance=ExtResource("7_56ef1")]
+position = Vector2(448, -12)
 
-[node name="SecondCheck3" type="Marker2D" parent="Checkponts"]
-position = Vector2(524, -128)
+[node name="CameraMarker4" parent="checkponts" instance=ExtResource("7_56ef1")]
+position = Vector2(525, -129)
 
-[node name="SecondCheck4" type="Marker2D" parent="Checkponts"]
+[node name="CameraMarker5" parent="checkponts" instance=ExtResource("7_56ef1")]
 position = Vector2(656, -256)
 
-[node name="SecondCheck5" type="Marker2D" parent="Checkponts"]
+[node name="CameraMarker6" parent="checkponts" instance=ExtResource("7_56ef1")]
+position = Vector2(522, -336)
+
+[node name="SecondCheck5" type="Marker2D" parent="checkponts"]
 position = Vector2(469, -336)
 
 [node name="Checkpoint1" parent="." instance=ExtResource("7_wbhjp")]
-position = Vector2(94, -1)
+position = Vector2(90, -2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint1"]
 position = Vector2(29, -243)
@@ -287,43 +291,53 @@ rotation = 1.53467
 shape = SubResource("RectangleShape2D_eujqv")
 
 [node name="Checkpoint2" parent="." instance=ExtResource("7_wbhjp")]
-position = Vector2(94, -1)
+position = Vector2(216, -4)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint2"]
-position = Vector2(148, -252)
-rotation = 1.57264
+position = Vector2(29, -243)
+rotation = 1.53467
+shape = SubResource("RectangleShape2D_eujqv")
+
+[node name="Checkpoint3" parent="." instance=ExtResource("7_wbhjp")]
+position = Vector2(350, 210)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint3"]
+position = Vector2(29, -243)
+rotation = 1.53467
 shape = SubResource("RectangleShape2D_eujqv")
 
 [node name="Checkpoint4" parent="." instance=ExtResource("7_wbhjp")]
-position = Vector2(359, 181)
+position = Vector2(484, 189)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint4"]
-position = Vector2(152, -234)
-rotation = 1.57264
+position = Vector2(29, -243)
+rotation = 1.53467
 shape = SubResource("RectangleShape2D_eujqv")
 
 [node name="Checkpoint5" parent="." instance=ExtResource("7_wbhjp")]
-position = Vector2(359, 181)
+position = Vector2(484, 189)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint5"]
-position = Vector2(217, -383)
-rotation = 1.57264
+position = Vector2(100, -392)
+rotation = 1.53467
 shape = SubResource("RectangleShape2D_eujqv")
 
 [node name="Checkpoint6" parent="." instance=ExtResource("7_wbhjp")]
-position = Vector2(523, 80)
+position = Vector2(574, 86)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint6"]
-position = Vector2(169, -385)
-rotation = 1.57264
+position = Vector2(100, -392)
+rotation = 1.53467
 shape = SubResource("RectangleShape2D_eujqv")
 
-[node name="Checkpoint8" parent="." instance=ExtResource("7_wbhjp")]
-position = Vector2(565, 80)
+[node name="Checkpoint7" parent="." instance=ExtResource("7_wbhjp")]
+position = Vector2(379, -248)
+rotation = -1.71983
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint8"]
-position = Vector2(-218, -405)
-rotation = 0.0261123
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint7"]
+position = Vector2(75.3594, -16.999)
+rotation = 1.53467
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_eujqv")
 
 [node name="Enemies" type="Node" parent="."]
@@ -538,11 +552,12 @@ grow_vertical = 2
 color = Color(0.523277, 0.00139493, 0.701082, 1)
 
 [connection signal="PlayerEntered" from="Checkpoint1" to="." method="_on_checkpoint_1_player_entered"]
-[connection signal="PlayerEntered" from="Checkpoint2" to="." method="_on_checkpoint_2_player_entered"]
-[connection signal="PlayerEntered" from="Checkpoint4" to="." method="_on_checkpoint_4_player_entered"]
-[connection signal="PlayerEntered" from="Checkpoint5" to="." method="_on_checkpoint_5_player_entered"]
-[connection signal="PlayerEntered" from="Checkpoint6" to="." method="_on_checkpoint_6_player_entered"]
-[connection signal="PlayerEntered" from="Checkpoint8" to="." method="_on_checkpoint_8_player_entered"]
+[connection signal="PlayerEntered" from="Checkpoint2" to="." method="_on_checkpoint_1_player_entered"]
+[connection signal="PlayerEntered" from="Checkpoint3" to="." method="_on_checkpoint_1_player_entered"]
+[connection signal="PlayerEntered" from="Checkpoint4" to="." method="_on_checkpoint_1_player_entered"]
+[connection signal="PlayerEntered" from="Checkpoint5" to="." method="_on_checkpoint_1_player_entered"]
+[connection signal="PlayerEntered" from="Checkpoint6" to="." method="_on_checkpoint_1_player_entered"]
+[connection signal="PlayerEntered" from="Checkpoint7" to="." method="_on_checkpoint_1_player_entered"]
 [connection signal="PlayerEntered" from="Checkpoint" to="." method="_on_checkpoint_player_entered"]
 [connection signal="state_entered" from="StateChart/CompoundState/Past" to="." method="_on_past_state_entered"]
 [connection signal="state_entered" from="StateChart/CompoundState/Future" to="." method="_on_future_state_entered"]

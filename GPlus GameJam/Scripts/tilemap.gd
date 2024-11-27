@@ -1,7 +1,5 @@
 extends Node2D
-
-@onready var camera_2d = $Camera2D
-@onready var checkponts = $Checkponts
+@onready var checkponts = $checkponts
 @onready var enemies = $Enemies
 var checkpoitn = 0 #: set = chekcpointChanged
 @onready var walls = $Walls
@@ -9,6 +7,7 @@ var checkpoitn = 0 #: set = chekcpointChanged
 @onready var mideval = $Mideval
 @onready var future = $Future
 @onready var player = $Player
+@onready var camera_2d = $Camera2D
 
 @onready var state_chart = $StateChart
 
@@ -21,7 +20,6 @@ var nullindex = 0
 var WallsList
 var backtrackwallList
 func _ready():
-	
 	Events.enemydied.connect(on_enemy_enemydied)
 	Events.ModeChanged.connect((modechanged21))
 	checkponintlist = checkponts.get_children()
@@ -46,6 +44,7 @@ func modechanged21():
 func _on_checkpoint_player_entered():
 	if checkponintlist.size() >= checkpoitn and AreaCleared:
 		AreaCleared = false
+		camera_2d.AdjustZoom(checkponintlist[checkpoitn].cameraZoom)
 		camera_2d.global_position = checkponintlist[checkpoitn].global_position
 		checkpoitn+=1
 		chekcpointChanged(checkpoitn)
@@ -89,52 +88,55 @@ func disableallwalls():
 func _on_checkpoint_1_player_entered():
 	if checkponintlist.size() >= checkpoitn and AreaCleared:
 		AreaCleared = false
+		camera_2d.AdjustZoom(checkponintlist[checkpoitn].cameraZoom)
 		camera_2d.global_position = checkponintlist[checkpoitn].global_position
 		checkpoitn+=1
 		chekcpointChanged(checkpoitn)
+	elif not checkponintlist.size() >= checkpoitn:
+		Utils.moveToScene("res://menu.tscn")
 
-
-func _on_checkpoint_2_player_entered():
-	if checkponintlist.size() >= checkpoitn and AreaCleared:
-		AreaCleared = false
-		camera_2d.global_position = checkponintlist[checkpoitn].global_position
-		checkpoitn+=1
-		chekcpointChanged(checkpoitn)
-
-
-func _on_checkpoint_3_player_entered():
-	if checkponintlist.size() >= checkpoitn and AreaCleared:
-		AreaCleared = false
-		camera_2d.global_position = checkponintlist[checkpoitn].global_position
-		checkpoitn+=1
-		chekcpointChanged(checkpoitn)
-
-
-func _on_checkpoint_4_player_entered():
-	if checkponintlist.size() >= checkpoitn and AreaCleared:
-		AreaCleared = false
-		camera_2d.global_position = checkponintlist[checkpoitn].global_position
-		checkpoitn+=1
-		chekcpointChanged(checkpoitn)
-
-
-func _on_checkpoint_5_player_entered():
-	if checkponintlist.size() >= checkpoitn and AreaCleared:
-		AreaCleared = false
-		camera_2d.global_position = checkponintlist[checkpoitn].global_position
-		checkpoitn+=1
-		chekcpointChanged(checkpoitn)
-
-
-func _on_checkpoint_6_player_entered():
-	if checkponintlist.size() >= checkpoitn and AreaCleared:
-		AreaCleared = false
-		camera_2d.global_position = checkponintlist[checkpoitn].global_position
-		checkpoitn+=1
-		chekcpointChanged(checkpoitn)
-
-func _on_checkpoint_8_player_entered():
-	Utils.moveToScene("res://menu.tscn")
+#
+#func _on_checkpoint_2_player_entered():
+	#if checkponintlist.size() >= checkpoitn and AreaCleared:
+		#AreaCleared = false
+		#camera_2d.global_position = checkponintlist[checkpoitn].global_position
+		#checkpoitn+=1
+		#chekcpointChanged(checkpoitn)
+#
+#
+#func _on_checkpoint_3_player_entered():
+	#if checkponintlist.size() >= checkpoitn and AreaCleared:
+		#AreaCleared = false
+		#camera_2d.global_position = checkponintlist[checkpoitn].global_position
+		#checkpoitn+=1
+		#chekcpointChanged(checkpoitn)
+#
+#
+#func _on_checkpoint_4_player_entered():
+	#if checkponintlist.size() >= checkpoitn and AreaCleared:
+		#AreaCleared = false
+		#camera_2d.global_position = checkponintlist[checkpoitn].global_position
+		#checkpoitn+=1
+		#chekcpointChanged(checkpoitn)
+#
+#
+#func _on_checkpoint_5_player_entered():
+	#if checkponintlist.size() >= checkpoitn and AreaCleared:
+		#AreaCleared = false
+		#camera_2d.global_position = checkponintlist[checkpoitn].global_position
+		#checkpoitn+=1
+		#chekcpointChanged(checkpoitn)
+#
+#
+#func _on_checkpoint_6_player_entered():
+	#if checkponintlist.size() >= checkpoitn and AreaCleared:
+		#AreaCleared = false
+		#camera_2d.global_position = checkponintlist[checkpoitn].global_position
+		#checkpoitn+=1
+		#chekcpointChanged(checkpoitn)
+#
+#func _on_checkpoint_8_player_entered():
+	#Utils.moveToScene("res://menu.tscn")
 
 
 func _on_past_state_entered():

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://73reqoktlx21"]
+
+[ext_resource type="Script" path="res://TileMap/CamerMarker.gd" id="1_bmdrx"]
+
+[node name="CameraMarker" type="Marker2D"]
+position = Vector2(141, -297)
+script = ExtResource("1_bmdrx")

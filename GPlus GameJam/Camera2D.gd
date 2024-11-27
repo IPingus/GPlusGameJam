@@ -32,3 +32,6 @@ func _on_normal_state_entered():
 
 func _on_glitched_state_entered():
 	canvas_layer.show()
+
+func AdjustZoom(NewZoom:Vector2):
+	zoom = NewZoom
