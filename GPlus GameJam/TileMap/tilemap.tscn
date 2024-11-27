@@ -528,6 +528,15 @@ to = NodePath("../../Past")
 event = &"ModeChange"
 delay_in_seconds = "0.0"
 
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.523277, 0.00139493, 0.701082, 1)
+
 [connection signal="PlayerEntered" from="Checkpoint1" to="." method="_on_checkpoint_1_player_entered"]
 [connection signal="PlayerEntered" from="Checkpoint2" to="." method="_on_checkpoint_2_player_entered"]
 [connection signal="PlayerEntered" from="Checkpoint4" to="." method="_on_checkpoint_4_player_entered"]
