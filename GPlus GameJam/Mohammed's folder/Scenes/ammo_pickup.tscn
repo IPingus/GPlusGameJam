@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://8yik8dqsg81a"]
+
+[ext_resource type="Script" path="res://Mohammed's folder/Scenes/ammo_pickup.gd" id="1_0nj4a"]
+[ext_resource type="Texture2D" uid="uid://3vt5s00pu4oh" path="res://Sprites/icon.svg" id="1_bua42"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xdae4"]
+radius = 4.0
+
+[node name="ammoPickup" type="Area2D"]
+script = ExtResource("1_0nj4a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1, 1)
+shape = SubResource("CircleShape2D_xdae4")
+
+[node name="Icon" type="Sprite2D" parent="."]
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("1_bua42")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

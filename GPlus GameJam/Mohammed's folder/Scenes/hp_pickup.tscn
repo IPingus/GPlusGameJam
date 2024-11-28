@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bsmkbr3ul165y"]
+
+[ext_resource type="Script" path="res://Mohammed's folder/Scenes/hp_pickup.gd" id="1_a2hu7"]
+[ext_resource type="Texture2D" uid="uid://3vt5s00pu4oh" path="res://Sprites/icon.svg" id="2_bf0fc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_741ha"]
+radius = 4.0
+
+[node name="hpPickup" type="Area2D"]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_a2hu7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1, 1)
+shape = SubResource("CircleShape2D_741ha")
+
+[node name="Icon" type="Sprite2D" parent="."]
+rotation = 3.14159
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("2_bf0fc")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
