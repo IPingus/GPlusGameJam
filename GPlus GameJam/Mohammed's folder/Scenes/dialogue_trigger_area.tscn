@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://d2v6ifkijyo3v"]
+
+[ext_resource type="Script" path="res://Mohammed's folder/Scripts/dialogue_trigger_area.gd" id="1_1icuo"]
+[ext_resource type="Resource" uid="uid://do0hp7cvnw0x2" path="res://Mohammed's folder/dialogue/Example.dialogue" id="2_pg5oa"]
+[ext_resource type="Texture2D" uid="uid://be8c3g2lr53td" path="res://icon.svg" id="3_2txdj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_435wn"]
+
+[node name="dialogueTriggerArea" type="Area2D"]
+collision_layer = 32
+collision_mask = 2
+script = ExtResource("1_1icuo")
+dialougeResource = ExtResource("2_pg5oa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_435wn")
+
+[node name="Icon" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_2txdj")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
