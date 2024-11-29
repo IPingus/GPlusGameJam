@@ -1,0 +1,3 @@
+extends Timer
+
+signal TimeOut()

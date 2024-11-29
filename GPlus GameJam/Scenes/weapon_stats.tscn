@@ -1,11 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://dqnjiyklfk364"]
+[gd_scene load_steps=3 format=3 uid="uid://dqnjiyklfk364"]
 
 [ext_resource type="Script" path="res://Scripts/weapon_stats.gd" id="1_hot33"]
+[ext_resource type="Script" path="res://Scenes/ReloadTimer.gd" id="2_0xsng"]
 
 [node name="WeaponStats" type="Node"]
 script = ExtResource("1_hot33")
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
+script = ExtResource("2_0xsng")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer" to="Timer" method="_on_timeout"]
