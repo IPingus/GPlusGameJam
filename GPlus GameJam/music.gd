@@ -13,13 +13,14 @@ func modechanged():
 
 
 func _on_past_state_entered():
+	audio_stream_player.volume_db = 0
+	volume_db = -100000
+	
+
+func _on_future_state_entered():
 	audio_stream_player.volume_db = -100000
 	volume_db = 0
 
-
-func _on_future_state_entered():
-	audio_stream_player.volume_db = 0
-	volume_db = -100000
 
 
 func _on_finished():

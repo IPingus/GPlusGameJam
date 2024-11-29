@@ -130,9 +130,7 @@ radius = 16.0312
 
 [node name="FutureEnemy" groups=["Future"] instance=ExtResource("1_nhjg7")]
 script = ExtResource("2_vfhr4")
-Fastacceleration = 300
 Fastmax_speed = 200
-Slowacceleration = 300
 Slowmax_speed = 60
 Armor = 5.0
 BULLETS = ExtResource("3_m6t48")
