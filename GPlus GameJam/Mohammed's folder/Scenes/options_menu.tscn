@@ -38,6 +38,7 @@ size_flags_vertical = 4
 alignment = 1
 
 [node name="Reselution" type="MenuButton" parent="MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "Resolution"
 flat = false
@@ -53,6 +54,7 @@ size_flags_vertical = 4
 text = "Master Volume reset"
 
 [node name="Music Volume" type="HSlider" parent="MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 max_value = 3.0
 step = 0.001
@@ -65,6 +67,7 @@ step = 0.001
 script = ExtResource("3_iq35d")
 
 [node name="Difficulty" type="MenuButton" parent="MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "Difficulty"
 flat = false
