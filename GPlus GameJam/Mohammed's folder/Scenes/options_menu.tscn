@@ -1,4 +1,8 @@
-[gd_scene format=3 uid="uid://btum48603xfmt"]
+[gd_scene load_steps=4 format=3 uid="uid://btum48603xfmt"]
+
+[ext_resource type="Script" path="res://Mohammed's folder/Scripts/options_menu.gd" id="1_biyiq"]
+[ext_resource type="Script" path="res://Mohammed's folder/Scripts/volume_slider.gd" id="1_x3bph"]
+[ext_resource type="Script" path="res://Mohammed's folder/Scenes/master_volume.gd" id="3_iq35d"]
 
 [node name="Options Menu" type="Control"]
 layout_mode = 3
@@ -7,6 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_biyiq")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -32,6 +37,33 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 alignment = 1
 
+[node name="Reselution" type="MenuButton" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Resolution"
+flat = false
+item_count = 2
+popup/item_0/text = "Full Screen"
+popup/item_1/text = "Windowed"
+popup/item_1/id = 1
+
+[node name="Sound" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+text = "Master Volume reset"
+
+[node name="Music Volume" type="HSlider" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+max_value = 3.0
+step = 0.001
+script = ExtResource("1_x3bph")
+
+[node name="Master Volume" type="HSlider" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+max_value = 0.5
+step = 0.001
+script = ExtResource("3_iq35d")
+
 [node name="Difficulty" type="MenuButton" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Difficulty"
@@ -43,17 +75,11 @@ popup/item_1/id = 1
 popup/item_2/text = "Hard"
 popup/item_2/id = 2
 
-[node name="Button4" type="Button" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-text = "Sound Volume"
-
-[node name="HSlider" type="HSlider" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-
 [node name="MainMenu" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "MainMenu"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Sound" to="." method="_on_sound_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]
