@@ -113,7 +113,8 @@ func _on_future_state_entered():
 func _on_normal_state_entered():
 	sprite_2d.material.set_shader_parameter("WrongTime", false)
 	animationName = "SlowWalk"
-	animation_player.play(animationName)
+	if animation_player is AnimationPlayer:
+		animation_player.play(animationName)
 	velocity = velocity*0.5
 	max_speed = Slowmax_speed
 	acceleration = Slowacceleration
@@ -123,7 +124,9 @@ func _on_normal_state_entered():
 func _on_enraged_state_entered():
 	sprite_2d.material.set_shader_parameter("WrongTime", true)
 	animationName = "Walk"
-	animation_player.play(animationName)
+	if animation_player is AnimationPlayer:
+		animation_player.play(animationName)
+	
 	velocity = velocity*2
 	max_speed = Fastmax_speed
 	acceleration = Fastacceleration
@@ -135,7 +138,8 @@ func _on_timer_timeout():
 
 
 func _on_not_active_state_entered():
-	animation_player.stop()
+	if animation_player is AnimationPlayer:
+		animation_player.stop()
 	Timeline.send_event("Activated")
 
 

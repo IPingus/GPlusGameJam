@@ -1,13 +1,15 @@
 [gd_scene load_steps=4 format=3 uid="uid://dqbqsf80egbg1"]
 
 [ext_resource type="PackedScene" uid="uid://bwo7xhoadocvy" path="res://Scenes/shots.tscn" id="1_xvokr"]
-[ext_resource type="Texture2D" uid="uid://bqlm7vkljx7wj" path="res://Sprites2/KFUPMGameJam-Crossbow-Arrow.png" id="2_yuapn"]
+[ext_resource type="Texture2D" uid="uid://teu0wjf6ld5u" path="res://Sprites/Arrow.png" id="2_wi20e"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oqg2y"]
-radius = 2.0
-height = 10.0
+radius = 3.0
+height = 20.0
 
 [node name="Arrow" instance=ExtResource("1_xvokr")]
+scale = Vector2(1.12191, 1.12191)
+speed = 500
 
 [node name="Hitbox" parent="." index="1"]
 collision_mask = 17
@@ -17,7 +19,6 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_oqg2y")
 
 [node name="Sprite2D" parent="." index="2"]
-position = Vector2(-4.76837e-07, 1)
+position = Vector2(1, 5.96046e-08)
 scale = Vector2(0.6875, 0.6875)
-texture = ExtResource("2_yuapn")
-flip_h = true
+texture = ExtResource("2_wi20e")

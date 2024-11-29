@@ -22,9 +22,11 @@ var weapon:Weapon
 @onready var mode_switch = $modeSwitch
 @onready var animation_player = $AnimationPlayer
 @onready var flip_animation = $Sprite2D2/FlipAnimation
-var facingLeft=true
-
+var facingLeft=false
+var flippedToLeft = false
 #signal ModeChangedSig()
+const PLAYER_FUTURE = preload("res://Sprites/PlayerFuture.png")
+const PLAYER_PAST = preload("res://Sprites/PlayerPast.png")
 
 func _ready():
 	PlayerStats.no_health.connect(die)
@@ -43,7 +45,6 @@ func weaponReloading(weaponName):
 		reload_bar.show()
 
 func weaponDoneReloading(weaponName):
-	print(weaponName)
 	reload_bar.hide()
 
 func _process(delta):
@@ -72,22 +73,19 @@ func _physics_process(delta):
 	if Input.is_action_pressed("Shoot") and fire_rate_timer.is_stopped() and mode_switch.time_left==0:
 		weapon.fireBullet()
 		fire_rate_timer.start(weapon.fireRate)
+	print(weapon.sprite_2d.rotation)
 	if not facingLeft and (weapon.sprite_2d.rotation<-1.8 or weapon.sprite_2d.rotation>1.2):
 		#sprite_2d_2.flip_h = false
-		weapon.sprite_2d.flip_v=true
-		flip_animation.play("FlipToLeft")
-		facingLeft=true
+		state_chart.send_event("FlippedToLeft")
 	elif facingLeft and not (weapon.sprite_2d.rotation<-1.8 or weapon.sprite_2d.rotation>1.2):
 		#sprite_2d_2.flip_h = true
-		weapon.sprite_2d.flip_v=false
-		flip_animation.play("FlipToRight")
-		facingLeft=false
-	
+		state_chart.send_event("FlippedToRight")
 	var playerInput = get_input()
 	
 	
 	velocity = lerp(velocity, playerInput*SPEED, delta*ACCEL)
-	animation_player.play("walk")
+	if animation_player is AnimationPlayer:
+		animation_player.play("walk")
 	
 	move_and_slide()
 		
@@ -123,12 +121,34 @@ func die():
 
 
 func _on_past_state_entered():
+	sprite_2d_2.texture = PLAYER_PAST
 	smg.hide()
 	crossbow.visible = true
 	weapon = crossbow
 
 
 func _on_future_state_entered():
+	sprite_2d_2.texture = PLAYER_FUTURE
 	crossbow.hide()
 	smg.visible = true
 	weapon = smg
+
+
+func _on_right_state_entered():
+
+		if flippedToLeft:
+			flip_animation.play("FlipToRight")
+			flippedToLeft = false
+		weapon.sprite_2d.set_scale(Vector2(1,1))
+		
+		facingLeft=false
+	
+
+
+func _on_left_state_entered():
+	
+		if not flippedToLeft:
+			flip_animation.play("FlipToLeft")
+			flippedToLeft = true
+		weapon.sprite_2d.set_scale(Vector2(1,-1))
+		facingLeft=true
