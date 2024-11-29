@@ -135,6 +135,7 @@ wait_time = 0.1
 texture = ExtResource("12_2jn2n")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
 material = SubResource("ShaderMaterial_h34ex")
 texture = ExtResource("2_cveny")
 

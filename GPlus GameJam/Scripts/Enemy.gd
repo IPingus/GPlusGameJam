@@ -47,6 +47,8 @@ func activated(value):
 
 func _physics_process(delta: float):
 	var dir = to_local(nav_agent.get_next_path_position()).normalized()
+	if playerNode is Player:
+		sprite_2d.flip_h = global_position < playerNode.global_position
 	#velocity = dir*max_speed
 	move_toward_postion(dir, delta)
 	#move_and_slide()
@@ -61,10 +63,9 @@ func makepath():
 func move_toward_postion(direction, delta):
 	if moving:
 		#var direction = global_position.direction_to(target_position)
-		velocity = velocity.move_toward(max_speed*direction,acceleration*delta)
-		sprite_2d.flip_h = global_position < direction
-		if insideEnemy: #and timer.is_stopped():
-			velocity=velocity+Vector2(ramd,ramd)
+			velocity = velocity.move_toward(max_speed*direction,acceleration*delta)
+			if insideEnemy: #and timer.is_stopped():
+				velocity=velocity+Vector2(ramd,ramd)
 	move_and_slide()
 
 

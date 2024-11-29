@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dvja0q0jhm3uu"]
+[gd_scene load_steps=24 format=3 uid="uid://dvja0q0jhm3uu"]
 
 [ext_resource type="Script" path="res://Scripts/tilemap.gd" id="1_wuqh5"]
 [ext_resource type="PackedScene" uid="uid://igws4joe0bvg" path="res://midevaTileMapl.tscn" id="3_ukh34"]
@@ -13,8 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://c2veulag6ju4h" path="res://Scenes/small_future_enemy.tscn" id="8_wv2ph"]
 [ext_resource type="PackedScene" uid="uid://ci57f8lwgxyfj" path="res://Scenes/small_past_enemie.tscn" id="9_41ent"]
 [ext_resource type="PackedScene" uid="uid://dxf1jwtbljyna" path="res://Scenes/camera_2d.tscn" id="10_4ieoo"]
-[ext_resource type="PackedScene" uid="uid://dfdrijsbifayb" path="res://Scenes/heavy_future_enemy.tscn" id="10_gsu5o"]
-[ext_resource type="PackedScene" uid="uid://cwlk8w58thg4" path="res://Scenes/heavy_past_enemy.tscn" id="13_suuv3"]
 [ext_resource type="PackedScene" uid="uid://bsmkbr3ul165y" path="res://Mohammed's folder/Scenes/hp_pickup.tscn" id="15_0dnsq"]
 [ext_resource type="PackedScene" uid="uid://bhooal856y0ni" path="res://removableobj.tscn" id="15_dqjtt"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="16_p4qx5"]
@@ -229,8 +227,10 @@ Slowacceleration = 150
 
 [node name="second4" type="Node" parent="Enemies"]
 
-[node name="HeavyFutureEnemy" parent="Enemies/second4" instance=ExtResource("10_gsu5o")]
-position = Vector2(1174, -289)
+[node name="SmallFutureEnemy5" parent="Enemies/second4" instance=ExtResource("8_wv2ph")]
+position = Vector2(1130, -240)
+Fastacceleration = 150
+Slowacceleration = 150
 
 [node name="second5" type="Node" parent="Enemies"]
 
@@ -240,17 +240,17 @@ Fastacceleration = 150
 Slowacceleration = 150
 
 [node name="SmallPastEnemie2" parent="Enemies/second5" instance=ExtResource("9_41ent")]
-position = Vector2(1491, -542)
+position = Vector2(1234, -496)
 Fastacceleration = 150
 Slowacceleration = 150
 
 [node name="SmallPastEnemie3" parent="Enemies/second5" instance=ExtResource("9_41ent")]
-position = Vector2(1475, -472)
+position = Vector2(1413, -453)
 Fastacceleration = 150
 Slowacceleration = 150
 
 [node name="SmallPastEnemie4" parent="Enemies/second5" instance=ExtResource("9_41ent")]
-position = Vector2(1411, -550)
+position = Vector2(1328, -547)
 Fastacceleration = 150
 Slowacceleration = 150
 
@@ -259,25 +259,12 @@ position = Vector2(1406, -500)
 Fastacceleration = 150
 Slowacceleration = 150
 
-[node name="HeavyFutureEnemy" parent="Enemies/second5" instance=ExtResource("10_gsu5o")]
-position = Vector2(1198, -551)
-
-[node name="HeavyPastEnemy" parent="Enemies/second5" instance=ExtResource("13_suuv3")]
-position = Vector2(1419, -465)
-
 [node name="second6" type="Node" parent="Enemies"]
 
-[node name="PastEnemy" parent="Enemies/second6" instance=ExtResource("20_h8pks")]
-position = Vector2(753, -787)
-
-[node name="HeavyFutureEnemy2" parent="Enemies/second6" instance=ExtResource("10_gsu5o")]
-position = Vector2(1098, -782)
-
-[node name="FutureEnemy" parent="Enemies/second6" instance=ExtResource("8_g8cw5")]
-position = Vector2(922, -521)
-
-[node name="HeavyPastEnemy2" parent="Enemies/second6" instance=ExtResource("13_suuv3")]
-position = Vector2(1002, -528)
+[node name="SmallFutureEnemy6" parent="Enemies/second6" instance=ExtResource("8_wv2ph")]
+position = Vector2(895, -678)
+Fastacceleration = 150
+Slowacceleration = 150
 
 [node name="second7" type="Node" parent="Enemies"]
 
@@ -398,13 +385,9 @@ color = Color(0.523277, 0.00139493, 0.701082, 1)
 [node name="hpPickup" parent="." instance=ExtResource("15_0dnsq")]
 position = Vector2(428, -44)
 
-[node name="hpPickup2" parent="." instance=ExtResource("15_0dnsq")]
-position = Vector2(967, -316)
-
 [node name="Removableobj" parent="." instance=ExtResource("15_dqjtt")]
 position = Vector2(965, -55)
 rotation = 1.63387
-removedinPast = 1
 
 [connection signal="PlayerEntered" from="Checkpoint1" to="." method="_on_checkpoint_1_player_entered"]
 [connection signal="PlayerEntered" from="Checkpoint2" to="." method="_on_checkpoint_1_player_entered"]

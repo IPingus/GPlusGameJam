@@ -15,10 +15,12 @@ var WeaponName
 @onready var audio_stream_player = $AudioStreamPlayer
 @onready var sprite_2d_2 = $Sprite2D/Sprite2D2
 @onready var reload_marker = $"Reload marker"
+@onready var reload_sound = $ReloadSound
 
 const DUST_EFFECT = preload("res://DustEffect.tscn")
 
 func _ready():
+	WeaponStats.weaponReloading.connect(reloading)
 	WeaponName =self.get_name()
 	
 func _input(event):
@@ -58,3 +60,8 @@ func fireBullet():
 		bullet.update_velocity()
 		if animationPlayer is AnimationPlayer:
 			animationPlayer.play(RecoilAnimationName)
+
+func reloading(WeaponName):
+	if WeaponName =="SMG":
+		reload_sound.play()
+	

@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://3pwy3xt3jqyr"]
+[gd_scene load_steps=6 format=3 uid="uid://3pwy3xt3jqyr"]
 
 [ext_resource type="PackedScene" uid="uid://dm8sjiuijl1uk" path="res://Scenes/weapon.tscn" id="1_l5x3o"]
 [ext_resource type="PackedScene" uid="uid://gsvim0wddsl" path="res://Scenes/bullets.tscn" id="2_f6i82"]
 [ext_resource type="Texture2D" uid="uid://bdmvbm3uhl4tb" path="res://Sprites/SMG.png" id="3_mp8gn"]
 [ext_resource type="AudioStream" uid="uid://bh5su50rk41q1" path="res://Scenes/Balloon Pop 1.wav" id="4_54qt5"]
+[ext_resource type="AudioStream" uid="uid://bfuewpj5sce76" path="res://Scenes/mag-reload-81594.mp3" id="5_t1l7o"]
 
 [node name="SMG" instance=ExtResource("1_l5x3o")]
 fireRate = 0.1
@@ -24,3 +25,6 @@ position = Vector2(74, -3)
 
 [node name="AudioStreamPlayer" parent="." index="1"]
 stream = ExtResource("4_54qt5")
+
+[node name="ReloadSound" parent="." index="2"]
+stream = ExtResource("5_t1l7o")

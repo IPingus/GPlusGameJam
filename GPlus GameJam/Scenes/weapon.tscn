@@ -24,4 +24,6 @@ texture = ExtResource("3_pwd3e")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
+[node name="ReloadSound" type="AudioStreamPlayer" parent="."]
+
 [node name="ReloadTimer" type="Timer" parent="."]

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhooal856y0ni"]
+
+[ext_resource type="Script" path="res://removableobj.gd" id="1_r4g5s"]
+[ext_resource type="Texture2D" uid="uid://ddfxkk5n3x56p" path="res://Scenes/Tree_1_128b (1).png" id="2_3ki21"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eci3r"]
+size = Vector2(21, 69)
+
+[node name="Removableobj" type="StaticBody2D"]
+script = ExtResource("1_r4g5s")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-6, -19)
+scale = Vector2(0.664063, 0.664063)
+texture = ExtResource("2_3ki21")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -12.5)
+shape = SubResource("RectangleShape2D_eci3r")
