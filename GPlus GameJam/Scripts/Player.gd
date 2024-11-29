@@ -117,7 +117,7 @@ func _on_hurtbox_hurt(hitbox, damage,armorPierce):
 
 func die():
 	PlayerStats.health=PlayerStats.max_health
-	Utils.moveToScene("res://menu.tscn")
+	get_tree().reload_current_scene()
 
 
 func _on_past_state_entered():

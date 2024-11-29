@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://Mohammed's folder/Scenes/pause_menu.gd" id="1_rq3fd"]
 
 [node name="Pause Menu" type="Control"]
+z_index = 9
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -48,6 +49,7 @@ size_flags_vertical = 4
 text = "Restart Level"
 
 [node name="Options" type="Button" parent="MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -59,4 +61,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "MainMenu"
 
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Unpause" to="." method="_on_unpause_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]

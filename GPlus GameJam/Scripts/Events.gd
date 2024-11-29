@@ -5,11 +5,15 @@ signal ModeChanged()
 signal enemydied()
 @onready var timer = $Timer
 @onready var state_chart = $StateChart
-
+var oonce = true
 func _ready():
 	ModeChanged.emit()
+	
 
 func _physics_process(delta):
+	if oonce:
+		ModeChanged.emit()
+		oonce =false
 	if Input.is_action_just_pressed("ModeChange") and timer.time_left ==0 :
 		state_chart.send_event("ModeChange")
 		timer.start(2)

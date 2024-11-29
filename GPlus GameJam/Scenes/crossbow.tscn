@@ -52,15 +52,14 @@ BULLETS = ExtResource("2_8tr2h")
 
 [node name="Sprite2D" parent="." index="0"]
 position = Vector2(0, 0)
-rotation = 0.811578
 texture = ExtResource("3_jynul")
 offset = Vector2(-10.477, -21.5333)
 
 [node name="Muzzle" parent="Sprite2D" index="0"]
 position = Vector2(41, -8)
 
-[node name="Sprite2D2" parent="Sprite2D" index="1"]
-position = Vector2(88, -7)
+[node name="AnimatedSprite2D" parent="Sprite2D" index="1"]
+position = Vector2(99, -9)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D" index="2"]
 root_node = NodePath("../..")

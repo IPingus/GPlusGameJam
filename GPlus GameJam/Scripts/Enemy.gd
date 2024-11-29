@@ -34,6 +34,7 @@ const DUST_EFFECT = preload("res://DustEffect.tscn")
 
 
 func _ready():
+	refresh()
 	Events.ModeChanged.connect(ModeChanged)
 	ModeChanged()
 		
@@ -147,3 +148,24 @@ func _on_not_active_state_entered():
 
 func _on_damage_effect_timeout():
 	sprite_2d.material.set_shader_parameter("damaged", false)
+
+func refresh():
+	if GlobalVars.mode == 2 and is_in_group("Past"):
+		sprite_2d.material.set_shader_parameter("WrongTime", false)
+		animationName = "SlowWalk"
+		if animation_player is AnimationPlayer:
+			animation_player.play(animationName)
+		velocity = velocity*0.5
+		max_speed = Slowmax_speed
+		acceleration = Slowacceleration
+		fireRate = 1
+	if GlobalVars.mode == 1 and is_in_group("Future"):
+		sprite_2d.material.set_shader_parameter("WrongTime", false)
+		animationName = "SlowWalk"
+		if animation_player is AnimationPlayer:
+			animation_player.play(animationName)
+		velocity = velocity*0.5
+		max_speed = Slowmax_speed
+		acceleration = Slowacceleration
+		fireRate = 1
+		

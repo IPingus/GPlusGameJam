@@ -16,6 +16,7 @@ var WeaponName
 @onready var sprite_2d_2 = $Sprite2D/Sprite2D2
 @onready var reload_marker = $"Reload marker"
 @onready var reload_sound = $ReloadSound
+@onready var animated_sprite_2d = $Sprite2D/AnimatedSprite2D
 
 const DUST_EFFECT = preload("res://DustEffect.tscn")
 
@@ -34,11 +35,12 @@ func _process(delta):
 	var yAxis = Input.get_joy_axis(0,JOY_AXIS_RIGHT_Y)
 	if mouseUsed:
 		sprite_2d.rotation = get_local_mouse_position().angle()
-		sprite_2d_2.hide()
+		animated_sprite_2d.hide()
 	if xAxis ==0.0 and yAxis==0.0:
 		turn_vector = last_vector
 	else:
-		sprite_2d_2.show()
+		animated_sprite_2d.show()
+		animated_sprite_2d.play("new_animation")
 		turn_vector = Vector2(xAxis,yAxis).angle()
 		mouseUsed =false
 		last_vector=turn_vector

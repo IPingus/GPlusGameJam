@@ -1,11 +1,11 @@
 extends Control
 
 
-const LEVEL_1 = "res://tilemap/tilemap.tscn"
+const tutorial = "res://tutorial.tscn"
 const OPTIONS_MENU = "res://Mohammed's folder/Scenes/options_menu.tscn"
 
 func _on_play_pressed():
-	Utils.moveToScene(LEVEL_1)
+	Utils.moveToScene(tutorial)
 
 
 func _on_options_pressed():
@@ -14,3 +14,7 @@ func _on_options_pressed():
 
 func _on_quit_pressed():
 	get_tree().quit()
+
+
+func _on_level_select_pressed():
+	Utils.moveToScene("res://level_select.tscn")

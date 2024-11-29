@@ -1,8 +1,49 @@
-[gd_scene load_steps=4 format=3 uid="uid://dm8sjiuijl1uk"]
+[gd_scene load_steps=9 format=3 uid="uid://dm8sjiuijl1uk"]
 
 [ext_resource type="Script" path="res://Scripts/Weapon.gd" id="1_qpfo5"]
 [ext_resource type="Texture2D" uid="uid://d1kqmkmuuo557" path="res://Sprites2/KFUPMGameJam-Crossbow-Empty.png" id="2_v66s3"]
-[ext_resource type="Texture2D" uid="uid://gfgkky2gw75a" path="res://Sprites/Robot-Small-TV-test.png" id="3_pwd3e"]
+[ext_resource type="Texture2D" uid="uid://f8mnwk42aq6t" path="res://Scenes/07.png" id="3_2fiti"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sypfo"]
+atlas = ExtResource("3_2fiti")
+region = Rect2(0, 206, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_087bo"]
+atlas = ExtResource("3_2fiti")
+region = Rect2(32, 206, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h7exe"]
+atlas = ExtResource("3_2fiti")
+region = Rect2(64, 206, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qpdft"]
+atlas = ExtResource("3_2fiti")
+region = Rect2(96, 206, 32, 36)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o14kq"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sypfo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_087bo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h7exe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qpdft")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 10.0
+}]
 
 [node name="Weapon" type="Node2D"]
 script = ExtResource("1_qpfo5")
@@ -18,9 +59,12 @@ offset = Vector2(-0.261902, -6.5333)
 [node name="Muzzle" type="Marker2D" parent="Sprite2D"]
 position = Vector2(15, 0)
 
-[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D"]
-position = Vector2(63, 1)
-texture = ExtResource("3_pwd3e")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sprite2D"]
+position = Vector2(-1, 1)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_o14kq")
+animation = &"new_animation"
+frame_progress = 0.793867
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 

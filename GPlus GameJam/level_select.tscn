@@ -1,0 +1,56 @@
+[gd_scene load_steps=2 format=3 uid="uid://dws262kqbu4xj"]
+
+[ext_resource type="Script" path="res://level_select.gd" id="1_po7bm"]
+
+[node name="Level Select" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_po7bm")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(320, 240)
+
+[node name="MarginContainer" type="MarginContainer" parent="Camera2D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -50.5
+offset_right = 35.0
+offset_bottom = 50.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Camera2D/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Tutorial" type="Button" parent="Camera2D/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Tutorial"
+
+[node name="Level 1" type="Button" parent="Camera2D/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Level 1"
+
+[node name="Level 2" type="Button" parent="Camera2D/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Level 2"
+
+[node name="Back" type="Button" parent="Camera2D/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Back"
+
+[connection signal="pressed" from="Camera2D/MarginContainer/VBoxContainer/Tutorial" to="." method="_on_tutorial_pressed"]
+[connection signal="pressed" from="Camera2D/MarginContainer/VBoxContainer/Level 1" to="." method="_on_level_1_pressed"]
+[connection signal="pressed" from="Camera2D/MarginContainer/VBoxContainer/Level 2" to="." method="_on_level_2_pressed"]
+[connection signal="pressed" from="Camera2D/MarginContainer/VBoxContainer/Back" to="." method="_on_level_3_pressed"]
+[connection signal="pressed" from="Camera2D/MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
