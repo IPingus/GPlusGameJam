@@ -60,7 +60,7 @@ script = ExtResource("1_x3bph")
 
 [node name="Master Volume" type="HSlider" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-max_value = 0.5
+max_value = 1.0
 step = 0.001
 script = ExtResource("3_iq35d")
 
