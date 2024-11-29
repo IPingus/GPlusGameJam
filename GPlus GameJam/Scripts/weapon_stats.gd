@@ -22,6 +22,7 @@ func firedShot(WeaponName):
 		timer.start(Ammo.get(WeaponName)[2])
 		Ammo.get(WeaponName)[3] = true
 		await get_tree().create_timer(Ammo.get(WeaponName)[2]).timeout
+		Ammo.get(WeaponName)[3] = false
 		reload(WeaponName)
 	else:
 		ShotFired.emit(WeaponName)
