@@ -6,7 +6,8 @@ var bullet:	Projectile
 
 func _process(delta):
 	if active:
-		ray_cast_2d.target_position = to_local(playerNode.global_position)
+		if playerNode is Player:
+			ray_cast_2d.target_position = to_local(playerNode.global_position)
 	if ray_cast_2d.is_colliding():
 		if ray_cast_2d.get_collider().is_in_group("Player"):
 			moving=false

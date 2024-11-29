@@ -58,7 +58,8 @@ func _physics_process(delta: float):
 		#
 
 func makepath():
-	nav_agent.target_position = playerNode.global_position
+	if playerNode is Player:
+		nav_agent.target_position = playerNode.global_position
 	
 func move_toward_postion(direction, delta):
 	if moving:

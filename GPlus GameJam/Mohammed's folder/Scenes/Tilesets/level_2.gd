@@ -4,8 +4,8 @@ extends Node2D
 var checkpoitn = 0 #: set = chekcpointChanged
 @onready var walls = $Walls
 @onready var backtrackwalls = $Backtrackwalls
-@onready var mideval = $Mideval
-@onready var future = $Future
+@onready var mideval = $"TileSetPast-Level2"
+@onready var future = $"TileSetFuture-Level2"
 @onready var player = $Player
 @onready var camera_2d = $Camera2D
 
@@ -149,10 +149,6 @@ func _on_future_state_entered():
 	future.show()
 
 
-func _on_checkpoint_7_player_entered():
-	Utils.moveToScene("res://Mohammed's folder/Scenes/Tilesets/level_2.tscn")
-
-
 func _on_checkpoint_6_player_entered():
 	if checkponintlist.size() >= checkpoitn and AreaCleared:
 		AreaCleared = false
@@ -161,4 +157,8 @@ func _on_checkpoint_6_player_entered():
 		checkpoitn+=1
 		chekcpointChanged(checkpoitn)
 	elif not checkponintlist.size() >= checkpoitn:
+		Utils.moveToScene("res://menu.tscn")
+
+
+func _on_checkpoint_4_player_entered():
 		Utils.moveToScene("res://menu.tscn")

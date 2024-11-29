@@ -53,8 +53,10 @@ offset_top = -47.0
 offset_right = 481.0
 offset_bottom = 433.0
 scale = Vector2(0.1, 0.1)
+metadata/_edit_use_anchors_ = true
 
 [node name="HealthMeter" parent="UI" instance=ExtResource("6_nby1j")]
+metadata/_edit_use_anchors_ = true
 
 [node name="AmmoCount" parent="UI" instance=ExtResource("8_swrce")]
 anchors_preset = 0
@@ -66,6 +68,7 @@ offset_right = 5.0
 offset_bottom = 40.0
 grow_horizontal = 1
 grow_vertical = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="checkponts" type="Node" parent="."]
 

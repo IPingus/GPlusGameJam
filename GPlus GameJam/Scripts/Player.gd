@@ -73,12 +73,13 @@ func _physics_process(delta):
 	if Input.is_action_pressed("Shoot") and fire_rate_timer.is_stopped() and mode_switch.time_left==0:
 		weapon.fireBullet()
 		fire_rate_timer.start(weapon.fireRate)
-	if not facingLeft and (weapon.sprite_2d.rotation<-1.8 or weapon.sprite_2d.rotation>1.2):
-		#sprite_2d_2.flip_h = false
-		state_chart.send_event("FlippedToLeft")
-	elif facingLeft and not (weapon.sprite_2d.rotation<-1.8 or weapon.sprite_2d.rotation>1.2):
-		#sprite_2d_2.flip_h = true
-		state_chart.send_event("FlippedToRight")
+	if weapon is Weapon:
+		if not facingLeft and (weapon.sprite_2d.rotation<-1.8 or weapon.sprite_2d.rotation>1.2):
+			#sprite_2d_2.flip_h = false
+			state_chart.send_event("FlippedToLeft")
+		elif facingLeft and not (weapon.sprite_2d.rotation<-1.8 or weapon.sprite_2d.rotation>1.2):
+			#sprite_2d_2.flip_h = true
+			state_chart.send_event("FlippedToRight")
 	var playerInput = get_input()
 	
 	
