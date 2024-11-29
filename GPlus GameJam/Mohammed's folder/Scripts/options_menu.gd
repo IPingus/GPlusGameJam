@@ -26,3 +26,10 @@ func _on_Master_value_changed(value:float)->void:
 func _on_Music_value_changed(value:float)->void:
 	print(linear_to_db(value))
 	AudioServer.set_bus_volume_db(busIndxMusic,linear_to_db(value))
+
+
+func _on_fullscreen_toggled(toggled_on):
+	if toggled_on:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	else: DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		

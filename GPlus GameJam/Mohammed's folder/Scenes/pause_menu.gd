@@ -6,6 +6,7 @@ func _ready():
 
 func _on_restart_pressed() -> void:
 	get_tree().reload_current_scene()
+	PlayerStats.health=PlayerStats.max_health
 	Engine.time_scale = 1
 
 

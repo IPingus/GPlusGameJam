@@ -52,5 +52,5 @@ text = "Back"
 [connection signal="pressed" from="Camera2D/MarginContainer/VBoxContainer/Tutorial" to="." method="_on_tutorial_pressed"]
 [connection signal="pressed" from="Camera2D/MarginContainer/VBoxContainer/Level 1" to="." method="_on_level_1_pressed"]
 [connection signal="pressed" from="Camera2D/MarginContainer/VBoxContainer/Level 2" to="." method="_on_level_2_pressed"]
-[connection signal="pressed" from="Camera2D/MarginContainer/VBoxContainer/Back" to="." method="_on_level_3_pressed"]
 [connection signal="pressed" from="Camera2D/MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="Camera2D/MarginContainer/VBoxContainer/Back" to="." method="_on_level_3_pressed"]
