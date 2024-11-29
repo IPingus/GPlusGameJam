@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://dvja0q0jhm3uu"]
+[gd_scene load_steps=61 format=3 uid="uid://dvja0q0jhm3uu"]
 
 [ext_resource type="Texture2D" uid="uid://cetvpp4xxg6yg" path="res://Sprites2/KFUPMGameJam-Tileset-Future.png" id="1_hxxul"]
 [ext_resource type="Script" path="res://Scripts/tilemap.gd" id="1_wuqh5"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://ci57f8lwgxyfj" path="res://Scenes/small_past_enemie.tscn" id="9_41ent"]
 [ext_resource type="PackedScene" uid="uid://dxf1jwtbljyna" path="res://Scenes/camera_2d.tscn" id="10_4ieoo"]
 [ext_resource type="PackedScene" uid="uid://dfdrijsbifayb" path="res://Scenes/heavy_future_enemy.tscn" id="10_gsu5o"]
+[ext_resource type="PackedScene" uid="uid://bsmkbr3ul165y" path="res://Mohammed's folder/Scenes/hp_pickup.tscn" id="15_0dnsq"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="16_p4qx5"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="17_62erf"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="18_qtttk"]
@@ -379,6 +380,8 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)])
 agent_radius = 0.0
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_y227c"]
+
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_pbbsu"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
@@ -482,8 +485,8 @@ texture_region_size = Vector2i(32, 32)
 1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 16, 16, 16, 16, 0.75, 3, -1, -16, -0.25)
 2:2/0 = 0
 2:2/0/terrain_set = 0
-2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 16, 16, 16, 16, -16, -2.5, -16, -3.75, -1.5, -16, -0.25)
-2:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_pbbsu")
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-2, 2, 2.75, -16, 16, -16, 16, 16, -16, 16, -16, 1)
+2:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_y227c")
 3:2/0 = 0
 3:2/0/terrain_set = 0
 3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-3.75, -16, -2.25, 4.5, 16, 6.75, 16, -16)
@@ -725,60 +728,90 @@ shape = SubResource("RectangleShape2D_wnhia")
 
 [node name="FutureEnemy4" parent="Enemies/First" instance=ExtResource("8_g8cw5")]
 position = Vector2(179, -294)
+Fastacceleration = 150
+Slowacceleration = 150
 
 [node name="second" type="Node" parent="Enemies"]
 
 [node name="FutureEnemy2" parent="Enemies/second" instance=ExtResource("8_g8cw5")]
 position = Vector2(445, -432)
+Fastacceleration = 150
+Slowacceleration = 150
 
 [node name="second2" type="Node" parent="Enemies"]
 
 [node name="HeavyFutureEnemy" parent="Enemies/second2" instance=ExtResource("10_gsu5o")]
 position = Vector2(689, -162)
+Fastacceleration = 150
+Slowacceleration = 150
 
 [node name="HeavyFutureEnemy2" parent="Enemies/second2" instance=ExtResource("10_gsu5o")]
 position = Vector2(733, -225)
+Fastacceleration = 150
+Slowacceleration = 150
 
 [node name="second3" type="Node" parent="Enemies"]
 
 [node name="SmallFutureEnemy" parent="Enemies/second3" instance=ExtResource("8_wv2ph")]
 position = Vector2(1115, 22)
+Fastacceleration = 150
+Slowacceleration = 150
 
 [node name="SmallFutureEnemy2" parent="Enemies/second3" instance=ExtResource("8_wv2ph")]
 position = Vector2(1104, 65)
+Fastacceleration = 150
+Slowacceleration = 150
 
 [node name="SmallFutureEnemy3" parent="Enemies/second3" instance=ExtResource("8_wv2ph")]
 position = Vector2(1164, 70)
+Fastacceleration = 150
+Slowacceleration = 150
 
 [node name="SmallFutureEnemy4" parent="Enemies/second3" instance=ExtResource("8_wv2ph")]
 position = Vector2(1162, 24)
+Fastacceleration = 150
+Slowacceleration = 150
 
 [node name="second4" type="Node" parent="Enemies"]
 
 [node name="SmallFutureEnemy5" parent="Enemies/second4" instance=ExtResource("8_wv2ph")]
 position = Vector2(1130, -240)
+Fastacceleration = 150
+Slowacceleration = 150
 
 [node name="second5" type="Node" parent="Enemies"]
 
 [node name="SmallPastEnemie" parent="Enemies/second5" instance=ExtResource("9_41ent")]
 position = Vector2(1487, -506)
+Fastacceleration = 150
+Slowacceleration = 150
 
 [node name="SmallPastEnemie2" parent="Enemies/second5" instance=ExtResource("9_41ent")]
 position = Vector2(1234, -496)
+Fastacceleration = 150
+Slowacceleration = 150
 
 [node name="SmallPastEnemie3" parent="Enemies/second5" instance=ExtResource("9_41ent")]
 position = Vector2(1413, -453)
+Fastacceleration = 150
+Slowacceleration = 150
 
 [node name="SmallPastEnemie4" parent="Enemies/second5" instance=ExtResource("9_41ent")]
 position = Vector2(1328, -547)
+Fastacceleration = 150
+Slowacceleration = 150
 
 [node name="SmallPastEnemie5" parent="Enemies/second5" instance=ExtResource("9_41ent")]
 position = Vector2(1406, -500)
+Fastacceleration = 150
+Slowacceleration = 150
 
 [node name="second6" type="Node" parent="Enemies"]
 
 [node name="SmallFutureEnemy6" parent="Enemies/second6" instance=ExtResource("8_wv2ph")]
 position = Vector2(895, -678)
+Fastacceleration = 150
+Slowacceleration = 150
 
 [node name="second7" type="Node" parent="Enemies"]
 
@@ -895,6 +928,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.523277, 0.00139493, 0.701082, 1)
+
+[node name="hpPickup" parent="." instance=ExtResource("15_0dnsq")]
+position = Vector2(428, -44)
 
 [connection signal="PlayerEntered" from="Checkpoint1" to="." method="_on_checkpoint_1_player_entered"]
 [connection signal="PlayerEntered" from="Checkpoint2" to="." method="_on_checkpoint_1_player_entered"]

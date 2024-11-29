@@ -125,6 +125,8 @@ collision_layer = 4
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_y242k")
+Fastacceleration = 300
+Slowacceleration = 300
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.1
