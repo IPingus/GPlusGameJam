@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dws262kqbu4xj"]
+[gd_scene load_steps=3 format=3 uid="uid://dws262kqbu4xj"]
 
 [ext_resource type="Script" path="res://level_select.gd" id="1_po7bm"]
+[ext_resource type="FontFile" uid="uid://qugrtycmmnqp" path="res://Fonts/Daydream.ttf" id="2_gm3so"]
 
 [node name="Level Select" type="Control"]
 layout_mode = 3
@@ -33,24 +34,27 @@ size_flags_horizontal = 4
 
 [node name="Tutorial" type="Button" parent="Camera2D/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_gm3so")
 text = "Tutorial"
 
 [node name="Level 1" type="Button" parent="Camera2D/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_gm3so")
 text = "Level 1"
 
 [node name="Level 2" type="Button" parent="Camera2D/MarginContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_gm3so")
 text = "Level 2"
 
 [node name="Back" type="Button" parent="Camera2D/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_gm3so")
 text = "Back"
 
 [connection signal="pressed" from="Camera2D/MarginContainer/VBoxContainer/Tutorial" to="." method="_on_tutorial_pressed"]
 [connection signal="pressed" from="Camera2D/MarginContainer/VBoxContainer/Level 1" to="." method="_on_level_1_pressed"]
 [connection signal="pressed" from="Camera2D/MarginContainer/VBoxContainer/Level 2" to="." method="_on_level_2_pressed"]
-[connection signal="pressed" from="Camera2D/MarginContainer/VBoxContainer/Back" to="." method="_on_level_3_pressed"]
 [connection signal="pressed" from="Camera2D/MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="Camera2D/MarginContainer/VBoxContainer/Back" to="." method="_on_level_3_pressed"]

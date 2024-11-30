@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://1cqq3cmnia5o"]
+[gd_scene load_steps=3 format=3 uid="uid://1cqq3cmnia5o"]
 
 [ext_resource type="Script" path="res://Mohammed's folder/Scenes/pause_menu.gd" id="1_rq3fd"]
+[ext_resource type="FontFile" uid="uid://qugrtycmmnqp" path="res://Fonts/Daydream.ttf" id="2_q4fqm"]
 
 [node name="Pause Menu" type="Control"]
 z_index = 9
@@ -40,12 +41,14 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("2_q4fqm")
 text = "Unpause"
 
 [node name="Restart" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("2_q4fqm")
 text = "Restart Level"
 
 [node name="Options" type="Button" parent="MarginContainer/VBoxContainer"]
@@ -59,6 +62,7 @@ text = "Options"
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("2_q4fqm")
 text = "MainMenu"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Unpause" to="." method="_on_unpause_pressed"]

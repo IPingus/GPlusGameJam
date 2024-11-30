@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://btum48603xfmt"]
+[gd_scene load_steps=5 format=3 uid="uid://btum48603xfmt"]
 
 [ext_resource type="Script" path="res://Mohammed's folder/Scripts/options_menu.gd" id="1_biyiq"]
 [ext_resource type="Script" path="res://Mohammed's folder/Scripts/volume_slider.gd" id="1_x3bph"]
+[ext_resource type="FontFile" uid="uid://qugrtycmmnqp" path="res://Fonts/Daydream.ttf" id="2_1gtjd"]
 [ext_resource type="Script" path="res://Mohammed's folder/Scenes/master_volume.gd" id="3_iq35d"]
 
 [node name="Options Menu" type="Control"]
@@ -40,6 +41,7 @@ alignment = 1
 [node name="Reselution" type="MenuButton" parent="MarginContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_1gtjd")
 text = "Resolution"
 flat = false
 item_count = 2
@@ -51,6 +53,7 @@ popup/item_1/id = 1
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("2_1gtjd")
 text = "Master Volume reset"
 
 [node name="Music Volume" type="HSlider" parent="MarginContainer/VBoxContainer"]
@@ -82,10 +85,12 @@ popup/item_2/id = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("2_1gtjd")
 text = "MainMenu"
 
 [node name="Fullscreen" type="CheckButton" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_1gtjd")
 text = "Full Screen"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Sound" to="." method="_on_sound_pressed"]

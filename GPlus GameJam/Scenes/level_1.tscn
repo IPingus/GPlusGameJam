@@ -82,8 +82,7 @@ shape = SubResource("RectangleShape2D_wmp6g")
 
 [node name="First" type="Node" parent="Enemies"]
 
-[node name="FutureEnemy" parent="Enemies/First" node_paths=PackedStringArray("playerss") instance=ExtResource("9_uxdf5")]
-playerss = NodePath("../../../Player")
+[node name="FutureEnemy" parent="Enemies/First" instance=ExtResource("9_uxdf5")]
 
 [node name="SmallPastEnemie" parent="Enemies/First" instance=ExtResource("8_nmrnq")]
 position = Vector2(-12, -52)

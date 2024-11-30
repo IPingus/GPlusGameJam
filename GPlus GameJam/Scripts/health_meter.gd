@@ -5,6 +5,6 @@ extends Control
 func _ready():
 	PlayerStats.health_changed.connect(updateHealthUI)
 	updateHealthUI()
-	empty.size.x = PlayerStats.max_health*5+1
+	empty.size.x = PlayerStats.max_health*15
 func updateHealthUI():
-	full.size.x = PlayerStats.health*5+1
+	full.size.x = PlayerStats.health*15

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://b1oyicel6rx48"]
+[gd_scene load_steps=4 format=3 uid="uid://b1oyicel6rx48"]
 
 [ext_resource type="Script" path="res://Scripts/Menu.gd" id="1_linqi"]
 [ext_resource type="Texture2D" uid="uid://1pp72qw4px0n" path="res://Sprites/image (1).png" id="2_2qecx"]
+[ext_resource type="FontFile" uid="uid://qugrtycmmnqp" path="res://Fonts/Daydream.ttf" id="2_strq1"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -39,22 +40,39 @@ size_flags_horizontal = 4
 
 [node name="Play" type="Button" parent="Camera2D/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_strq1")
 text = "Play"
 
 [node name="Level Select" type="Button" parent="Camera2D/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_strq1")
 text = "Level Select"
 
 [node name="Options" type="Button" parent="Camera2D/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_strq1")
 text = "Options"
 
 [node name="Quit" type="Button" parent="Camera2D/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_strq1")
 text = "Quit"
 
+[node name="Label" type="Label" parent="Camera2D"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -46.5
+offset_top = -144.0
+offset_right = 46.5
+offset_bottom = -121.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_strq1")
+text = "Time Switch"
+
 [node name="TextureRect" type="TextureRect" parent="Camera2D"]
+visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5

@@ -16,6 +16,9 @@ config/features=PackedStringArray("4.3", "Forward Plus")
 run/flush_stdout_on_print.debug=false
 run/max_fps=60
 config/icon="res://Sprites/icon.svg"
+run/default_font_generate_mipmaps=false
+run/default_font_multichannel_signed_distance_field=false
+run/custom_font=""
 
 [autoload]
 
@@ -54,6 +57,10 @@ enabled=PackedStringArray("res://addons/anthonyec.camera_preview/plugin.cfg", "r
 
 Future=""
 Past=""
+
+[gui]
+
+theme/custom_font="res://Fonts/Daydream.ttf"
 
 [input]
 
