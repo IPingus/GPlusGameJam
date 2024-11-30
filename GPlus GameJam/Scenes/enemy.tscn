@@ -1,6 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://drpay7lgo3nok"]
+[gd_scene load_steps=20 format=3 uid="uid://drpay7lgo3nok"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy.gd" id="1_y242k"]
+[ext_resource type="PackedScene" uid="uid://gsvim0wddsl" path="res://Scenes/bullets.tscn" id="2_c4vms"]
 [ext_resource type="Texture2D" uid="uid://dakwkxpte6wp2" path="res://Sprites2/KFUPMGameJam-Crusader-Small-Frame1.png" id="2_cveny"]
 [ext_resource type="PackedScene" uid="uid://p74u5ajcmoyb" path="res://Scenes/hurt_box.tscn" id="2_t2n3r"]
 [ext_resource type="PackedScene" uid="uid://bpxrreqs0wgy" path="res://Scenes/hitbox.tscn" id="3_u875k"]
@@ -12,6 +13,7 @@
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="9_sfut3"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="10_i2xxj"]
 [ext_resource type="Texture2D" uid="uid://c1luksvoamwr6" path="res://Sprites/Shadow.png" id="12_2jn2n"]
+[ext_resource type="AudioStream" uid="uid://bg6tf7hfdmg3y" path="res://Scenes/metal-impact-247482.mp3" id="13_o0hjm"]
 
 [sub_resource type="Shader" id="Shader_dbhjc"]
 code = "/*
@@ -127,6 +129,7 @@ wall_min_slide_angle = 0.0
 script = ExtResource("1_y242k")
 Fastacceleration = 300
 Slowacceleration = 300
+BULLETS = ExtResource("2_c4vms")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.1
@@ -225,6 +228,9 @@ delay_in_seconds = "0.0"
 [node name="DamageEffect" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
+
+[node name="Reflect" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_o0hjm")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]

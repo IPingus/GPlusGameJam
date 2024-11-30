@@ -4,7 +4,7 @@ class_name Projectile
 
 @export var speed = 250
 @onready var hitbox = $Hitbox
-
+const REFLECT = preload("res://reflect.tscn")
 var velocity = Vector2.ZERO
 func setstats(damage,armorPeirce):
 	hitbox.damage = damage
@@ -25,8 +25,18 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 
 
 func _on_hitbox_area_entered(area):
+	if area is Hurtbox:
+		print("area1")
+		if area.armor > hitbox.armorPierce+7:
+			print("area2")
+			Utils.instanceSceneOnMain(REFLECT,global_position)
+	print("area")
 	queue_free()
 
 
 func _on_hitbox_body_entered(body):
+	if body is Hurtbox:
+		if body.armor > hitbox.armorPierce+7:
+			Utils.instanceSceneOnMain(REFLECT,global_position)
+	print("body")
 	queue_free()

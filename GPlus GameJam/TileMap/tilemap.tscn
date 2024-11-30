@@ -162,18 +162,23 @@ position = Vector2(220, -285)
 
 [node name="SmallFutureEnemy" parent="Enemies/First" instance=ExtResource("8_wv2ph")]
 position = Vector2(123, -138)
+BULLETS = null
 
 [node name="SmallFutureEnemy2" parent="Enemies/First" instance=ExtResource("8_wv2ph")]
 position = Vector2(146, -143)
+BULLETS = null
 
 [node name="SmallFutureEnemy3" parent="Enemies/First" instance=ExtResource("8_wv2ph")]
 position = Vector2(167, -175)
+BULLETS = null
 
 [node name="SmallFutureEnemy4" parent="Enemies/First" instance=ExtResource("8_wv2ph")]
 position = Vector2(134, -183)
+BULLETS = null
 
 [node name="SmallFutureEnemy5" parent="Enemies/First" instance=ExtResource("8_wv2ph")]
 position = Vector2(183, -146)
+BULLETS = null
 
 [node name="second" type="Node" parent="Enemies"]
 
@@ -184,9 +189,11 @@ Slowacceleration = 150
 
 [node name="SmallPastEnemie" parent="Enemies/second" instance=ExtResource("9_41ent")]
 position = Vector2(452, -435)
+BULLETS = null
 
 [node name="SmallPastEnemie2" parent="Enemies/second" instance=ExtResource("9_41ent")]
 position = Vector2(426, -416)
+BULLETS = null
 
 [node name="second2" type="Node" parent="Enemies"]
 
@@ -198,18 +205,23 @@ position = Vector2(447, -140)
 
 [node name="SmallPastEnemie" parent="Enemies/second2" instance=ExtResource("9_41ent")]
 position = Vector2(493, -59)
+BULLETS = null
 
 [node name="SmallPastEnemie2" parent="Enemies/second2" instance=ExtResource("9_41ent")]
 position = Vector2(510, -30)
+BULLETS = null
 
 [node name="SmallPastEnemie3" parent="Enemies/second2" instance=ExtResource("9_41ent")]
 position = Vector2(557, -51)
+BULLETS = null
 
 [node name="SmallPastEnemie4" parent="Enemies/second2" instance=ExtResource("9_41ent")]
 position = Vector2(526, -54)
+BULLETS = null
 
 [node name="SmallPastEnemie5" parent="Enemies/second2" instance=ExtResource("9_41ent")]
 position = Vector2(550, -27)
+BULLETS = null
 
 [node name="second3" type="Node" parent="Enemies"]
 
@@ -217,26 +229,31 @@ position = Vector2(550, -27)
 position = Vector2(1115, 22)
 Fastacceleration = 150
 Slowacceleration = 150
+BULLETS = null
 
 [node name="SmallFutureEnemy2" parent="Enemies/second3" instance=ExtResource("8_wv2ph")]
 position = Vector2(1104, 65)
 Fastacceleration = 150
 Slowacceleration = 150
+BULLETS = null
 
 [node name="SmallFutureEnemy3" parent="Enemies/second3" instance=ExtResource("8_wv2ph")]
 position = Vector2(1164, 70)
 Fastacceleration = 150
 Slowacceleration = 150
+BULLETS = null
 
 [node name="SmallFutureEnemy4" parent="Enemies/second3" instance=ExtResource("8_wv2ph")]
 position = Vector2(1162, 24)
 Fastacceleration = 150
 Slowacceleration = 150
+BULLETS = null
 
 [node name="second4" type="Node" parent="Enemies"]
 
 [node name="HeavyFutureEnemy" parent="Enemies/second4" instance=ExtResource("10_gsu5o")]
 position = Vector2(1174, -289)
+BULLETS = null
 
 [node name="second5" type="Node" parent="Enemies"]
 
@@ -244,32 +261,39 @@ position = Vector2(1174, -289)
 position = Vector2(1487, -506)
 Fastacceleration = 150
 Slowacceleration = 150
+BULLETS = null
 
 [node name="SmallPastEnemie2" parent="Enemies/second5" instance=ExtResource("9_41ent")]
 position = Vector2(1491, -542)
 Fastacceleration = 150
 Slowacceleration = 150
+BULLETS = null
 
 [node name="SmallPastEnemie3" parent="Enemies/second5" instance=ExtResource("9_41ent")]
 position = Vector2(1475, -472)
 Fastacceleration = 150
 Slowacceleration = 150
+BULLETS = null
 
 [node name="SmallPastEnemie4" parent="Enemies/second5" instance=ExtResource("9_41ent")]
 position = Vector2(1411, -550)
 Fastacceleration = 150
 Slowacceleration = 150
+BULLETS = null
 
 [node name="SmallPastEnemie5" parent="Enemies/second5" instance=ExtResource("9_41ent")]
 position = Vector2(1406, -500)
 Fastacceleration = 150
 Slowacceleration = 150
+BULLETS = null
 
 [node name="HeavyFutureEnemy" parent="Enemies/second5" instance=ExtResource("10_gsu5o")]
 position = Vector2(1198, -551)
+BULLETS = null
 
 [node name="HeavyPastEnemy" parent="Enemies/second5" instance=ExtResource("13_suuv3")]
 position = Vector2(1419, -465)
+BULLETS = null
 
 [node name="second6" type="Node" parent="Enemies"]
 
@@ -278,12 +302,14 @@ position = Vector2(753, -787)
 
 [node name="HeavyFutureEnemy2" parent="Enemies/second6" instance=ExtResource("10_gsu5o")]
 position = Vector2(1098, -782)
+BULLETS = null
 
 [node name="FutureEnemy" parent="Enemies/second6" instance=ExtResource("8_g8cw5")]
 position = Vector2(922, -521)
 
 [node name="HeavyPastEnemy2" parent="Enemies/second6" instance=ExtResource("13_suuv3")]
 position = Vector2(1002, -528)
+BULLETS = null
 
 [node name="second7" type="Node" parent="Enemies"]
 

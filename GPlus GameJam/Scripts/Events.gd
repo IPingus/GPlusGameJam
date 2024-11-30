@@ -6,6 +6,7 @@ signal enemydied()
 @onready var timer = $Timer
 @onready var state_chart = $StateChart
 var oonce = true
+
 func _ready():
 	ModeChanged.emit()
 	

@@ -15,6 +15,7 @@ var weapon:Weapon
 @onready var smg = $SMG
 @onready var crossbow = $Crossbow
 @onready var state_chart = $StateChart
+@onready var recharged = $Recharged
 
 @onready var reload_bar = $ReloadBar
 @onready var healt = $Healt
@@ -94,23 +95,10 @@ func ModeChanged():
 	mode_switch.start()
 	fire_rate_timer.stop()
 	state_chart.send_event("ModeChange")
-	#ModeChangedSig.emit()
-	
-	#if GlobalVars.mode == 2:
-		#
-		#crossbow.hide()
-		#smg.visible = true
-		#weapon = smg
-#
-	#elif GlobalVars.mode== 1:
-		#smg.hide()
-		#crossbow.visible = true
-		#weapon = crossbow
 
 func _on_hurtbox_hurt(hitbox, damage,armorPierce):
 	Events.add_screenshake.emit(1,0.25)
 	PlayerStats.health-= damage
-	healt.text = str(PlayerStats.health)
 	blinking.play("blink")
 
 
@@ -125,6 +113,7 @@ func _on_past_state_entered():
 	smg.hide()
 	crossbow.visible = true
 	weapon = crossbow
+	state_chart.send_event("skill used")
 
 
 func _on_future_state_entered():
@@ -132,6 +121,7 @@ func _on_future_state_entered():
 	crossbow.hide()
 	smg.visible = true
 	weapon = smg
+	state_chart.send_event("skill used")
 
 
 func _on_right_state_entered():
@@ -152,3 +142,17 @@ func _on_left_state_entered():
 			flippedToLeft = true
 		weapon.sprite_2d.set_scale(Vector2(1,-1))
 		facingLeft=true
+
+
+
+func _on_cool_down_done_state_entered():
+	sprite_2d_2.material.set_shader_parameter("enable", true)
+	recharged.play()
+	await get_tree().create_timer(0.9).timeout
+	sprite_2d_2.material.set_shader_parameter("enable", false)
+	
+func _on_cooldown_state_entered():
+	sprite_2d_2.material.set_shader_parameter("enable", false)
+	await Events.timer.timeout
+	state_chart.send_event("Done")
+		

@@ -199,6 +199,7 @@ libraries = {
 [node name="HurtBox" parent="." index="3"]
 visible = false
 collision_layer = 16
+armor = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" index="0"]
 position = Vector2(4, -5)

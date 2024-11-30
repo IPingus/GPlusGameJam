@@ -139,6 +139,7 @@ texture = ExtResource("3_rdjno")
 
 [node name="HurtBox" parent="." index="3"]
 collision_layer = 16
+armor = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" index="0"]
 position = Vector2(1.5, 0)

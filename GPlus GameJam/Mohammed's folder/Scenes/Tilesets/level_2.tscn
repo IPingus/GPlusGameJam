@@ -120,31 +120,38 @@ position = Vector2(30, -185)
 
 [node name="SmallPastEnemie" parent="Enemies/First" instance=ExtResource("12_lsmvk")]
 position = Vector2(241, -179)
+BULLETS = null
 
 [node name="SmallPastEnemie2" parent="Enemies/First" instance=ExtResource("12_lsmvk")]
 position = Vector2(277, -175)
+BULLETS = null
 
 [node name="SmallPastEnemie3" parent="Enemies/First" instance=ExtResource("12_lsmvk")]
 position = Vector2(244, -148)
+BULLETS = null
 
 [node name="FutureEnemy" parent="Enemies/First" instance=ExtResource("11_p6dcx")]
 position = Vector2(332, -147)
 
 [node name="HeavyPastEnemy" parent="Enemies/First" instance=ExtResource("14_b7yq2")]
 position = Vector2(510, -113)
+BULLETS = null
 
 [node name="second" type="Node" parent="Enemies"]
 
 [node name="HeavyPastEnemy2" parent="Enemies/second" instance=ExtResource("14_b7yq2")]
 position = Vector2(1014, -216)
+BULLETS = null
 
 [node name="HeavyFutureEnemy" parent="Enemies/second" instance=ExtResource("13_v251g")]
 position = Vector2(916, -295)
+BULLETS = null
 
 [node name="second2" type="Node" parent="Enemies"]
 
 [node name="HeavyFutureEnemy2" parent="Enemies/second2" instance=ExtResource("13_v251g")]
 position = Vector2(764, -290)
+BULLETS = null
 
 [node name="FutureEnemy2" parent="Enemies/second2" instance=ExtResource("11_p6dcx")]
 position = Vector2(679, -269)
@@ -156,24 +163,31 @@ position = Vector2(665, -353)
 
 [node name="SmallFutureEnemy" parent="Enemies/second3" instance=ExtResource("10_vejf7")]
 position = Vector2(32, -453)
+BULLETS = null
 
 [node name="SmallFutureEnemy2" parent="Enemies/second3" instance=ExtResource("10_vejf7")]
 position = Vector2(86, -456)
+BULLETS = null
 
 [node name="SmallFutureEnemy3" parent="Enemies/second3" instance=ExtResource("10_vejf7")]
 position = Vector2(40, -411)
+BULLETS = null
 
 [node name="HeavyPastEnemy" parent="Enemies/second3" instance=ExtResource("14_b7yq2")]
 position = Vector2(109, -352)
+BULLETS = null
 
 [node name="SmallPastEnemie" parent="Enemies/second3" instance=ExtResource("12_lsmvk")]
 position = Vector2(386, -338)
+BULLETS = null
 
 [node name="SmallPastEnemie2" parent="Enemies/second3" instance=ExtResource("12_lsmvk")]
 position = Vector2(290, -331)
+BULLETS = null
 
 [node name="SmallPastEnemie3" parent="Enemies/second3" instance=ExtResource("12_lsmvk")]
 position = Vector2(337, -348)
+BULLETS = null
 
 [node name="Walls" type="Node" parent="."]
 

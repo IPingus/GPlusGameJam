@@ -3,6 +3,8 @@ class_name Hurtbox
 
 signal hurt(hitbox: Hitbox, damage:float, armorPierce:float)
 
+@export var armor = 0
+
 var is_invincible = false:
 	set(value):
 		is_invincible = value

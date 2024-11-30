@@ -31,6 +31,7 @@ var active = false : set = activated
 @onready var Timeline = $StateChart
 const DUST_EFFECT = preload("res://DustEffect.tscn")
 @onready var damage_effect = $DamageEffect
+@onready var reflect = $Reflect
 
 
 func _ready():
@@ -80,8 +81,10 @@ func _on_hurt_box_hurt(hitbox, damage,armorPierce):
 	sprite_2d.material.set_shader_parameter("damaged", true)
 	damage_effect.start()
 	stats.health = stats.health - max(0.1,(damage-(Armor*(1-armorPierce))))
-	audio_stream_player.play()
-
+	if Armor> armorPierce+7:
+		reflect.playing=true
+	else:
+		audio_stream_player.play()
 
 func ModeChanged():
 	Timeline.send_event("ModeChange")

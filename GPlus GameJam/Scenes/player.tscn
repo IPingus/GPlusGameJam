@@ -1,8 +1,9 @@
-[gd_scene load_steps=25 format=3 uid="uid://mogxd1hu1pfc"]
+[gd_scene load_steps=28 format=3 uid="uid://mogxd1hu1pfc"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_45dbf"]
 [ext_resource type="PackedScene" uid="uid://bhp51wwc8ol0u" path="res://Scenes/crossbow.tscn" id="2_ikmvo"]
 [ext_resource type="Script" path="res://Scripts/HurtBox.gd" id="4_2txhf"]
+[ext_resource type="Shader" path="res://Scenes/player.gdshader" id="4_6ydpr"]
 [ext_resource type="PackedScene" uid="uid://3pwy3xt3jqyr" path="res://Scenes/smg.tscn" id="4_a1c7h"]
 [ext_resource type="Texture2D" uid="uid://cd28n7a0yrk0g" path="res://Sprites/PlayerPast.png" id="4_gfg1n"]
 [ext_resource type="Script" path="res://Scripts/Stats.gd" id="5_44j5o"]
@@ -12,6 +13,14 @@
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="10_0w7s6"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="11_34sif"]
 [ext_resource type="PackedScene" uid="uid://ey708ms86q4u" path="res://Scenes/reload_bar.tscn" id="12_04wtg"]
+[ext_resource type="AudioStream" uid="uid://di6xpfxjhcto8" path="res://Scenes/energy-90321.mp3" id="14_4bcqg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ecdi1"]
+shader = ExtResource("4_6ydpr")
+shader_parameter/speed = 1.0
+shader_parameter/hint_color = Vector4(1, 1, 0, 1)
+shader_parameter/span = 0.3
+shader_parameter/enable = true
 
 [sub_resource type="Animation" id="Animation_hqgma"]
 resource_name = "FlipToLeft"
@@ -178,9 +187,9 @@ position = Vector2(4, -1)
 
 [node name="SMG" parent="." instance=ExtResource("4_a1c7h")]
 position = Vector2(2, -1)
-RecoilAnimationName = ""
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_ecdi1")
 position = Vector2(1.66835, -19.0029)
 texture = ExtResource("4_gfg1n")
 flip_h = true
@@ -286,6 +295,29 @@ to = NodePath("../../Right")
 event = &"FlippedToRight"
 delay_in_seconds = "0.0"
 
+[node name="CoolingDown" type="Node" parent="StateChart/ParallelState"]
+script = ExtResource("9_wkp5q")
+initial_state = NodePath("Cooldown")
+
+[node name="CoolDownDone" type="Node" parent="StateChart/ParallelState/CoolingDown"]
+script = ExtResource("10_0w7s6")
+
+[node name="Transition" type="Node" parent="StateChart/ParallelState/CoolingDown/CoolDownDone"]
+script = ExtResource("11_34sif")
+to = NodePath("../../Cooldown")
+event = &"skill used"
+delay_in_seconds = "0.0"
+
+[node name="Cooldown" type="Node" parent="StateChart/ParallelState/CoolingDown"]
+script = ExtResource("10_0w7s6")
+
+[node name="Transition" type="Node" parent="StateChart/ParallelState/CoolingDown/Cooldown"]
+script = ExtResource("11_34sif")
+to = NodePath("../../CoolDownDone")
+event = &"Done"
+delay_in_seconds = "2
+"
+
 [node name="ReloadBar" parent="." instance=ExtResource("12_04wtg")]
 visible = false
 offset_left = 17.0
@@ -294,9 +326,15 @@ offset_right = 1207.0
 offset_bottom = 1162.0
 scale = Vector2(0.01, 0.01)
 
+[node name="Recharged" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_4bcqg")
+
+[connection signal="timeout" from="ModeChangeCooldown" to="." method="_on_mode_change_cooldown_timeout"]
 [connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]
 [connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]
 [connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Past" to="." method="_on_past_state_entered"]
 [connection signal="state_entered" from="StateChart/ParallelState/CompoundState/Future" to="." method="_on_future_state_entered"]
 [connection signal="state_entered" from="StateChart/ParallelState/Right Or left/Right" to="." method="_on_right_state_entered"]
 [connection signal="state_entered" from="StateChart/ParallelState/Right Or left/Left" to="." method="_on_left_state_entered"]
+[connection signal="state_entered" from="StateChart/ParallelState/CoolingDown/CoolDownDone" to="." method="_on_cool_down_done_state_entered"]
+[connection signal="state_entered" from="StateChart/ParallelState/CoolingDown/Cooldown" to="." method="_on_cooldown_state_entered"]

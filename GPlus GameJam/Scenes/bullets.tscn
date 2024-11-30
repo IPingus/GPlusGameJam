@@ -7,7 +7,6 @@
 radius = 1.41421
 
 [node name="Bullets" instance=ExtResource("1_t4y7r")]
-speed = 500
 
 [node name="VisibleOnScreenNotifier2D" parent="." index="0"]
 position = Vector2(4.76837e-07, 0)

@@ -188,23 +188,29 @@ shape = SubResource("RectangleShape2D_w21l6")
 
 [node name="SmallFutureEnemy" parent="Enemies/First" instance=ExtResource("10_vrud2")]
 position = Vector2(797, -240)
+BULLETS = null
 
 [node name="SmallFutureEnemy2" parent="Enemies/First" instance=ExtResource("10_vrud2")]
 position = Vector2(815, -125)
+BULLETS = null
 
 [node name="SmallFutureEnemy3" parent="Enemies/First" instance=ExtResource("10_vrud2")]
 position = Vector2(798, -186)
+BULLETS = null
 
 [node name="second" type="Node" parent="Enemies"]
 
 [node name="SmallPastEnemie" parent="Enemies/second" instance=ExtResource("11_23824")]
 position = Vector2(1358, -155)
+BULLETS = null
 
 [node name="SmallPastEnemie2" parent="Enemies/second" instance=ExtResource("11_23824")]
 position = Vector2(1316, -239)
+BULLETS = null
 
 [node name="SmallPastEnemie3" parent="Enemies/second" instance=ExtResource("11_23824")]
 position = Vector2(1297, -135)
+BULLETS = null
 
 [node name="second2" type="Node" parent="Enemies"]
 
@@ -218,23 +224,28 @@ position = Vector2(2017, -214)
 
 [node name="HeavyFutureEnemy" parent="Enemies/second3" instance=ExtResource("14_2l5jh")]
 position = Vector2(1852, -675)
+BULLETS = null
 
 [node name="second4" type="Node" parent="Enemies"]
 
 [node name="SmallFutureEnemy" parent="Enemies/second4" instance=ExtResource("10_vrud2")]
 position = Vector2(1131, -713)
+BULLETS = null
 
 [node name="SmallFutureEnemy2" parent="Enemies/second4" instance=ExtResource("10_vrud2")]
 position = Vector2(1162, -629)
+BULLETS = null
 
 [node name="PastEnemy" parent="Enemies/second4" instance=ExtResource("13_s7wp2")]
 position = Vector2(1041, -688)
 
 [node name="SmallFutureEnemy3" parent="Enemies/second4" instance=ExtResource("10_vrud2")]
 position = Vector2(1049, -607)
+BULLETS = null
 
 [node name="SmallFutureEnemy4" parent="Enemies/second4" instance=ExtResource("10_vrud2")]
 position = Vector2(1053, -757)
+BULLETS = null
 
 [node name="second5" type="Node" parent="Enemies"]
 
