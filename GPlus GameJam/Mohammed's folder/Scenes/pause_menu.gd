@@ -5,9 +5,11 @@ func _ready():
 
 
 func _on_restart_pressed() -> void:
-	get_tree().reload_current_scene()
-	PlayerStats.health=PlayerStats.max_health
 	Engine.time_scale = 1
+	PlayerStats.health=PlayerStats.max_health
+	get_tree().reload_current_scene()
+	
+	
 
 
 func _on_unpause_pressed():
@@ -26,4 +28,6 @@ func _input(event):
 
 
 func _on_main_menu_pressed():
+	Engine.time_scale = 1
+	PlayerStats.health=PlayerStats.max_health
 	Utils.moveToScene("res://menu.tscn")

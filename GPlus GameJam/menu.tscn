@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b1oyicel6rx48"]
+[gd_scene load_steps=3 format=3 uid="uid://b1oyicel6rx48"]
 
 [ext_resource type="Script" path="res://Scripts/Menu.gd" id="1_linqi"]
+[ext_resource type="Texture2D" uid="uid://1pp72qw4px0n" path="res://Sprites/image (1).png" id="2_2qecx"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -52,6 +53,17 @@ text = "Options"
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Quit"
+
+[node name="TextureRect" type="TextureRect" parent="Camera2D"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -27.0
+offset_top = -166.0
+offset_right = 13.0
+offset_bottom = -126.0
+grow_horizontal = 2
+texture = ExtResource("2_2qecx")
 
 [connection signal="pressed" from="Camera2D/MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Camera2D/MarginContainer/VBoxContainer/Level Select" to="." method="_on_level_select_pressed"]
