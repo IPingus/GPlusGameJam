@@ -1,9 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://cwlk8w58thg4"]
+[gd_scene load_steps=13 format=3 uid="uid://cwlk8w58thg4"]
 
 [ext_resource type="PackedScene" uid="uid://drpay7lgo3nok" path="res://Scenes/enemy.tscn" id="1_iypo2"]
-[ext_resource type="Texture2D" uid="uid://cfm0f36gw87a3" path="res://Sprites2/KFUPMGameJam-Crusader-Large-Frame1.png" id="2_2grl6"]
 [ext_resource type="Script" path="res://Scripts/heavy_past_enemy.gd" id="2_kve5q"]
-[ext_resource type="Texture2D" uid="uid://prn23yks87o0" path="res://Sprites2/KFUPMGameJam-Crusader-Large-Frame2.png" id="3_l5o1a"]
+[ext_resource type="Texture2D" uid="uid://cqttjs7cwqred" path="res://TimeSwitch/Characters/Enemies/Past enemies/Big_Knight/Big_Knight_Walk.png" id="3_y0emc"]
 
 [sub_resource type="Shader" id="Shader_dbhjc"]
 code = "/*
@@ -112,61 +111,6 @@ shader_parameter/frequecy = 10.0
 shader_parameter/damaged = false
 shader_parameter/palette = SubResource("NoiseTexture2D_nuf2g")
 
-[sub_resource type="Animation" id="Animation_dkrui"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("2_2grl6")]
-}
-
-[sub_resource type="Animation" id="Animation_u1nh5"]
-resource_name = "SlowWalk"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.1, 0.9),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [ExtResource("2_2grl6"), ExtResource("3_l5o1a")]
-}
-
-[sub_resource type="Animation" id="Animation_hamm5"]
-resource_name = "Walk"
-length = 0.2
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [ExtResource("2_2grl6"), ExtResource("3_l5o1a")]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_nd7wu"]
-_data = {
-"RESET": SubResource("Animation_dkrui"),
-"SlowWalk": SubResource("Animation_u1nh5"),
-"Walk": SubResource("Animation_hamm5")
-}
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m8qnx"]
 size = Vector2(40, 29.5)
 
@@ -179,25 +123,21 @@ radius = 25.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_ek1ov"]
 radius = 19.0263
 
-[node name="HeavyPastEnemy" node_paths=PackedStringArray("animation_player") groups=["Past"] instance=ExtResource("1_iypo2")]
+[node name="HeavyPastEnemy" groups=["Past"] instance=ExtResource("1_iypo2")]
 script = ExtResource("2_kve5q")
 Fastmax_speed = 140
 Slowmax_speed = 80
 Armor = 20.0
-animation_player = NodePath("Sprite2D/AnimationPlayer")
+
+[node name="Sprite2D2" parent="." index="1"]
+position = Vector2(0, -10)
 
 [node name="Sprite2D" parent="." index="2"]
 material = SubResource("ShaderMaterial_1ba22")
-scale = Vector2(2, 2)
-texture = ExtResource("2_2grl6")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D" index="0"]
-libraries = {
-"": SubResource("AnimationLibrary_nd7wu")
-}
+position = Vector2(0, -10)
+texture = ExtResource("3_y0emc")
 
 [node name="HurtBox" parent="." index="3"]
-visible = false
 collision_layer = 16
 armor = 20
 
@@ -206,7 +146,6 @@ position = Vector2(4, -5)
 shape = SubResource("RectangleShape2D_m8qnx")
 
 [node name="Hitbox" parent="." index="4"]
-visible = false
 damage = 3.0
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Hitbox" index="0"]
@@ -216,9 +155,6 @@ shape = SubResource("CapsuleShape2D_2476f")
 
 [node name="Stats" parent="." index="5"]
 max_health = 20
-
-[node name="Area2D" parent="." index="6"]
-visible = false
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2(0, -1)

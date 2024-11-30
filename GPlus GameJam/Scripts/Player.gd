@@ -26,8 +26,8 @@ var weapon:Weapon
 var facingLeft=false
 var flippedToLeft = false
 #signal ModeChangedSig()
-const PLAYER_FUTURE = preload("res://Sprites/PlayerFuture.png")
-const PLAYER_PAST = preload("res://Sprites/PlayerPast.png")
+const PLAYER_FUTURE = preload("res://TimeSwitch/Characters/Enemies/MC/MC_Future_Walk.png")
+const PLAYER_PAST = preload("res://TimeSwitch/Characters/Enemies/MC/MC_Past_Walk.png")
 
 func _ready():
 	PlayerStats.no_health.connect(die)
@@ -86,7 +86,10 @@ func _physics_process(delta):
 	
 	velocity = lerp(velocity, playerInput*SPEED, delta*ACCEL)
 	if animation_player is AnimationPlayer:
-		animation_player.play("walk")
+		if playerInput ==Vector2.ZERO:
+			animation_player.play("RESET")
+		else:
+			animation_player.play("walk")
 	
 	move_and_slide()
 		

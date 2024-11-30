@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cvmlcrlm4p1u6"]
+[gd_scene load_steps=6 format=3 uid="uid://cvmlcrlm4p1u6"]
 
-[ext_resource type="Texture2D" uid="uid://feuqpooshhkf" path="res://Scenes/Game Timer.jpeg" id="1_yq5xe"]
+[ext_resource type="Texture2D" uid="uid://umdfijgs8my6" path="res://Sprites/Clock.png" id="1_elo2w"]
 [ext_resource type="Script" path="res://Scripts/mode_switch_clock.gd" id="2_ea1xe"]
 [ext_resource type="Texture2D" uid="uid://bmcmu2nuw14ml" path="res://new_compressed_texture_2d.tres" id="3_5mvas"]
+[ext_resource type="Texture2D" uid="uid://1pp72qw4px0n" path="res://Sprites/image (1).png" id="4_y7a5b"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ffoyo"]
 font_size = 175
@@ -15,7 +16,7 @@ anchor_bottom = 1.0
 offset_top = -480.0
 offset_right = 480.0
 grow_vertical = 0
-texture = ExtResource("1_yq5xe")
+texture = ExtResource("1_elo2w")
 script = ExtResource("2_ea1xe")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
@@ -33,14 +34,21 @@ texture_progress = ExtResource("3_5mvas")
 tint_progress = Color(0, 0, 0, 0.780392)
 
 [node name="Label" type="Label" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -240.0
-offset_right = 132.0
+offset_left = 14.0
+offset_top = -219.0
+offset_right = 146.0
+offset_bottom = 21.0
 grow_vertical = 0
-text = "F"
 label_settings = SubResource("LabelSettings_ffoyo")
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="Image(1)" type="Sprite2D" parent="."]
+position = Vector2(103, 360)
+scale = Vector2(5.99583, 5.99583)
+texture = ExtResource("4_y7a5b")

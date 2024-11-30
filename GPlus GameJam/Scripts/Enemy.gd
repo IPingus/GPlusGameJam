@@ -23,7 +23,6 @@ var armorPierce =0
 @export var BULLETS : PackedScene
 @export var playerNode : CharacterBody2D
 var count = 0
-@export var animation_player:AnimationPlayer
 var moving = true
 @onready var timer = $Timer
 @onready var nav_agent = $NavigationAgent2D
@@ -32,6 +31,7 @@ var active = false : set = activated
 const DUST_EFFECT = preload("res://DustEffect.tscn")
 @onready var damage_effect = $DamageEffect
 @onready var reflect = $Reflect
+@onready var animation_player = $Sprite2D/AnimationPlayer
 
 
 func _ready():
@@ -146,7 +146,11 @@ func _on_timer_timeout():
 func _on_not_active_state_entered():
 	if animation_player is AnimationPlayer:
 		animation_player.stop()
-	Timeline.send_event("Activated")
+	if is_in_group("Future"):
+		Timeline.send_event("CorrectTime")
+	else:
+		Timeline.send_event("WrongTime")
+	
 
 
 func _on_damage_effect_timeout():

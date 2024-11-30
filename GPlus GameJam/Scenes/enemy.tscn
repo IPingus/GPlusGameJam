@@ -1,10 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://drpay7lgo3nok"]
+[gd_scene load_steps=24 format=3 uid="uid://drpay7lgo3nok"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy.gd" id="1_y242k"]
 [ext_resource type="PackedScene" uid="uid://gsvim0wddsl" path="res://Scenes/bullets.tscn" id="2_c4vms"]
-[ext_resource type="Texture2D" uid="uid://dakwkxpte6wp2" path="res://Sprites2/KFUPMGameJam-Crusader-Small-Frame1.png" id="2_cveny"]
 [ext_resource type="PackedScene" uid="uid://p74u5ajcmoyb" path="res://Scenes/hurt_box.tscn" id="2_t2n3r"]
 [ext_resource type="PackedScene" uid="uid://bpxrreqs0wgy" path="res://Scenes/hitbox.tscn" id="3_u875k"]
+[ext_resource type="Texture2D" uid="uid://cwx6c3ls7t1na" path="res://TimeSwitch/Characters/Enemies/Past enemies/Small_Dog/Small_Dog_Walk.png" id="4_57cnm"]
 [ext_resource type="Script" path="res://Scripts/Stats.gd" id="4_ycn4b"]
 [ext_resource type="AudioStream" uid="uid://uc6ot5fm4igq" path="res://Sounds/2024-09-20 19-16-52.hitmp3.mp3" id="5_6s4eh"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="7_bf8sg"]
@@ -122,6 +122,62 @@ shader_parameter/frequecy = 10.0
 shader_parameter/damaged = false
 shader_parameter/palette = SubResource("NoiseTexture2D_nuf2g")
 
+[sub_resource type="Animation" id="Animation_gcov1"]
+resource_name = "Walk"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 0]
+}
+
+[sub_resource type="Animation" id="Animation_f6y6r"]
+resource_name = "SlowWalk"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.133333, 0.466667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_jr2qn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qv57a"]
+_data = {
+"RESET": SubResource("Animation_jr2qn"),
+"SlowWalk": SubResource("Animation_f6y6r"),
+"Walk": SubResource("Animation_gcov1")
+}
+
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 4
 motion_mode = 1
@@ -140,7 +196,13 @@ texture = ExtResource("12_2jn2n")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
 material = SubResource("ShaderMaterial_h34ex")
-texture = ExtResource("2_cveny")
+texture = ExtResource("4_57cnm")
+hframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_qv57a")
+}
 
 [node name="HurtBox" parent="." instance=ExtResource("2_t2n3r")]
 position = Vector2(-4, 4)
@@ -217,10 +279,16 @@ delay_in_seconds = "0.0"
 [node name="NotActive" type="Node" parent="StateChart/ParallelState/EnemyMode"]
 script = ExtResource("9_sfut3")
 
-[node name="Activated" type="Node" parent="StateChart/ParallelState/EnemyMode/NotActive"]
+[node name="To normal2" type="Node" parent="StateChart/ParallelState/EnemyMode/NotActive"]
 script = ExtResource("10_i2xxj")
 to = NodePath("../../Normal")
-event = &"Activated"
+event = &"CorrectTime"
+delay_in_seconds = "0.0"
+
+[node name="To Enraged2" type="Node" parent="StateChart/ParallelState/EnemyMode/NotActive"]
+script = ExtResource("10_i2xxj")
+to = NodePath("../../Enraged")
+event = &"WrongTime"
 delay_in_seconds = "0.0"
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]

@@ -1,11 +1,9 @@
-[gd_scene load_steps=23 format=3 uid="uid://blc4is1tlva1c"]
+[gd_scene load_steps=17 format=3 uid="uid://blc4is1tlva1c"]
 
 [ext_resource type="PackedScene" uid="uid://drpay7lgo3nok" path="res://Scenes/enemy.tscn" id="1_irr1r"]
 [ext_resource type="Script" path="res://Scripts/past_enemy.gd" id="2_bd1r0"]
-[ext_resource type="Texture2D" uid="uid://cwcflnn5snut6" path="res://Sprites2/KFUPMGameJam-Crusader-Medium-Frame1.png" id="2_bwm8k"]
 [ext_resource type="PackedScene" uid="uid://dqbqsf80egbg1" path="res://Scenes/arrow.tscn" id="3_1tdx0"]
-[ext_resource type="Texture2D" uid="uid://by1m6efhi2isd" path="res://Sprites2/KFUPMGameJam-Crusader-Medium-Frame2.png" id="3_g6huo"]
-[ext_resource type="Texture2D" uid="uid://mtxuul0cnxyv" path="res://Sprites/PastEnemy.png" id="3_x3l6d"]
+[ext_resource type="Texture2D" uid="uid://gt6s3c040xpo" path="res://TimeSwitch/Characters/Enemies/Past enemies/MID_Guy/Mid_Guy_Walk.png" id="4_ub68u"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="7_5r6xu"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="8_hmpb1"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="9_6y8ck"]
@@ -117,61 +115,6 @@ shader_parameter/frequecy = 10.0
 shader_parameter/damaged = false
 shader_parameter/palette = SubResource("NoiseTexture2D_nuf2g")
 
-[sub_resource type="Animation" id="Animation_1lb3d"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("3_x3l6d")]
-}
-
-[sub_resource type="Animation" id="Animation_g7cr4"]
-resource_name = "SlowWalk"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.1, 0.9),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [ExtResource("2_bwm8k"), ExtResource("3_g6huo")]
-}
-
-[sub_resource type="Animation" id="Animation_spxak"]
-resource_name = "Walk"
-length = 0.2
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [ExtResource("2_bwm8k"), ExtResource("3_g6huo")]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_fnw7u"]
-_data = {
-"RESET": SubResource("Animation_1lb3d"),
-"SlowWalk": SubResource("Animation_g7cr4"),
-"Walk": SubResource("Animation_spxak")
-}
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eugfs"]
 radius = 15.0
 
@@ -198,13 +141,7 @@ position = Vector2(2, -19)
 [node name="Sprite2D" parent="." index="2"]
 material = SubResource("ShaderMaterial_eadyu")
 position = Vector2(3, -19)
-texture = ExtResource("3_x3l6d")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D" index="0"]
-root_node = NodePath("../..")
-libraries = {
-"": SubResource("AnimationLibrary_fnw7u")
-}
+texture = ExtResource("4_ub68u")
 
 [node name="HurtBox" parent="." index="3"]
 position = Vector2(-4, 5)

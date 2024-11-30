@@ -2,7 +2,7 @@ extends Node2D
 class_name Projectile
 
 
-@export var speed = 250
+@export var speed = 500
 @onready var hitbox = $Hitbox
 const REFLECT = preload("res://reflect.tscn")
 var velocity = Vector2.ZERO

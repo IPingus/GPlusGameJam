@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://drpay7lgo3nok" path="res://Scenes/enemy.tscn" id="1_dqqcj"]
 [ext_resource type="Script" path="res://Scripts/heavy_future_enemy.gd" id="2_5nil6"]
-[ext_resource type="Texture2D" uid="uid://cmfsf632fdtc1" path="res://Sprites/FutureHeavyEnemy.png" id="3_rdjno"]
+[ext_resource type="Texture2D" uid="uid://bxwjhm4woqr4e" path="res://TimeSwitch/Characters/Enemies/Future enemies/Big_Bot/Big_Bot_Walk.png" id="3_08q7b"]
 
 [sub_resource type="Shader" id="Shader_dbhjc"]
 code = "/*
@@ -135,7 +135,7 @@ position = Vector2(2, -3)
 [node name="Sprite2D" parent="." index="2"]
 material = SubResource("ShaderMaterial_o01uc")
 position = Vector2(3.8147e-06, -4)
-texture = ExtResource("3_rdjno")
+texture = ExtResource("3_08q7b")
 
 [node name="HurtBox" parent="." index="3"]
 collision_layer = 16

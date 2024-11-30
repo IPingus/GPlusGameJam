@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://cbo0kvd0ppjfl"]
+[gd_scene load_steps=25 format=4 uid="uid://cbo0kvd0ppjfl"]
 
 [ext_resource type="Script" path="res://Mohammed's folder/Scenes/Tilesets/level_2.gd" id="1_cvgbe"]
 [ext_resource type="PackedScene" uid="uid://dcgsxf41rc18g" path="res://Mohammed's folder/Scenes/Tilesets/tile_set_future_level_2.tscn" id="1_q3pcs"]
@@ -21,6 +21,7 @@
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="16_yeygg"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="17_slxid"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="18_jt6ju"]
+[ext_resource type="PackedScene" uid="uid://bsmkbr3ul165y" path="res://Mohammed's folder/Scenes/hp_pickup.tscn" id="22_swr1j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fw13j"]
 size = Vector2(13, 80)
@@ -268,6 +269,9 @@ script = ExtResource("18_jt6ju")
 to = NodePath("../../Past")
 event = &"ModeChange"
 delay_in_seconds = "0.0"
+
+[node name="hpPickup" parent="." instance=ExtResource("22_swr1j")]
+position = Vector2(719, -224)
 
 [connection signal="PlayerEntered" from="Checkpoint1" to="." method="_on_checkpoint_1_player_entered"]
 [connection signal="PlayerEntered" from="Checkpoint2" to="." method="_on_checkpoint_1_player_entered"]

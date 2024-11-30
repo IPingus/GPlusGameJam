@@ -279,10 +279,10 @@ event = &"ModeChange"
 delay_in_seconds = "0.0"
 
 [node name="Label" type="Label" parent="."]
-offset_left = 617.0
-offset_top = -65.0
-offset_right = 857.0
-offset_bottom = -42.0
+offset_left = 1132.0
+offset_top = -36.0
+offset_right = 1372.0
+offset_bottom = -13.0
 text = "Press Space/LT to Change Time
 "
 
