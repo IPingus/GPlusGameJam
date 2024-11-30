@@ -26,11 +26,8 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 
 func _on_hitbox_area_entered(area):
 	if area is Hurtbox:
-		print("area1")
-		if area.armor > hitbox.armorPierce+7:
-			print("area2")
+		if area.armor-5 > hitbox.armorPierce*25:
 			Utils.instanceSceneOnMain(REFLECT,global_position)
-	print("area")
 	queue_free()
 
 

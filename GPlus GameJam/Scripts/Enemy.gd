@@ -81,7 +81,7 @@ func _on_hurt_box_hurt(hitbox, damage,armorPierce):
 	sprite_2d.material.set_shader_parameter("damaged", true)
 	damage_effect.start()
 	stats.health = stats.health - max(0.1,(damage-(Armor*(1-armorPierce))))
-	if Armor> armorPierce+7:
+	if Armor-5 > armorPierce*25:
 		reflect.playing=true
 	else:
 		audio_stream_player.play()
