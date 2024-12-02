@@ -84,16 +84,7 @@ func disableallwalls():
 			child.collision_layer= 32
 	
 
-
-func _on_checkpoint_1_player_entered():
-	if checkponintlist.size() >= checkpoitn and AreaCleared:
-		AreaCleared = false
-		camera_2d.AdjustZoom(checkponintlist[checkpoitn].cameraZoom)
-		camera_2d.global_position = checkponintlist[checkpoitn].global_position
-		checkpoitn+=1
-		chekcpointChanged(checkpoitn)
-	elif not checkponintlist.size() >= checkpoitn:
-		Utils.moveToScene("res://menu.tscn")
+	
 
 #
 #func _on_checkpoint_2_player_entered():
@@ -160,5 +151,20 @@ func _on_checkpoint_6_player_entered():
 		Utils.moveToScene("res://menu.tscn")
 
 
-func _on_checkpoint_5_player_entered():
+
+
+
+func _on_checkpoint_1_player_entered(Area):
+	if checkponintlist.size() >= checkpoitn and AreaCleared:
+		AreaCleared = false
+		camera_2d.AdjustZoom(checkponintlist[checkpoitn].cameraZoom)
+		camera_2d.global_position = checkponintlist[checkpoitn].global_position
+		checkpoitn+=1
+		chekcpointChanged(checkpoitn)
+		Area.queue_free()
+	elif not checkponintlist.size() >= checkpoitn:
+		Utils.moveToScene("res://menu.tscn")
+
+
+func _on_checkpoint_5_player_entered(Area):
 	Utils.moveToScene("res://TileMap/tilemap.tscn")

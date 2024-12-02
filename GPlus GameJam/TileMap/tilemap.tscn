@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dvja0q0jhm3uu"]
+[gd_scene load_steps=26 format=3 uid="uid://dvja0q0jhm3uu"]
 
 [ext_resource type="Script" path="res://Scripts/tilemap.gd" id="1_wuqh5"]
 [ext_resource type="PackedScene" uid="uid://1cqq3cmnia5o" path="res://Mohammed's folder/Scenes/pause_menu.tscn" id="3_n83g5"]
@@ -25,13 +25,10 @@
 [ext_resource type="PackedScene" uid="uid://blc4is1tlva1c" path="res://Scenes/past_enemy.tscn" id="20_h8pks"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uciqf"]
-size = Vector2(110, 12)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wnhia"]
-size = Vector2(177, 12)
+size = Vector2(191, 12)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ld1sx"]
-size = Vector2(187, 20)
+size = Vector2(187, 22)
 
 [node name="Tilemap" type="Node2D"]
 script = ExtResource("1_wuqh5")
@@ -111,51 +108,47 @@ position = Vector2(-272, -674)
 shape = SubResource("RectangleShape2D_uciqf")
 
 [node name="Checkpoint2" parent="." instance=ExtResource("7_wbhjp")]
-position = Vector2(337, 149)
+position = Vector2(514, 301)
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Checkpoint2"]
-position = Vector2(133, -521)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint2"]
+position = Vector2(-43, -674)
 shape = SubResource("RectangleShape2D_uciqf")
 
 [node name="Checkpoint3" parent="." instance=ExtResource("7_wbhjp")]
-position = Vector2(350, 210)
+position = Vector2(843, 676)
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Checkpoint3"]
-position = Vector2(449, -208)
-rotation = 0.0268612
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint3"]
+position = Vector2(-43, -674)
 shape = SubResource("RectangleShape2D_uciqf")
 
 [node name="Checkpoint4" parent="." instance=ExtResource("7_wbhjp")]
-position = Vector2(605, 342)
+position = Vector2(1027, 586)
 
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="Checkpoint4"]
-position = Vector2(374, -432)
-rotation = 0.0268612
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint4"]
+position = Vector2(-43, -674)
 shape = SubResource("RectangleShape2D_uciqf")
 
 [node name="Checkpoint5" parent="." instance=ExtResource("7_wbhjp")]
-position = Vector2(605, 342)
+position = Vector2(1210, 281)
 
-[node name="CollisionShape2D5" type="CollisionShape2D" parent="Checkpoint5"]
-position = Vector2(567, -732)
-rotation = 0.0268612
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint5"]
+position = Vector2(-43, -674)
 shape = SubResource("RectangleShape2D_uciqf")
 
 [node name="Checkpoint6" parent="." instance=ExtResource("7_wbhjp")]
-position = Vector2(574, 86)
+position = Vector2(1359, 56)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint6"]
-position = Vector2(771, -706)
-shape = SubResource("RectangleShape2D_wnhia")
+position = Vector2(-11, -673)
+shape = SubResource("RectangleShape2D_uciqf")
 
 [node name="Checkpoint7" parent="." instance=ExtResource("7_wbhjp")]
-position = Vector2(379, -248)
-rotation = -1.71983
+position = Vector2(753, 72)
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Checkpoint7"]
-position = Vector2(324.22, 366.2)
-rotation = -3.0008
-shape = SubResource("RectangleShape2D_wnhia")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint7"]
+position = Vector2(-62, -692)
+rotation = -1.60125
+shape = SubResource("RectangleShape2D_uciqf")
 
 [node name="Enemies" type="Node" parent="."]
 
@@ -336,7 +329,7 @@ position = Vector2(467, -373)
 shape = SubResource("RectangleShape2D_ld1sx")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls/Chepoint 2"]
-position = Vector2(237, -345)
+position = Vector2(238, -347)
 shape = SubResource("RectangleShape2D_ld1sx")
 
 [node name="3" type="StaticBody2D" parent="Walls"]
@@ -376,7 +369,7 @@ position = Vector2(1165, -364)
 shape = SubResource("RectangleShape2D_ld1sx")
 
 [node name="CollisionShape2D11" type="CollisionShape2D" parent="Walls/6"]
-position = Vector2(1343, -620)
+position = Vector2(1342, -618)
 shape = SubResource("RectangleShape2D_ld1sx")
 
 [node name="7" type="StaticBody2D" parent="Walls"]
@@ -447,7 +440,7 @@ removedinPast = 1
 [connection signal="PlayerEntered" from="Checkpoint3" to="." method="_on_checkpoint_1_player_entered"]
 [connection signal="PlayerEntered" from="Checkpoint4" to="." method="_on_checkpoint_1_player_entered"]
 [connection signal="PlayerEntered" from="Checkpoint5" to="." method="_on_checkpoint_1_player_entered"]
-[connection signal="PlayerEntered" from="Checkpoint6" to="." method="_on_checkpoint_6_player_entered"]
+[connection signal="PlayerEntered" from="Checkpoint6" to="." method="_on_checkpoint_1_player_entered"]
 [connection signal="PlayerEntered" from="Checkpoint7" to="." method="_on_checkpoint_7_player_entered"]
 [connection signal="PlayerEntered" from="Checkpoint" to="." method="_on_checkpoint_player_entered"]
 [connection signal="state_entered" from="StateChart/CompoundState/Past" to="." method="_on_past_state_entered"]

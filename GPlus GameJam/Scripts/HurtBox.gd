@@ -11,7 +11,6 @@ var is_invincible = false:
 		disable.call_deferred(value)
 
 func takeHit(hitbox, damage, armorPierce):
-	print("ouch")
 	hurt.emit(hitbox,damage, armorPierce)
 
 func disable(value : bool):
